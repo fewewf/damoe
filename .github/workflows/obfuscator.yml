@@ -36,7 +36,7 @@ jobs:
           --identifier-names-generator hexadecimal \
           --rename-globals true \
           --string-array true \
-          --string-array-encoding 'des' \
+          --string-array-encoding 'base64' \
           --string-array-threshold 1 \
           --transform-object-keys true \
           --unicode-escape-sequence true
