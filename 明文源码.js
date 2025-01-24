@@ -6120,7 +6120,7 @@ function initializeParams(request, env) {
   globalThis.panelVersion = "3.0.1";
   globalThis.defaultHttpPorts = ["80", "8080", "2052", "2082", "2086", "2095", "8880"];
   globalThis.defaultHttpsPorts = ["443", "8443", "2053", "2083", "2087", "2096"];
-  globalThis.userID = env.UUID;
+  globalThis.userID = env.dddd;
   globalThis.TRPassword = env.gggh;
   globalThis.proxyIP = proxyIPs ? proxyIPs[Math.floor(Math.random() * proxyIPs.length)] : "bpb.yousef.isegaro.com";
   globalThis.hostName = request.headers.get("Host");
@@ -6132,9 +6132,9 @@ function initializeParams(request, env) {
   globalThis.subPath = env.hhhg || userID;
   if (pathName !== "/secrets") {
     if (!userID || !globalThis.TRPassword)
-      throw new Error(`Please set UUID and Trojan password first. Please visit <a href="https://${hostName}/secrets" target="_blank">here</a> to generate them.`, { cause: "init" });
+      throw new Error(`Please set dddd and Trojan password first. Please visit <a href="https://${hostName}/secrets" target="_blank">here</a> to generate them.`, { cause: "init" });
     if (userID && !isValidUUID(userID))
-      throw new Error(`Invalid UUID: ${userID}`, { cause: "init" });
+      throw new Error(`Invalid dddd: ${userID}`, { cause: "init" });
     if (typeof env.hg !== "object")
       throw new Error("hg Dataset is not properly set! Please refer to tutorials.", { cause: "init" });
   }
@@ -6483,7 +6483,7 @@ __name(unsafeStringify, "unsafeStringify");
 function stringify(arr, offset = 0) {
   const uuid = unsafeStringify(arr, offset);
   if (!isValidUUID(uuid)) {
-    throw TypeError("Stringified UUID is invalid");
+    throw TypeError("Stringified dddd is invalid");
   }
   return uuid;
 }
@@ -9459,7 +9459,7 @@ async function renderSecretsPage() {
             <div class="form-container">
                 <h2>Secrets generator</h2>
                 <div>
-                    <strong>Random UUID</strong>
+                    <strong>Random dddd</strong>
                     <div class="output-container">
                         <span id="uuid" class="output"></span>
                         <span class="copy-icon" onclick="copyToClipboard('uuid')">\u{1F4CB}</span>
