@@ -4189,7 +4189,7 @@ async function renderLoginPage() {
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPB Login</title>
+    <title>bbbb Login</title>
     <style>
         :root {
             --color: black;
@@ -4285,7 +4285,7 @@ async function renderLoginPage() {
     </head>
     <body>
         <div class="container">
-            <h1>BPB Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
+            <h1>bbbb Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
             <div class="form-container">
                 <h2>User Login</h2>
                 <form id="loginForm">
@@ -4756,7 +4756,7 @@ async function renderHomePage(proxySettings, isPassSet) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="timestamp" content=${Date.now()}>
-        <title>BPB Panel ${globalThis.panelVersion}</title>
+        <title>bbbb Panel ${globalThis.panelVersion}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <title>Collapsible Sections</title>
@@ -5054,7 +5054,7 @@ async function renderHomePage(proxySettings, isPassSet) {
         </style>
     </head>
     <body>
-        <h1>BPB Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
+        <h1>bbbb Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
         <div class="form-container">
             <form id="configForm">
                 <details open>
@@ -5349,8 +5349,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["v2rayNG", "NikaNG", "MahsaNG", "v2rayN", "v2rayN-PRO", "Shadowrocket", "Streisand", "Hiddify", "Nekoray (Xray)"])}
                         </td>
                         <td>
-                            ${subQR("sub", "", "BPB-Normal", "Normal Subscription")}
-                            ${subURL("sub", "", "BPB-Normal")}
+                            ${subQR("sub", "", "bbbb-Normal", "Normal Subscription")}
+                            ${subURL("sub", "", "bbbb-Normal")}
                         </td>
                     </tr>
                     <tr>
@@ -5358,7 +5358,7 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["husi", "Nekobox", "Nekoray (sing-Box)", "Karing"])}
                         </td>
                         <td>
-                            ${subURL("sub", "singbox", "BPB-Normal")}
+                            ${subURL("sub", "singbox", "bbbb-Normal")}
                         </td>
                     </tr>
                 </table>
@@ -5375,8 +5375,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["v2rayNG", "NikaNG", "MahsaNG", "v2rayN", "v2rayN-PRO", "Streisand"])}
                         </td>
                         <td>
-                            ${subQR("sub", "xray", "BPB-Full-Normal", "Full normal Subscription")}
-                            ${subURL("sub", "xray", "BPB-Full-Normal")}
+                            ${subQR("sub", "xray", "bbbb-Full-Normal", "Full normal Subscription")}
+                            ${subURL("sub", "xray", "bbbb-Full-Normal")}
                         </td>
                     </tr>
                     <tr>
@@ -5384,8 +5384,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["sing-box", "v2rayN (sing-box)"])}
                         </td>
                         <td>
-                            ${subQR("sub", "sfa", "BPB-Full-Normal", "Full normal Subscription", true)}
-                            ${subURL("sub", "sfa", "BPB-Full-Normal")}
+                            ${subQR("sub", "sfa", "bbbb-Full-Normal", "Full normal Subscription", true)}
+                            ${subURL("sub", "sfa", "bbbb-Full-Normal")}
                         </td>
                     </tr>
                     <tr>
@@ -5393,8 +5393,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["Clash Meta", "Clash Verge", "FlClash", "Stash", "v2rayN (mihomo)"])}
                         </td>
                         <td>
-                            ${subQR("sub", "clash", "BPB-Full-Normal", "Full normal Subscription")}
-                            ${subURL("sub", "clash", "BPB-Full-Normal")}
+                            ${subQR("sub", "clash", "bbbb-Full-Normal", "Full normal Subscription")}
+                            ${subURL("sub", "clash", "bbbb-Full-Normal")}
                         </td>
                     </tr>
                 </table>
@@ -5411,8 +5411,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["v2rayNG", "NikaNG", "MahsaNG", "v2rayN", "v2rayN-PRO", "Streisand"])}
                         </td>
                         <td>
-                            ${subQR("fragsub", "", "BPB-Fragment", "Fragment Subscription")}
-                            ${subURL("fragsub", "", "BPB-Fragment")}
+                            ${subQR("fragsub", "", "bbbb-Fragment", "Fragment Subscription")}
+                            ${subURL("fragsub", "", "bbbb-Fragment")}
                         </td>
                     </tr>
                     <tr>
@@ -5420,8 +5420,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["Hiddify"])}
                         </td>
                         <td>
-                            ${subQR("fragsub", "hiddify", "BPB-Fragment", "Fragment Subscription")}
-                            ${subURL("fragsub", "hiddify", "BPB-Fragment")}
+                            ${subQR("fragsub", "hiddify", "bbbb-Fragment", "Fragment Subscription")}
+                            ${subURL("fragsub", "hiddify", "bbbb-Fragment")}
                         </td>
                     </tr>
                 </table>
@@ -5438,8 +5438,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["v2rayNG", "v2rayN", "Streisand"])}
                         </td>
                         <td>
-                            ${subQR("warpsub", "xray", "BPB-Warp", "Warp Subscription")}
-                            ${subURL("warpsub", "xray", "BPB-Warp")}
+                            ${subQR("warpsub", "xray", "bbbb-Warp", "Warp Subscription")}
+                            ${subURL("warpsub", "xray", "bbbb-Warp")}
                         </td>
                     </tr>
                     <tr>
@@ -5447,8 +5447,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["Hiddify", "sing-box", "v2rayN (sing-box)"])}
                         </td>
                         <td>
-                            ${subQR("sub", "singbox", "BPB-Warp", "Warp Subscription", true)}
-                            ${subURL("warpsub", "singbox", "BPB-Warp")}
+                            ${subQR("sub", "singbox", "bbbb-Warp", "Warp Subscription", true)}
+                            ${subURL("warpsub", "singbox", "bbbb-Warp")}
                         </td>
                     </tr>
                     <tr>
@@ -5456,8 +5456,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["Clash Meta", "Clash Verge", "FlClash", "Stash", "v2rayN (mihomo)"])}
                         </td>
                         <td>
-                            ${subQR("warpsub", "clash", "BPB-Warp", "Warp Subscription")}
-                            ${subURL("warpsub", "clash", "BPB-Warp")}
+                            ${subQR("warpsub", "clash", "bbbb-Warp", "Warp Subscription")}
+                            ${subURL("warpsub", "clash", "bbbb-Warp")}
                         </td>
                     </tr>
                 </table>
@@ -5474,8 +5474,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["NikaNG", "MahsaNG", "v2rayN-PRO"])}
                         </td>
                         <td>
-                            ${subQR("warpsub", "nikang", "BPB-Warp-Pro", "Warp Pro Subscription")}
-                            ${subURL("warpsub", "nikang", "BPB-Warp-Pro")}
+                            ${subQR("warpsub", "nikang", "bbbb-Warp-Pro", "Warp Pro Subscription")}
+                            ${subURL("warpsub", "nikang", "bbbb-Warp-Pro")}
                         </td>
                     </tr>
                     <tr>
@@ -5483,8 +5483,8 @@ async function renderHomePage(proxySettings, isPassSet) {
                             ${supportedApps(["Hiddify"])}
                         </td>
                         <td>
-                            ${subQR("warpsub", "hiddify", "BPB-Warp-Pro", "Warp Pro Subscription", true)}
-                            ${subURL("warpsub", "hiddify", "BPB-Warp-Pro")}
+                            ${subQR("warpsub", "hiddify", "bbbb-Warp-Pro", "Warp Pro Subscription", true)}
+                            ${subURL("warpsub", "hiddify", "bbbb-Warp-Pro")}
                         </td>
                     </tr>
                 </table>
@@ -5551,7 +5551,7 @@ async function renderHomePage(proxySettings, isPassSet) {
             <hr>
             <div class="footer">
                 <i class="fa fa-github" style="font-size:36px; margin-right: 10px;"></i>
-                <a class="link" href="https://github.com/bia-pain-bache/BPB-Worker-Panel" style="color: var(--color); text-decoration: underline;" target="_blank">Github</a>
+                <a class="link" href="https://github.com/bia-pain-bache/bbbb-Worker-Panel" style="color: var(--color); text-decoration: underline;" target="_blank">Github</a>
                 <button id="openModalBtn" class="button">Change Password</button>
                 <button type="button" id="logout" style="background: none; color: var(--color); margin: 0; border: none; cursor: pointer;">
                     <i class="fa fa-power-off fa-2x" aria-hidden="true"></i>
@@ -6839,7 +6839,7 @@ async function renderErrorPage(error) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BPB Error</title>
+        <title>bbbb Error</title>
         <style>
             :root {
                 --color: black;
@@ -6871,7 +6871,7 @@ async function renderErrorPage(error) {
     </head>
     <body>
         <div id="error-container">
-            <h1>BPB Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
+            <h1>bbbb Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
             <div id="error-message">
                 <h2>\u274C Something went wrong!</h2>
                 <p><b>${error ? `\u26A0\uFE0F ${error.cause ? error.message.toString() : error.stack.toString()}` : ""}</b></p>
@@ -7552,7 +7552,7 @@ function buildXrayConfig(proxySettings, remark, isFragment, isBalancer, isChain,
 }
 __name(buildXrayConfig, "buildXrayConfig");
 async function buildXrayBestPingConfig(proxySettings, totalAddresses, chainProxy, outbounds, isFragment) {
-  const remark = isFragment ? "\u{1F4A6} BPB F - Best Ping \u{1F4A5}" : "\u{1F4A6} BPB - Best Ping \u{1F4A5}";
+  const remark = isFragment ? "\u{1F4A6} bbbb F - Best Ping \u{1F4A5}" : "\u{1F4A6} bbbb - Best Ping \u{1F4A5}";
   const config = buildXrayConfig(proxySettings, remark, isFragment, true, chainProxy, true);
   config.dns = await buildXrayDNS(proxySettings, totalAddresses, void 0, false, false);
   config.routing.rules = buildXrayRoutingRules(proxySettings, totalAddresses, chainProxy, true, false, false);
@@ -7581,7 +7581,7 @@ async function buildXrayBestFragmentConfig(proxySettings, hostName2, chainProxy,
     "80-100",
     "100-200"
   ];
-  const config = buildXrayConfig(proxySettings, "\u{1F4A6} BPB F - Best Fragment \u{1F60E}", true, true, chainProxy, false, false);
+  const config = buildXrayConfig(proxySettings, "\u{1F4A6} bbbb F - Best Fragment \u{1F60E}", true, true, chainProxy, false, false);
   config.dns = await buildXrayDNS(proxySettings, [], hostName2, false, false);
   config.routing.rules = buildXrayRoutingRules(proxySettings, [], chainProxy, true, false, false);
   const fragment = config.outbounds.shift();
@@ -7607,7 +7607,7 @@ async function buildXrayBestFragmentConfig(proxySettings, hostName2, chainProxy,
 }
 __name(buildXrayBestFragmentConfig, "buildXrayBestFragmentConfig");
 async function buildXrayWorkerLessConfig(proxySettings) {
-  const config = buildXrayConfig(proxySettings, "\u{1F4A6} BPB F - WorkerLess \u2B50", true, false, false, false, false);
+  const config = buildXrayConfig(proxySettings, "\u{1F4A6} bbbb F - WorkerLess \u2B50", true, false, false, false, false);
   config.dns = await buildXrayDNS(proxySettings, [], void 0, true);
   config.routing.rules = buildXrayRoutingRules(proxySettings, [], false, false, true, false);
   const fakeOutbound = buildXrayVLOutbound("fake-outbound", "google.com", "443", globalThis.userID, "google.com", "google.com", "", true, false);
@@ -9352,7 +9352,7 @@ async function renderSecretsPage() {
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPB Generator</title>
+    <title>bbbb Generator</title>
     <style>
         :root {
             --color: black;
@@ -9455,7 +9455,7 @@ async function renderSecretsPage() {
     </head>
     <body>
         <div class="container">
-            <h1>BPB Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
+            <h1>bbbb Panel <span style="font-size: smaller;">${globalThis.panelVersion}</span> \u{1F4A6}</h1>
             <div class="form-container">
                 <h2>Secrets generator</h2>
                 <div>
