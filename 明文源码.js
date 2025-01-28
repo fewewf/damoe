@@ -4347,13 +4347,13 @@ __name(renderLoginPage, "renderLoginPage");
 // src/authentication/auth.js
 async function generateJWTToken(request, env) {
   const password = await request.text();
-  const savedPass = await env.kv.get("pwd");
+  const savedPass = await env.hg.get("pwd");
   if (password !== savedPass)
     return new Response("Method Not Allowed", { status: 405 });
-  let secretKey = await env.kv.get("secretKey");
+  let secretKey = await env.hg.get("secretKey");
   if (!secretKey) {
     secretKey = generateSecretKey();
-    await env.kv.put("secretKey", secretKey);
+    await env.hg.put("secretKey", secretKey);
   }
   const secret = new TextEncoder().encode(secretKey);
   const jwtToken = await new SignJWT({ userID: globalThis.userID }).setProtectedHeader({ alg: "HS256" }).setIssuedAt().setExpirationTime("24h").sign(secret);
@@ -4373,7 +4373,7 @@ function generateSecretKey() {
 __name(generateSecretKey, "generateSecretKey");
 async function Authenticate(request, env) {
   try {
-    const secretKey = await env.kv.get("secretKey");
+    const secretKey = await env.hg.get("secretKey");
     const secret = new TextEncoder().encode(secretKey);
     const cookie = request.headers.get("Cookie")?.match(/(^|;\s*)jwtToken=([^;]*)/);
     const token = cookie ? cookie[2] : null;
@@ -4402,13 +4402,13 @@ function logout() {
 __name(logout, "logout");
 async function resetPassword(request, env) {
   let auth = await Authenticate(request, env);
-  const oldPwd = await env.kv.get("pwd");
+  const oldPwd = await env.hg.get("pwd");
   if (oldPwd && !auth)
     return new Response("Unauthorized!", { status: 401 });
   const newPwd = await request.text();
   if (newPwd === oldPwd)
     return new Response("Please enter a new Password!", { status: 400 });
-  await env.kv.put("pwd", newPwd);
+  await env.hg.put("pwd", newPwd);
   return new Response("Success", {
     status: 200,
     headers: {
@@ -4484,7 +4484,7 @@ async function fetchWarpConfigs(env, proxySettings) {
     }
   }
   const configs = JSON.stringify(warpConfigs);
-  await env.kv.put("warpConfigs", configs);
+  await env.hg.put("warpConfigs", configs);
   return { error: null, configs };
 }
 __name(fetchWarpConfigs, "fetchWarpConfigs");
@@ -4500,12 +4500,12 @@ var generateKeyPair = /* @__PURE__ */ __name(() => {
   return { publicKey: publicKeyBase64, privateKey: privateKeyBase64 };
 }, "generateKeyPair");
 
-// src/kv/handlers.js
+// src/hg/handlers.js
 async function getDataset(request, env) {
   let proxySettings, warpConfigs;
   try {
-    proxySettings = await env.kv.get("proxySettings", { type: "json" });
-    warpConfigs = await env.kv.get("warpConfigs", { type: "json" });
+    proxySettings = await env.hg.get("proxySettings", { type: "json" });
+    warpConfigs = await env.hg.get("warpConfigs", { type: "json" });
   } catch (error) {
     console.log(error);
     throw new Error(`An error occurred while getting hg - ${error}`);
@@ -4528,7 +4528,7 @@ async function updateDataset(request, env) {
   let currentSettings;
   if (!isReset) {
     try {
-      currentSettings = await env.kv.get("proxySettings", { type: "json" });
+      currentSettings = await env.hg.get("proxySettings", { type: "json" });
     } catch (error) {
       console.log(error);
       throw new Error(`An error occurred while getting current hg settings - ${error}`);
@@ -4592,7 +4592,7 @@ async function updateDataset(request, env) {
     panelVersion: globalThis.panelVersion
   };
   try {
-    await env.kv.put("proxySettings", JSON.stringify(proxySettings));
+    await env.hg.put("proxySettings", JSON.stringify(proxySettings));
     if (isReset)
       await updateWarpConfigs(request, env);
   } catch (error) {
@@ -6061,7 +6061,7 @@ async function handlePanel(request, env) {
     return new Response("Success", { status: 200 });
   }
   const { proxySettings } = await getDataset(request, env);
-  const pwd = await env.kv.get("pwd");
+  const pwd = await env.hg.get("pwd");
   if (pwd && !auth)
     return Response.redirect(`${globalThis.urlOrigin}/login`, 302);
   const isPassSet = pwd?.length >= 8;
@@ -6116,7 +6116,7 @@ function initializeParams(request, env) {
       throw new Error(`Please set dddd and ${atob("VHJvamFu")} password first. Please visit <a href="https://${hostName}/secrets" target="_blank">here</a> to generate them.`, { cause: "init" });
     if (userID && !isValiddddd(userID))
       throw new Error(`Invalid dddd: ${userID}`, { cause: "init" });
-    if (typeof env.kv !== "object")
+    if (typeof env.hg !== "object")
       throw new Error("hg Dataset is not properly set! Please refer to tutorials.", { cause: "init" });
   }
 }
@@ -7635,7 +7635,7 @@ async function getXrayCustomConfigs(request, env, isFragment) {
     } catch (error) {
       console.log("An error occured while parsing chain proxy: ", error);
       chainProxy = void 0;
-      await env.kv.put("proxySettings", JSON.stringify({
+      await env.hg.put("proxySettings", JSON.stringify({
         ...proxySettings,
         outProxy: "",
         outProxyParams: {}
@@ -8474,7 +8474,7 @@ async function getSingBoxCustomConfig(request, env, isFragment) {
     } catch (error) {
       console.log("An error occured while parsing chain proxy: ", error);
       chainProxy = void 0;
-      await env.kv.put("proxySettings", JSON.stringify({
+      await env.hg.put("proxySettings", JSON.stringify({
         ...proxySettings,
         outProxy: "",
         outProxyParams: {}
@@ -9100,7 +9100,7 @@ async function getClashNormalConfig(request, env) {
     } catch (error) {
       console.log("An error occured while parsing chain proxy: ", error);
       chainProxy = void 0;
-      await env.kv.put("proxySettings", JSON.stringify({
+      await env.hg.put("proxySettings", JSON.stringify({
         ...proxySettings,
         outProxy: "",
         outProxyParams: {}
