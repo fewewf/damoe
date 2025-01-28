@@ -4508,7 +4508,7 @@ async function getDataset(request, env) {
     warpConfigs = await env.kv.get("warpConfigs", { type: "json" });
   } catch (error) {
     console.log(error);
-    throw new Error(`An error occurred while getting KV - ${error}`);
+    throw new Error(`An error occurred while getting hg - ${error}`);
   }
   if (!proxySettings) {
     proxySettings = await updateDataset(request, env);
@@ -4531,7 +4531,7 @@ async function updateDataset(request, env) {
       currentSettings = await env.kv.get("proxySettings", { type: "json" });
     } catch (error) {
       console.log(error);
-      throw new Error(`An error occurred while getting current KV settings - ${error}`);
+      throw new Error(`An error occurred while getting current hg settings - ${error}`);
     }
   } else {
     newSettings = null;
@@ -4597,7 +4597,7 @@ async function updateDataset(request, env) {
       await updateWarpConfigs(request, env);
   } catch (error) {
     console.log(error);
-    throw new Error(`An error occurred while updating KV - ${error}`);
+    throw new Error(`An error occurred while updating hg - ${error}`);
   }
   return proxySettings;
 }
@@ -6117,7 +6117,7 @@ function initializeParams(request, env) {
     if (userID && !isValiddddd(userID))
       throw new Error(`Invalid dddd: ${userID}`, { cause: "init" });
     if (typeof env.kv !== "object")
-      throw new Error("KV Dataset is not properly set! Please refer to tutorials.", { cause: "init" });
+      throw new Error("hg Dataset is not properly set! Please refer to tutorials.", { cause: "init" });
   }
 }
 __name(initializeParams, "initializeParams");
