@@ -10,7 +10,7 @@ export default {
     const currentDate = new Date();
     const timestamp = Math.ceil(currentDate.getTime() / (1000 * 60 * 31)); // 每31分钟一个时间戳
     临时TOKEN = await 双重哈希(url.hostname + timestamp + UA);
-    永久TOKEN = env.TOKEN || 临时TOKEN;
+    永久TOKEN = env.ttt || 临时TOKEN;
 
     // 不区分大小写检查路径
     if (path.toLowerCase() === '/check') {
@@ -18,7 +18,7 @@ export default {
       if (url.searchParams.get('proxyip') === '') return new Response('Invalid proxyip parameter', { status: 400 });
       if (!url.searchParams.get('proxyip').includes('.') && !(url.searchParams.get('proxyip').includes('[') && url.searchParams.get('proxyip').includes(']'))) return new Response('Invalid proxyip format', { status: 400 });
 
-      if (env.TOKEN) {
+      if (env.ttt) {
         if (!url.searchParams.has('token') || url.searchParams.get('token') !== 永久TOKEN) {
           return new Response(JSON.stringify({
             status: "error",
