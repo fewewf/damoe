@@ -163,7 +163,7 @@ export default {
         const URLs = await 整理(env[envKey]);
         const URL = URLs[Math.floor(Math.random() * URLs.length)];
         return envKey === 'URL302' ? Response.redirect(URL, 302) : fetch(new Request(URL, request));
-      } else if (env.TOKEN) {
+      } else if (env.ttt) {
         return new Response(await nginx(), {
           headers: {
             'Content-Type': 'text/html; charset=UTF-8',
