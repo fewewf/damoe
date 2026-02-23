@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "javascript-obfuscator worker.js --config obf.json --output dist/worker.js",
+    "deploy": "wrangler deploy dist/worker.js"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.0",
+    "wrangler": "^3.0.0"
+  }
+}
