@@ -1,0 +1,8 @@
+{
+  "compact": true,
+  "renameGlobals": false,
+  "identifierNamesGenerator": "hexadecimal",
+  "stringArray": true,
+  "stringArrayEncoding": ["base64"],
+  "stringArrayThreshold": 0.75
+}
