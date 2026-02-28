@@ -1,15 +1,21 @@
 {
-  "name": "worker-ci-build",
+  "name": "damoe",
   "type": "module",
+  "private": true,
   "scripts": {
+    "build": "node build/build.js",
     "build:rename": "node build/rename.js",
     "build:obfuscate": "node build/obfuscate.js",
-    "build": "npm run build:rename && npm run build:obfuscate"
+    "verify": "node build/verify.js",
+    "build:all": "npm run build && npm run build:rename && npm run build:obfuscate && npm run verify"
   },
-  "dependencies": {
-    "@babel/parser": "^7.24.0",
-    "@babel/traverse": "^7.24.0",
-    "@babel/generator": "^7.24.0",
-    "javascript-obfuscator": "^4.1.0"
+  "devDependencies": {
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "@babel/generator": "^7.26.0",
+    "@babel/types": "^7.26.0",
+    "javascript-obfuscator": "^4.1.1",
+    "esbuild": "^0.25.0",
+    "wrangler": "^4.69.0"
   }
 }
