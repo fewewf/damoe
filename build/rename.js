@@ -82,7 +82,7 @@ function randomName() {
   // 中文字符范围：0x4e00-0x9fff (常用汉字)
   const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
   // 可选的中文字符列表
-  const chineseChars = "的一是不了人我有在们他这上地个子中说到时年就行下发成那可对后能出面看点生学工作要动进种";
+  const chineseChars = "的一是不了人我有在们他这上地个子中说到年时就行下发成那可对后能出面看点生学工作要动进种";
   
   // 随机决定是否使用中文字符
   const useChinese = Math.random() > 0.7;
@@ -145,19 +145,6 @@ traverse(ast, {
         quasi.value.cooked = newValue;
       }
     });
-  },
-  
-  // 处理注释中的敏感词
-  CommentLine(path) {
-    if (containsSensitiveWord(path.node.value)) {
-      path.node.value = " " + randomName() + " ";
-    }
-  },
-  
-  CommentBlock(path) {
-    if (containsSensitiveWord(path.node.value)) {
-      path.node.value = " " + randomName() + " ";
-    }
   }
 });
 
@@ -248,8 +235,34 @@ traverse(ast, {
         path.node.exported.name = renameMap.get(name);
       }
     }
+  },
+  
+  // 处理导入的变量
+  ImportSpecifier(path) {
+    if (path.node.imported && path.node.imported.name) {
+      const name = path.node.imported.name;
+      if (!RESERVED.has(name) && containsSensitiveWord(name)) {
+        if (!renameMap.has(name)) {
+          renameMap.set(name, randomName());
+        }
+        path.node.imported.name = renameMap.get(name);
+      }
+    }
+    if (path.node.local && path.node.local.name) {
+      const name = path.node.local.name;
+      if (!RESERVED.has(name) && containsSensitiveWord(name)) {
+        if (!renameMap.has(name)) {
+          renameMap.set(name, randomName());
+        }
+        path.node.local.name = renameMap.get(name);
+      }
+    }
   }
 });
+
+// 处理注释 - 使用不同的方法
+// 由于无法直接遍历注释节点，我们将在生成代码后处理注释
+// 或者我们可以直接忽略注释的重命名，因为注释不会影响代码执行
 
 // 输出重命名映射（用于调试）
 console.log("🔍 重命名映射:");
@@ -265,7 +278,7 @@ stringReplacements.forEach((newValue, oldValue) => {
 // 确保输出目录存在
 if (!fs.existsSync("dist")) fs.mkdirSync("dist");
 
-// 生成并写入文件
+// 生成代码
 const output = generate(ast, {
   jsescOption: {
     minimal: true,  // 最小化转义，保留中文字符
@@ -273,6 +286,15 @@ const output = generate(ast, {
   }
 });
 
-fs.writeFileSync(TEMP, output.code);
+let finalCode = output.code;
+
+// 可选：使用正则表达式替换注释中的敏感词
+// 这只是一个简单的替代方案
+SENSITIVE_WORDS.forEach(word => {
+  const regex = new RegExp(`(//|/\\*|\\*/|\\*)\\s*${word}`, 'gi');
+  finalCode = finalCode.replace(regex, `$1 ${randomName()}`);
+});
+
+fs.writeFileSync(TEMP, finalCode);
 
 console.log("✅ 重命名完成！");
