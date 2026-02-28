@@ -54,6 +54,9 @@ const RESERVED = new Set([
 // 敏感词列表 - 需要彻底重命名的词汇
 const SENSITIVE_WORDS = new Set([
   "proxy",
+  "端口",
+  "地址",
+  "反代IP"
   "socks",
   "代理",
   "socks5",
