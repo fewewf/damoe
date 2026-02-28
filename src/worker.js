@@ -1,10 +1,10 @@
-const FIXED_UUID = '276c88bd-165f-4361-aef7-f58f490d7dc3';// 建议修改为自己的规范化UUID，如不需要可留空 @GoodLiux优化版
+const FIXED_UUID = '276c88bd-165f-4361-aef7-f58f490d7dc3';
 let 反代IP = '', 启用SOCKS5反代 = null, 启用SOCKS5全局反代 = false, 我的SOCKS5账号 = '', parsedSocks5Address = {};
 export default {
     async fetch(request) {
         try {
             const url = new URL(request.url);
-            // 检查是否为 WebSocket 升级请求
+            
             const upgradeHeader = request.headers.get('Upgrade');
             if (upgradeHeader !== 'websocket') {
                 return new Response('Hello World!', { status: 200 });
@@ -39,7 +39,7 @@ async function handleSPESSWebSocket(request, config) {
 
     serverWS.accept();
 
-    // WebSocket心跳机制，每30秒发送一次
+    
     let heartbeatInterval = setInterval(() => {
         if (serverWS.readyState === WS_READY_STATE_OPEN) {
             try {
@@ -56,7 +56,7 @@ async function handleSPESSWebSocket(request, config) {
     serverWS.addEventListener('close', clearHeartbeat);
     serverWS.addEventListener('error', clearHeartbeat);
 
-    // 处理 WebSocket 数据流
+    
     const earlyDataHeader = request.headers.get('sec-websocket-protocol') || '';
     const wsReadable = createWebSocketReadableStream(serverWS, earlyDataHeader);
     let remoteSocket = null;
@@ -194,7 +194,7 @@ function createWebSocketReadableStream(ws, earlyDataHeader) {
     });
 }
 
-// 只允许固定UUID
+
 function parseVLESSHeader(buffer) {
     if (buffer.byteLength < 24) {
         return { hasError: true, message: '无效的头部长度' };
@@ -252,18 +252,18 @@ function parseVLESSHeader(buffer) {
 }
 
 async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null, retryCount = 0) {
-    const MAX_RETRIES = 8;                      // 最大重试8次
-    const MAX_CHUNK_SIZE = 128 * 1024;              // 单帧最大 128 KB
-    const MAX_BUFFER_SIZE = 2 * 1024 * 1024;           // 最大缓存 2 MB
-    const FLUSH_INTERVAL = 10;                  // ms，定期 flush
-    const BASE_RETRY_DELAY = 200;             // ms，初始重试延迟
+    const MAX_RETRIES = 8;                      
+    const MAX_CHUNK_SIZE = 128 * 1024;              
+    const MAX_BUFFER_SIZE = 2 * 1024 * 1024;           
+    const FLUSH_INTERVAL = 10;                  
+    const BASE_RETRY_DELAY = 200;             
 
     let headerSent = false;
     let hasIncomingData = false;
     let bufferQueue = [];
     let bufferedBytes = 0;
 
-    // --- 工具函数 ---
+    
 
     const concatUint8Arrays = (chunks) => {
         if (chunks.length === 1) return chunks[0];
@@ -277,7 +277,7 @@ async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null
         return merged;
     };
 
-    // 分包发送（每帧 ≤ 128 KB）
+    
     const sendInChunks = (data) => {
         let offset = 0;
         while (offset < data.byteLength) {
@@ -297,7 +297,7 @@ async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null
 
     const flushTimer = setInterval(flushBufferQueue, FLUSH_INTERVAL);
 
-    // --- 主读循环 ---
+    
     const reader = remoteSocket.readable.getReader();
     try {
         while (true) {
@@ -307,7 +307,7 @@ async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null
             hasIncomingData = true;
             if (ws.readyState !== WS_READY_STATE_OPEN) break;
 
-            // 首包带 vlessHeader
+            
             if (!headerSent) {
                 const combined = new Uint8Array(vlessHeader.byteLength + value.byteLength);
                 combined.set(new Uint8Array(vlessHeader), 0);
@@ -320,7 +320,7 @@ async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null
                 bufferedBytes += value.byteLength;
             }
 
-            // 缓存超过 2 MB 立即 flush
+            
             if (bufferedBytes >= MAX_BUFFER_SIZE) {
                 flushBufferQueue();
             }
@@ -330,7 +330,7 @@ async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null
         flushBufferQueue();
         clearInterval(flushTimer);
 
-        // --- 关闭逻辑 ---
+        
         if (!hasIncomingData && retry && retryCount < MAX_RETRIES) {
             const delay = BASE_RETRY_DELAY * Math.pow(2, retryCount);
             console.warn(`未收到数据，${delay} ms 后重试 (${retryCount + 1}/${MAX_RETRIES})`);
@@ -448,11 +448,11 @@ async function httpConnect(addressType, addressRemote, portRemote, parsedSocks5A
         port: port
     });
 
-    // 构建HTTP CONNECT请求
+    
     let connectRequest = `CONNECT ${addressRemote}:${portRemote} HTTP/1.1\r\n`;
     connectRequest += `Host: ${addressRemote}:${portRemote}\r\n`;
 
-    // 添加代理认证（如果需要）
+    
     if (username && password) {
         const authString = `${username}:${password}`;
         const base64Auth = btoa(authString);
@@ -461,11 +461,11 @@ async function httpConnect(addressType, addressRemote, portRemote, parsedSocks5A
 
     connectRequest += `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n`;
     connectRequest += `Proxy-Connection: Keep-Alive\r\n`;
-    connectRequest += `Connection: Keep-Alive\r\n`; // 添加标准 Connection 头
+    connectRequest += `Connection: Keep-Alive\r\n`; 
     connectRequest += `\r\n`;
 
     try {
-        // 发送连接请求
+        
         const writer = sock.writable.getWriter();
         await writer.write(new TextEncoder().encode(connectRequest));
         writer.releaseLock();
@@ -474,7 +474,7 @@ async function httpConnect(addressType, addressRemote, portRemote, parsedSocks5A
         throw new Error(`发送HTTP CONNECT请求失败: ${err.message}`);
     }
 
-    // 读取HTTP响应
+    
     const reader = sock.readable.getReader();
     let respText = '';
     let connected = false;
@@ -488,41 +488,41 @@ async function httpConnect(addressType, addressRemote, portRemote, parsedSocks5A
                 throw new Error('HTTP代理连接中断');
             }
 
-            // 合并接收到的数据
+            
             const newBuffer = new Uint8Array(responseBuffer.length + value.length);
             newBuffer.set(responseBuffer);
             newBuffer.set(value, responseBuffer.length);
             responseBuffer = newBuffer;
 
-            // 将收到的数据转换为文本
+            
             respText = new TextDecoder().decode(responseBuffer);
 
-            // 检查是否收到完整的HTTP响应头
+            
             if (respText.includes('\r\n\r\n')) {
-                // 分离HTTP头和可能的数据部分
+                
                 const headersEndPos = respText.indexOf('\r\n\r\n') + 4;
                 const headers = respText.substring(0, headersEndPos);
 
-                // 检查响应状态
+                
                 if (headers.startsWith('HTTP/1.1 200') || headers.startsWith('HTTP/1.0 200')) {
                     connected = true;
 
-                    // 如果响应头之后还有数据，我们需要保存这些数据以便后续处理
+                    
                     if (headersEndPos < responseBuffer.length) {
                         const remainingData = responseBuffer.slice(headersEndPos);
-                        // 创建一个缓冲区来存储这些数据，以便稍后使用
+                        
                         const dataStream = new ReadableStream({
                             start(controller) {
                                 controller.enqueue(remainingData);
                             }
                         });
 
-                        // 创建一个新的TransformStream来处理额外数据
+                        
                         const { readable, writable } = new TransformStream();
                         dataStream.pipeTo(writable).catch(err => console.error('处理剩余数据错误:', err));
 
-                        // 替换原始readable流
-                        // @ts-ignore
+                        
+                        
                         sock.readable = readable;
                     }
                 } else {
@@ -568,7 +568,7 @@ async function handleUDPOutBound(webSocket, 协议响应头) {
 
     transformStream.readable.pipeTo(new WritableStream({
         async write(chunk) {
-            const resp = await fetch('https://1.1.1.1/dns-query',
+            const resp = await fetch('https:
                 {
                     method: 'POST',
                     headers: {
@@ -601,7 +601,7 @@ async function handleUDPOutBound(webSocket, 协议响应头) {
     };
 }
 
-// ========== 必要常量和依赖 ==========
+
 const WS_READY_STATE_OPEN = 1;
 import { connect } from 'cloudflare:sockets';
 
@@ -630,11 +630,11 @@ async function 反代参数获取(request) {
     const { pathname, searchParams } = url;
     const pathLower = pathname.toLowerCase();
 
-    // 初始化
+    
     我的SOCKS5账号 = searchParams.get('socks5') || searchParams.get('http') || null;
     启用SOCKS5全局反代 = searchParams.has('globalproxy') || false;
 
-    // 统一处理反代IP参数 (优先级最高,使用正则一次匹配)
+    
     const proxyMatch = pathLower.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
     if (searchParams.has('proxyip')) {
         const 路参IP = searchParams.get('proxyip');
@@ -646,15 +646,15 @@ async function 反代参数获取(request) {
         return;
     }
 
-    // 处理SOCKS5/HTTP代理参数
+    
     let socksMatch;
     if ((socksMatch = pathname.match(/\/(socks5?|http):\/?\/?(.+)/i))) {
-        // 格式: /socks5://... 或 /http://...
+        
         启用SOCKS5反代 = socksMatch[1].toLowerCase() === 'http' ? 'http' : 'socks5';
         我的SOCKS5账号 = socksMatch[2].split('#')[0];
         启用SOCKS5全局反代 = true;
 
-        // 处理Base64编码的用户名密码
+        
         if (我的SOCKS5账号.includes('@')) {
             const atIndex = 我的SOCKS5账号.lastIndexOf('@');
             let userPassword = 我的SOCKS5账号.substring(0, atIndex).replaceAll('%3D', '=');
@@ -664,14 +664,14 @@ async function 反代参数获取(request) {
             我的SOCKS5账号 = `${userPassword}@${我的SOCKS5账号.substring(atIndex + 1)}`;
         }
     } else if ((socksMatch = pathname.match(/\/(g?s5|socks5|g?http)=(.+)/i))) {
-        // 格式: /socks5=... 或 /s5=... 或 /gs5=... 或 /http=... 或 /ghttp=...
+        
         const type = socksMatch[1].toLowerCase();
         我的SOCKS5账号 = socksMatch[2];
         启用SOCKS5反代 = type.includes('http') ? 'http' : 'socks5';
-        启用SOCKS5全局反代 = type.startsWith('g') || 启用SOCKS5全局反代; // gs5 或 ghttp 开头启用全局
+        启用SOCKS5全局反代 = type.startsWith('g') || 启用SOCKS5全局反代; 
     }
 
-    // 解析SOCKS5地址
+    
     if (我的SOCKS5账号) {
         try {
             parsedSocks5Address = await 获取SOCKS5账号(我的SOCKS5账号);
