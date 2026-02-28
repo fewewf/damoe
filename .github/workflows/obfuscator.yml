@@ -1,8 +1,7 @@
 name: build-safe
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -28,3 +27,4 @@ jobs:
           git add dist
           git commit -m "build(dist): auto build" || echo "no change"
           git push
+
