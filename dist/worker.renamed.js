@@ -1,24 +1,24 @@
-const FIXED_UUID = '04ab5537-a9c5-49aa-9fca-c4601ecf6753'; // 天书12
+const _oiALlIDSZAjfmSoQ = '04ab5537-a9c5-49aa-9fca-c4601ecf6753'; // 天书12
 //1. 天书版12.0重构版队列传输模式改，本版再次改变传输逻辑，大幅度提升传输稳定性，建议pages部署，这版是全功能开发者研究版，不适合小白部署
 import { connect } from 'cloudflare:sockets';
 //////////////////////////////////////////////////////////////////////////配置区块////////////////////////////////////////////////////////////////////////
-let _ITxEzOTjEgSGcjwL = '',
-  发发一子动到作了 = null,
-  _rtvyvaedtyaxQpPN = false,
-  不下了在点这工上 = '',
-  生们了是作下动一 = {};
+let _oWiEuTjIKvEjBfMv = '',
+  _WtgFapLgZSFIVVFe = null,
+  _TWhytzZYgPaZSxgp = false,
+  _bJOZqmzFzTMuZbSr = '',
+  _MFtgrXlCtQmcaSZK = {};
 //////////////////////////////////////////////////////////////////////////个性化配置///////////////////////////////////////////////////////////////////////
 //以下是适合开发者研究的个性化配置，如果你是小白保持默认别动就行
-let 启用新版传输模式 = false; //开启则使用队列传输方式，关闭则是原始管道流传输方式
-let 启动控流机制 = false; //仅新版传输方式有效，选择是否启动控流机制，true启动，false关闭，使用控流可降低CPU超时的概率，提升连接稳定性，适合轻度使用，日常使用应该绰绰有余
-let 传输控流延迟 = 200; //单位毫秒，每传输2m数据暂停多少毫秒
+let _XekuMLigiiDOUQvN = false; //开启则使用队列传输方式，关闭则是原始管道流传输方式
+let _ZxVGXtfMXIlciaQv = false; //仅新版传输方式有效，选择是否启动控流机制，true启动，false关闭，使用控流可降低CPU超时的概率，提升连接稳定性，适合轻度使用，日常使用应该绰绰有余
+let _ljxBeOMBrKCPtSYi = 200; //单位毫秒，每传输2m数据暂停多少毫秒
 //////////////////////////////////////////////////////////////////////////网页入口////////////////////////////////////////////////////////////////////////
 export default {
-  async fetch(访问请求) {
-    _ITxEzOTjEgSGcjwL = _ITxEzOTjEgSGcjwL ? _ITxEzOTjEgSGcjwL : 访问请求.cf.colo + '_UrOuShsJEkRUIKsvd1dyll';
-    if (访问请求.headers.get('Upgrade') === 'websocket') {
-      await 反代参数获取(访问请求);
-      return await 升级WS请求(访问请求);
+  async fetch(_uXPYpJBhLUYugxNq) {
+    _oWiEuTjIKvEjBfMv = _oWiEuTjIKvEjBfMv ? _oWiEuTjIKvEjBfMv : _uXPYpJBhLUYugxNq.cf.colo + '.PrOxYIp.CmLiUsSsS.nEt';
+    if (_uXPYpJBhLUYugxNq.headers.get('Upgrade') === 'websocket') {
+      await _PJNElyxODtResHif(_uXPYpJBhLUYugxNq);
+      return await _meMdHaXDgFjoHyYK(_uXPYpJBhLUYugxNq);
     } else {
       return new Response('Hello World!', {
         status: 200
@@ -29,570 +29,570 @@ export default {
 
 ////////////////////////////////////////////////////////////////////////脚本主要架构//////////////////////////////////////////////////////////////////////
 //第一步，读取和构建基础访问结构
-async function 升级WS请求(访问请求) {
-  const 创建WS接口 = new WebSocketPair();
-  const [客户端, WS接口] = Object.values(创建WS接口);
-  WS接口.accept();
-  处理WS请求(访问请求, WS接口);
+async function _meMdHaXDgFjoHyYK(_uXPYpJBhLUYugxNq) {
+  const _kyiBLyDrvUwawAJk = new WebSocketPair();
+  const [_bEsOCHgGmOKzwjht, _IjLVIWJxiTTStyfk] = Object.values(_kyiBLyDrvUwawAJk);
+  _IjLVIWJxiTTStyfk.accept();
+  _RtZXGTuMiKVNyhiN(_uXPYpJBhLUYugxNq, _IjLVIWJxiTTStyfk);
   return new Response(null, {
     status: 101,
-    webSocket: 客户端
+    webSocket: _bEsOCHgGmOKzwjht
   }); //一切准备就绪后，回复客户端WS连接升级成功
 }
-async function 处理WS请求(访问请求, WS接口) {
-  let 转换二进制数据;
-  const 读取WS数据头 = 访问请求.headers.get('sec-websocket-protocol'); //读取访问标头中的WS通信数据
-  if (!读取WS数据头) {
-    转换二进制数据 = await new Promise(resolve => {
-      WS接口.addEventListener('message', event => {
-        resolve(new Uint8Array(event.data));
+async function _RtZXGTuMiKVNyhiN(_uXPYpJBhLUYugxNq, _IjLVIWJxiTTStyfk) {
+  let _iQBXwkxrODdOyOoU;
+  const _BArbpbuUvbIdXHyI = _uXPYpJBhLUYugxNq.headers.get('sec-websocket-protocol'); //读取访问标头中的WS通信数据
+  if (!_BArbpbuUvbIdXHyI) {
+    _iQBXwkxrODdOyOoU = await new Promise(_EcjtxEGwVAxIRDjc => {
+      _IjLVIWJxiTTStyfk.addEventListener('message', _FgcfruffnLGWGszM => {
+        _EcjtxEGwVAxIRDjc(new Uint8Array(_FgcfruffnLGWGszM.data));
       }, {
         once: true
       });
     });
   } else {
-    转换二进制数据 = 转换WS数据头为二进制数据(读取WS数据头); //解码目标访问数据，传递给TCP握手进程
+    _iQBXwkxrODdOyOoU = _vpLzurpdPOHbqeJU(_BArbpbuUvbIdXHyI); //解码目标访问数据，传递给TCP握手进程
   }
-  解析VL标头(转换二进制数据, WS接口); //解析VL数据并进行TCP握手
+  _CPviNBhhowHojFvZ(_iQBXwkxrODdOyOoU, _IjLVIWJxiTTStyfk); //解析VL数据并进行TCP握手
 }
-function 转换WS数据头为二进制数据(WS数据头) {
-  const base64URL转换为标准base64 = WS数据头.replace(/-/g, '+').replace(/_/g, '/');
-  const 解码base64 = atob(base64URL转换为标准base64);
-  const 转换为二进制数组 = Uint8Array.from(解码base64, c => c.charCodeAt(0));
-  return 转换为二进制数组;
+function _vpLzurpdPOHbqeJU(_OrhpXurgHhYlpIJP) {
+  const _aPanxBJibtFWJGsz = _OrhpXurgHhYlpIJP.replace(/-/g, '+').replace(/_/g, '/');
+  const _YFZDSLecyALwsVur = atob(_aPanxBJibtFWJGsz);
+  const _LWvwWAQiXdTrmHwW = Uint8Array.from(_YFZDSLecyALwsVur, _OEHXkoxBkJfqiodE => _OEHXkoxBkJfqiodE.charCodeAt(0));
+  return _LWvwWAQiXdTrmHwW;
 }
 //第二步，解读VL协议数据，创建TCP握手
-async function 解析VL标头(二进制数据, WS接口, TCP接口) {
-  let 了的面成点要后是, _JTgDVJEZXAuDDbhN, 对进后这了动动成;
+async function _CPviNBhhowHojFvZ(_FNCkrAylVjujIHBF, _IjLVIWJxiTTStyfk, _fphussbjeZnctzzh) {
+  let _esoseAFiXrdndtyY, _QxHvLTDEZfqfbtuV, _uEarvhoMSCmdMnhw;
   try {
-    const 版本号 = 二进制数据[0];
-    WS接口.send(new Uint8Array([版本号, 0]));
-    const 获取数据定位 = 二进制数据[17];
-    const 要对地是看成中行 = 18 + 获取数据定位 + 1;
-    const _wtEvzmIDTGFPtdyb = new DataView(二进制数据.buffer, 要对地是看成中行, 2).getUint16(0);
-    if (_wtEvzmIDTGFPtdyb === 53) {
+    const _rzqqWxoxYkAIKhQR = _FNCkrAylVjujIHBF[0];
+    _IjLVIWJxiTTStyfk.send(new Uint8Array([_rzqqWxoxYkAIKhQR, 0]));
+    const _HCmbOjSnuEmxLKUR = _FNCkrAylVjujIHBF[17];
+    const _nqwIxFxLKoAwPtcd = 18 + _HCmbOjSnuEmxLKUR + 1;
+    const _LhvqQHemHBNQLDyM = new DataView(_FNCkrAylVjujIHBF.buffer, _nqwIxFxLKoAwPtcd, 2).getUint16(0);
+    if (_LhvqQHemHBNQLDyM === 53) {
       //这个处理是应对某些客户端优先强制查询dns的情况，也是通过加密通道udp over tcp的，放心使用
-      const 提取DNS查询报文 = 二进制数据.slice(要对地是看成中行 + 9);
-      const 查询DOH结果 = await fetch('_TbFuFVqpoRWrFmEaadems6', {
+      const _eFVWmFFYyGJFvpGP = _FNCkrAylVjujIHBF.slice(_nqwIxFxLKoAwPtcd + 9);
+      const _lIUsAsTFarwGaCII = await fetch('https://1.1.1.1/dns-query', {
         //不是所有doh都支持二进制查询，默认的是最快的地址，想更换可以换成"https://dns.google/dns-query"
         method: 'POST',
         headers: {
           'content-type': 'application/dns-message'
         },
-        body: 提取DNS查询报文
+        body: _eFVWmFFYyGJFvpGP
       });
-      const 提取DOH结果 = await 查询DOH结果.arrayBuffer();
-      const 构建长度头部 = new Uint8Array([提取DOH结果.byteLength >> 8 & 0xff, 提取DOH结果.byteLength & 0xff]);
-      WS接口.send(await new Blob([构建长度头部, 提取DOH结果, new TextEncoder().encode(生成随机字符串())]).arrayBuffer());
+      const _GYYgbBNXOpObPeTi = await _lIUsAsTFarwGaCII.arrayBuffer();
+      const _HqezuslnYXBlWqRT = new Uint8Array([_GYYgbBNXOpObPeTi.byteLength >> 8 & 0xff, _GYYgbBNXOpObPeTi.byteLength & 0xff]);
+      _IjLVIWJxiTTStyfk.send(await new Blob([_HqezuslnYXBlWqRT, _GYYgbBNXOpObPeTi, new TextEncoder().encode(_IefwWjgzGIwooJXo())]).arrayBuffer());
       return;
     }
-    const 在地发上出到可他 = 要对地是看成中行 + 2;
-    了的面成点要后是 = 二进制数据[提取地址索引];
-    let 了地学那年这到行 = 在地发上出到可他 + 1;
-    switch (了的面成点要后是) {
+    const _YQqEvDwvgmKtoyqz = _nqwIxFxLKoAwPtcd + 2;
+    _esoseAFiXrdndtyY = _FNCkrAylVjujIHBF[_YQqEvDwvgmKtoyqz];
+    let _PFbYQcvEfKJpcQUj = _YQqEvDwvgmKtoyqz + 1;
+    switch (_esoseAFiXrdndtyY) {
       case 1:
-        对进后这了动动成 = 4;
-        _JTgDVJEZXAuDDbhN = 二进制数据.slice(了地学那年这到行, 了地学那年这到行 + 对进后这了动动成).join('.');
+        _uEarvhoMSCmdMnhw = 4;
+        _QxHvLTDEZfqfbtuV = _FNCkrAylVjujIHBF.slice(_PFbYQcvEfKJpcQUj, _PFbYQcvEfKJpcQUj + _uEarvhoMSCmdMnhw).join('.');
         break;
       case 2:
-        对进后这了动动成 = 二进制数据[地址信息索引];
-        了地学那年这到行 += 1;
-        _JTgDVJEZXAuDDbhN = new TextDecoder().decode(二进制数据.slice(了地学那年这到行, 了地学那年这到行 + 对进后这了动动成));
+        _uEarvhoMSCmdMnhw = _FNCkrAylVjujIHBF[_PFbYQcvEfKJpcQUj];
+        _PFbYQcvEfKJpcQUj += 1;
+        _QxHvLTDEZfqfbtuV = new TextDecoder().decode(_FNCkrAylVjujIHBF.slice(_PFbYQcvEfKJpcQUj, _PFbYQcvEfKJpcQUj + _uEarvhoMSCmdMnhw));
         break;
       case 3:
-        对进后这了动动成 = 16;
-        const ipv6 = [];
-        const _yKkKWMuPoQllGaFS = new DataView(二进制数据.buffer, 了地学那年这到行, 16);
-        for (let i = 0; i < 8; i++) ipv6.push(_yKkKWMuPoQllGaFS.getUint16(i * 2).toString(16));
-        _JTgDVJEZXAuDDbhN = ipv6.join(':');
+        _uEarvhoMSCmdMnhw = 16;
+        const _nVITSDEMscvmfYyU = [];
+        const _IJEaDWnXERNmbuGk = new DataView(_FNCkrAylVjujIHBF.buffer, _PFbYQcvEfKJpcQUj, 16);
+        for (let _cIzprtGKSIQJgcMw = 0; _cIzprtGKSIQJgcMw < 8; _cIzprtGKSIQJgcMw++) _nVITSDEMscvmfYyU.push(_IJEaDWnXERNmbuGk.getUint16(_cIzprtGKSIQJgcMw * 2).toString(16));
+        _QxHvLTDEZfqfbtuV = _nVITSDEMscvmfYyU.join(':');
         break;
       default:
-        throw new Error('_oqbYLALPRlodovTIvye6a4');
+        throw new Error('无效的访问地址');
     }
-    if (FIXED_UUID && 验证VL的密钥(二进制数据.slice(1, 17)) !== FIXED_UUID) throw new Error('UUID验证失败');
-    if (_JTgDVJEZXAuDDbhN.includes(atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='))) throw new Error('Access');
-    if (发发一子动到作了 == '_dkCCOEVOOkXfAkpVu5bvjn' && _rtvyvaedtyaxQpPN) {
-      TCP接口 = await _JImAwAlvKNlQBwqr(了的面成点要后是, _JTgDVJEZXAuDDbhN, _wtEvzmIDTGFPtdyb);
-    } else if (发发一子动到作了 == '_kUfECDeTkJIFxjAPryhbwq' && _rtvyvaedtyaxQpPN) {
-      TCP接口 = await _XaYasxIsMwJddxzC(_JTgDVJEZXAuDDbhN, _wtEvzmIDTGFPtdyb);
+    if (_oiALlIDSZAjfmSoQ && _lJUVOgphFiYwAiCY(_FNCkrAylVjujIHBF.slice(1, 17)) !== _oiALlIDSZAjfmSoQ) throw new Error('UUID验证失败');
+    if (_QxHvLTDEZfqfbtuV.includes(atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='))) throw new Error('Access');
+    if (_WtgFapLgZSFIVVFe == 'socks5' && _TWhytzZYgPaZSxgp) {
+      _fphussbjeZnctzzh = await _uAlndLuboXaImMAE(_esoseAFiXrdndtyY, _QxHvLTDEZfqfbtuV, _LhvqQHemHBNQLDyM);
+    } else if (_WtgFapLgZSFIVVFe == 'http' && _TWhytzZYgPaZSxgp) {
+      _fphussbjeZnctzzh = await _AVqTkQkBYLcBPmLV(_QxHvLTDEZfqfbtuV, _LhvqQHemHBNQLDyM);
     } else {
       try {
-        if (了的面成点要后是 === 3) {
-          const _qIoHCwdFZzFyYKmp = `[${_JTgDVJEZXAuDDbhN}]`;
-          TCP接口 = connect({
-            hostname: _qIoHCwdFZzFyYKmp,
-            port: _wtEvzmIDTGFPtdyb
+        if (_esoseAFiXrdndtyY === 3) {
+          const _yFAYeZmOMxYvBNbG = `[${_QxHvLTDEZfqfbtuV}]`;
+          _fphussbjeZnctzzh = connect({
+            hostname: _yFAYeZmOMxYvBNbG,
+            port: _LhvqQHemHBNQLDyM
           });
         } else {
-          TCP接口 = connect({
-            hostname: _JTgDVJEZXAuDDbhN,
-            port: _wtEvzmIDTGFPtdyb
+          _fphussbjeZnctzzh = connect({
+            hostname: _QxHvLTDEZfqfbtuV,
+            port: _LhvqQHemHBNQLDyM
           });
         }
-        await TCP接口.opened;
+        await _fphussbjeZnctzzh.opened;
       } catch {
-        if (发发一子动到作了 == '动地面人看到地他fm1ikp') {
-          TCP接口 = await _JImAwAlvKNlQBwqr(了的面成点要后是, _JTgDVJEZXAuDDbhN, _wtEvzmIDTGFPtdyb);
-        } else if (发发一子动到作了 == '学出是说能时时后ktgedf') {
-          TCP接口 = await _XaYasxIsMwJddxzC(_JTgDVJEZXAuDDbhN, _wtEvzmIDTGFPtdyb);
+        if (_WtgFapLgZSFIVVFe == 'socks5') {
+          _fphussbjeZnctzzh = await _uAlndLuboXaImMAE(_esoseAFiXrdndtyY, _QxHvLTDEZfqfbtuV, _LhvqQHemHBNQLDyM);
+        } else if (_WtgFapLgZSFIVVFe == 'http') {
+          _fphussbjeZnctzzh = await _AVqTkQkBYLcBPmLV(_QxHvLTDEZfqfbtuV, _LhvqQHemHBNQLDyM);
         } else {
-          const [_CwRRVxyYWDsIjVnN, _fzZhXBfoWbJvWdHe] = await _BDAJEfpYhsIdGWOc(_ITxEzOTjEgSGcjwL);
-          TCP接口 = connect({
-            hostname: _CwRRVxyYWDsIjVnN,
-            port: _fzZhXBfoWbJvWdHe
+          const [_YuBagWFiuEevfktr, _SKYfMUAnCCxkQhDW] = await _FzmjMfyXIsZxxsVm(_oWiEuTjIKvEjBfMv);
+          _fphussbjeZnctzzh = connect({
+            hostname: _YuBagWFiuEevfktr,
+            port: _SKYfMUAnCCxkQhDW
           });
         }
       }
     }
-    await TCP接口.opened;
-    const 写入初始数据 = 二进制数据.slice(了地学那年这到行 + 对进后这了动动成);
-    const 传输数据 = TCP接口.writable.getWriter();
-    if (写入初始数据.length > 0) {
-      await 传输数据.write(写入初始数据);
+    await _fphussbjeZnctzzh.opened;
+    const _kGZDpwAQglhxhCpx = _FNCkrAylVjujIHBF.slice(_PFbYQcvEfKJpcQUj + _uEarvhoMSCmdMnhw);
+    const _vdLYIJWkRUMCdtYj = _fphussbjeZnctzzh.writable.getWriter();
+    if (_kGZDpwAQglhxhCpx.length > 0) {
+      await _vdLYIJWkRUMCdtYj.write(_kGZDpwAQglhxhCpx);
     }
-    if (启用新版传输模式) {
-      const 读取数据 = TCP接口.readable.getReader();
-      队列传输管道(_JTgDVJEZXAuDDbhN, 传输数据, 读取数据, WS接口); //建立WS接口与TCP接口的传输管道
+    if (_XekuMLigiiDOUQvN) {
+      const _IGGmJXPhRjGtfrZq = _fphussbjeZnctzzh.readable.getReader();
+      _LyDLKfcUrdIrBVPo(_QxHvLTDEZfqfbtuV, _vdLYIJWkRUMCdtYj, _IGGmJXPhRjGtfrZq, _IjLVIWJxiTTStyfk); //建立WS接口与TCP接口的传输管道
     } else {
-      原始传输管道(传输数据, TCP接口, WS接口);
+      _NQgTNqgDVHmGVMIB(_vdLYIJWkRUMCdtYj, _fphussbjeZnctzzh, _IjLVIWJxiTTStyfk);
     }
-  } catch (e) {
-    return new Response(`连接握手失败: ${e}`, {
+  } catch (_tpJrqyfCzVgGpEVh) {
+    return new Response(`连接握手失败: ${_tpJrqyfCzVgGpEVh}`, {
       status: 500
     });
   }
 }
-function 验证VL的密钥(字节数组, 起始位置 = 0) {
-  const 十六进制表 = Array.from({
+function _lJUVOgphFiYwAiCY(_fPQbsUzneZaOqCvY, _PWLOLOeXIOkOSSDE = 0) {
+  const _lyaiTMKEdsKgamQm = Array.from({
     length: 256
-  }, (_, 值) => (值 + 256).toString(16).slice(1));
-  const 分段结构 = [4, 2, 2, 2, 6];
-  let 当前索引 = 起始位置;
-  const 格式化UUID = 分段结构.map(段长度 => Array.from({
-    length: 段长度
-  }, () => 十六进制表[字节数组[当前索引++]]).join('')).join('-').toLowerCase();
-  return 格式化UUID;
+  }, (_flCICfUvcSVReoSj, _mTHruKAQDzWjgWPt) => (_mTHruKAQDzWjgWPt + 256).toString(16).slice(1));
+  const _TZrGSsiVCKnXbNgD = [4, 2, 2, 2, 6];
+  let _AKaXwKeEXiXodJkw = _PWLOLOeXIOkOSSDE;
+  const _opQiMFALiIgeOURq = _TZrGSsiVCKnXbNgD.map(_vTcwcrvmAFSAhyzI => Array.from({
+    length: _vTcwcrvmAFSAhyzI
+  }, () => _lyaiTMKEdsKgamQm[_fPQbsUzneZaOqCvY[_AKaXwKeEXiXodJkw++]]).join('')).join('-').toLowerCase();
+  return _opQiMFALiIgeOURq;
 }
 globalThis.DNS缓存记录 = globalThis.DNS缓存记录 ??= new Map();
-async function _BDAJEfpYhsIdGWOc(下子是就那进工对) {
-  下子是就那进工对 = 下子是就那进工对.toLowerCase();
-  let 要对面种是进工工 = 下子是就那进工对,
-    _SVvVEAoAjzRZEhAA = 443;
-  if (下子是就那进工对.includes('.tp')) {
-    const tpMatch = 下子是就那进工对.match(/\.tp(\d+)/);
-    if (tpMatch) _SVvVEAoAjzRZEhAA = parseInt(tpMatch[1], 10);
-    return [要对面种是进工工, _SVvVEAoAjzRZEhAA];
+async function _FzmjMfyXIsZxxsVm(_AisqFnrvhvbKbxBi) {
+  _AisqFnrvhvbKbxBi = _AisqFnrvhvbKbxBi.toLowerCase();
+  let _TpoJxCLvKygyfTQd = _AisqFnrvhvbKbxBi,
+    _GSNstMlgCKAVNGXw = 443;
+  if (_AisqFnrvhvbKbxBi.includes('.tp')) {
+    const _shOdFJoxvvSjsRZr = _AisqFnrvhvbKbxBi.match(/\.tp(\d+)/);
+    if (_shOdFJoxvvSjsRZr) _GSNstMlgCKAVNGXw = parseInt(_shOdFJoxvvSjsRZr[1], 10);
+    return [_TpoJxCLvKygyfTQd, _GSNstMlgCKAVNGXw];
   }
-  if (下子是就那进工对.includes(']:')) {
-    const parts = 下子是就那进工对.split(']:');
-    要对面种是进工工 = parts[0] + ']';
-    _SVvVEAoAjzRZEhAA = parseInt(parts[1], 10) || _SVvVEAoAjzRZEhAA;
-  } else if (下子是就那进工对.includes(':') && !下子是就那进工对.startsWith('[')) {
-    const colonIndex = 下子是就那进工对.lastIndexOf(':');
-    要对面种是进工工 = 下子是就那进工对.slice(0, colonIndex);
-    _SVvVEAoAjzRZEhAA = parseInt(下子是就那进工对.slice(colonIndex + 1), 10) || _SVvVEAoAjzRZEhAA;
+  if (_AisqFnrvhvbKbxBi.includes(']:')) {
+    const _aDfNjPJefqQJBVPr = _AisqFnrvhvbKbxBi.split(']:');
+    _TpoJxCLvKygyfTQd = _aDfNjPJefqQJBVPr[0] + ']';
+    _GSNstMlgCKAVNGXw = parseInt(_aDfNjPJefqQJBVPr[1], 10) || _GSNstMlgCKAVNGXw;
+  } else if (_AisqFnrvhvbKbxBi.includes(':') && !_AisqFnrvhvbKbxBi.startsWith('[')) {
+    const _OwrVsrgZHxgRHAzL = _AisqFnrvhvbKbxBi.lastIndexOf(':');
+    _TpoJxCLvKygyfTQd = _AisqFnrvhvbKbxBi.slice(0, _OwrVsrgZHxgRHAzL);
+    _GSNstMlgCKAVNGXw = parseInt(_AisqFnrvhvbKbxBi.slice(_OwrVsrgZHxgRHAzL + 1), 10) || _GSNstMlgCKAVNGXw;
   }
-  return [要对面种是进工工, _SVvVEAoAjzRZEhAA];
+  return [_TpoJxCLvKygyfTQd, _GSNstMlgCKAVNGXw];
 }
 //第三步，创建客户端WS-CF-目标的传输通道并监听状态
-async function 原始传输管道(传输数据, TCP接口, WS接口) {
-  WS接口.addEventListener('message', async event => {
+async function _NQgTNqgDVHmGVMIB(_vdLYIJWkRUMCdtYj, _fphussbjeZnctzzh, _IjLVIWJxiTTStyfk) {
+  _IjLVIWJxiTTStyfk.addEventListener('message', async _FgcfruffnLGWGszM => {
     try {
-      await 传输数据.write(new Uint8Array(event.data));
+      await _vdLYIJWkRUMCdtYj.write(new Uint8Array(_FgcfruffnLGWGszM.data));
     } catch {}
     ;
   }); //监听客户端WS接口后续数据，推送给TCP接口
-  TCP接口.readable.pipeTo(new WritableStream({
-    async write(返回数据) {
-      WS接口.send(返回数据);
+  _fphussbjeZnctzzh.readable.pipeTo(new WritableStream({
+    async write(_nxESgRbkqcpGPlcb) {
+      _IjLVIWJxiTTStyfk.send(_nxESgRbkqcpGPlcb);
     }
   })); //将TCP接口返回的数据回写至客户端WS接口
 }
-async function 队列传输管道(_JTgDVJEZXAuDDbhN, 传输数据, 读取数据, WS接口, 传输队列 = Promise.resolve(), 开始传输时间 = performance.now(), 字节计数 = 0, 累计传输字节数 = 0, 大数据包 = false, 已结束 = false) {
-  WS接口.addEventListener('message', event => 传输队列 = 传输队列.then(async () => {
-    let 分段初值 = 0;
-    let 分段大小 = 4 * 1024;
-    const WS数据 = new Uint8Array(event.data);
-    while (分段初值 < WS数据.length) {
-      const 数据块 = WS数据.slice(分段初值, 分段初值 + 分段大小);
+async function _LyDLKfcUrdIrBVPo(_QxHvLTDEZfqfbtuV, _vdLYIJWkRUMCdtYj, _IGGmJXPhRjGtfrZq, _IjLVIWJxiTTStyfk, _aHlyWRCpoijGleTX = Promise.resolve(), _bOtBkLOSmZjMQwVm = performance.now(), _GvlvXdkquyDFUDMB = 0, _ByZVqQjqxkTGxFSx = 0, _wGpKsXEgoIoKuVfG = false, _kFaffuEEWFuohpic = false) {
+  _IjLVIWJxiTTStyfk.addEventListener('message', _FgcfruffnLGWGszM => _aHlyWRCpoijGleTX = _aHlyWRCpoijGleTX.then(async () => {
+    let _EOEsWtELMzoYslto = 0;
+    let _nxGudyLAQxTDnXRD = 4 * 1024;
+    const _wnMhepkAwjqOfXIu = new Uint8Array(_FgcfruffnLGWGszM.data);
+    while (_EOEsWtELMzoYslto < _wnMhepkAwjqOfXIu.length) {
+      const _KwGeVLCcLinHUUqy = _wnMhepkAwjqOfXIu.slice(_EOEsWtELMzoYslto, _EOEsWtELMzoYslto + _nxGudyLAQxTDnXRD);
       try {
-        await 传输数据.write(数据块);
+        await _vdLYIJWkRUMCdtYj.write(_KwGeVLCcLinHUUqy);
       } catch {}
       ;
-      累计传输字节数 += 数据块.length;
-      分段初值 += 分段大小;
+      _ByZVqQjqxkTGxFSx += _KwGeVLCcLinHUUqy.length;
+      _EOEsWtELMzoYslto += _nxGudyLAQxTDnXRD;
     }
-    累计传输字节数 += WS数据.length;
+    _ByZVqQjqxkTGxFSx += _wnMhepkAwjqOfXIu.length;
   }).catch());
-  const 保活 = setInterval(async () => {
-    if (已结束) {
-      clearInterval(保活);
+  const _koTyPgiSmJZztRxl = setInterval(async () => {
+    if (_kFaffuEEWFuohpic) {
+      clearInterval(_koTyPgiSmJZztRxl);
     } else {
-      传输队列 = 传输队列.then(async () => await 传输数据.write(new Uint8Array(0))).catch();
+      _aHlyWRCpoijGleTX = _aHlyWRCpoijGleTX.then(async () => await _vdLYIJWkRUMCdtYj.write(new Uint8Array(0))).catch();
     }
   }, 30000);
   while (true) {
     const {
-      done: 流结束,
-      value: 返回数据
-    } = await 读取数据.read();
-    if (返回数据 && 返回数据.length > 0) {
-      if (!大数据包 && 返回数据.length >= 4096) {
-        let TCP缓存 = [];
-        let TCP缓存长度 = 0;
-        大数据包 = true;
-        TCP缓存.push(返回数据);
-        TCP缓存长度 += 返回数据.length;
+      done: _UizohpfYlPVltZkX,
+      value: _nxESgRbkqcpGPlcb
+    } = await _IGGmJXPhRjGtfrZq.read();
+    if (_nxESgRbkqcpGPlcb && _nxESgRbkqcpGPlcb.length > 0) {
+      if (!_wGpKsXEgoIoKuVfG && _nxESgRbkqcpGPlcb.length >= 4096) {
+        let _ViBnFzjebeIVSXkp = [];
+        let _lvwdqBbusXTHLXha = 0;
+        _wGpKsXEgoIoKuVfG = true;
+        _ViBnFzjebeIVSXkp.push(_nxESgRbkqcpGPlcb);
+        _lvwdqBbusXTHLXha += _nxESgRbkqcpGPlcb.length;
         while (true) {
           const {
-            done: 流结束,
-            value: 返回数据
-          } = await 读取数据.read();
-          if (流结束) 已结束 = true;
-          if (返回数据 && 返回数据.length > 0) {
-            TCP缓存.push(返回数据);
-            TCP缓存长度 += 返回数据.length;
-            if (返回数据.length < 4096 || TCP缓存长度 >= 512 * 1024) {
-              let 合并偏移 = 0;
-              let 待推送数据 = new Uint8Array(TCP缓存长度);
-              for (const 数据块 of TCP缓存) {
-                待推送数据.set(数据块, 合并偏移);
-                合并偏移 += 数据块.length;
+            done: _UizohpfYlPVltZkX,
+            value: _nxESgRbkqcpGPlcb
+          } = await _IGGmJXPhRjGtfrZq.read();
+          if (_UizohpfYlPVltZkX) _kFaffuEEWFuohpic = true;
+          if (_nxESgRbkqcpGPlcb && _nxESgRbkqcpGPlcb.length > 0) {
+            _ViBnFzjebeIVSXkp.push(_nxESgRbkqcpGPlcb);
+            _lvwdqBbusXTHLXha += _nxESgRbkqcpGPlcb.length;
+            if (_nxESgRbkqcpGPlcb.length < 4096 || _lvwdqBbusXTHLXha >= 512 * 1024) {
+              let _ggQHMqBirqSCjtDr = 0;
+              let _RNNLmWpxYOyNBzrb = new Uint8Array(_lvwdqBbusXTHLXha);
+              for (const _KwGeVLCcLinHUUqy of _ViBnFzjebeIVSXkp) {
+                _RNNLmWpxYOyNBzrb.set(_KwGeVLCcLinHUUqy, _ggQHMqBirqSCjtDr);
+                _ggQHMqBirqSCjtDr += _KwGeVLCcLinHUUqy.length;
               }
-              传输队列 = 传输队列.then(() => WS接口.send(待推送数据)).catch();
-              累计传输字节数 += 待推送数据.length;
-              大数据包 = false;
+              _aHlyWRCpoijGleTX = _aHlyWRCpoijGleTX.then(() => _IjLVIWJxiTTStyfk.send(_RNNLmWpxYOyNBzrb)).catch();
+              _ByZVqQjqxkTGxFSx += _RNNLmWpxYOyNBzrb.length;
+              _wGpKsXEgoIoKuVfG = false;
               break;
             }
           }
         }
       } else {
-        传输队列 = 传输队列.then(() => WS接口.send(返回数据)).catch();
-        累计传输字节数 += 返回数据.length;
+        _aHlyWRCpoijGleTX = _aHlyWRCpoijGleTX.then(() => _IjLVIWJxiTTStyfk.send(_nxESgRbkqcpGPlcb)).catch();
+        _ByZVqQjqxkTGxFSx += _nxESgRbkqcpGPlcb.length;
       }
-      if (启动控流机制 && 累计传输字节数 - 字节计数 > 2 * 1024 * 1024) {
-        传输队列 = 传输队列.then(async () => await new Promise(resolve => setTimeout(resolve, 传输控流延迟))).catch();
-        字节计数 = 累计传输字节数;
+      if (_ZxVGXtfMXIlciaQv && _ByZVqQjqxkTGxFSx - _GvlvXdkquyDFUDMB > 2 * 1024 * 1024) {
+        _aHlyWRCpoijGleTX = _aHlyWRCpoijGleTX.then(async () => await new Promise(_EcjtxEGwVAxIRDjc => setTimeout(_EcjtxEGwVAxIRDjc, _ljxBeOMBrKCPtSYi))).catch();
+        _GvlvXdkquyDFUDMB = _ByZVqQjqxkTGxFSx;
       }
     }
-    if (流结束 || 已结束) {
-      已结束 = true;
+    if (_UizohpfYlPVltZkX || _kFaffuEEWFuohpic) {
+      _kFaffuEEWFuohpic = true;
       break;
     }
   }
 }
-////////////////////////////////////////////////////////////////////////// _RLqhQStHOjMNXlWM5部分//////////////////////////////////////////////////////////////////////
-async function _JImAwAlvKNlQBwqr(了的面成点要后是, _JTgDVJEZXAuDDbhN, _wtEvzmIDTGFPtdyb, _cMfMGYiRadaAQRHL, 传输数据, 读取数据) {
-  let _cHhxsttOsUXTKZZv, 账号, 密码, 要对面种是进工工, _SVvVEAoAjzRZEhAA;
+//////////////////////////////////////////////////////////////////////////SOCKS5部分//////////////////////////////////////////////////////////////////////
+async function _uAlndLuboXaImMAE(_esoseAFiXrdndtyY, _QxHvLTDEZfqfbtuV, _LhvqQHemHBNQLDyM, _iwuxmSyWYlNyyclg, _vdLYIJWkRUMCdtYj, _IGGmJXPhRjGtfrZq) {
+  let _vkgpkyPeSwGoGmOr, _wzmViDKohGdCYmBM, _OdAbLapUqLCGlRkr, _TpoJxCLvKygyfTQd, _GSNstMlgCKAVNGXw;
   try {
     ({
-      username: 账号,
-      password: 密码,
-      hostname: 要对面种是进工工,
-      port: _SVvVEAoAjzRZEhAA
-    } = 生们了是作下动一);
-    _cHhxsttOsUXTKZZv = connect({
-      hostname: 要对面种是进工工,
-      port: _SVvVEAoAjzRZEhAA
+      username: _wzmViDKohGdCYmBM,
+      password: _OdAbLapUqLCGlRkr,
+      hostname: _TpoJxCLvKygyfTQd,
+      port: _GSNstMlgCKAVNGXw
+    } = _MFtgrXlCtQmcaSZK);
+    _vkgpkyPeSwGoGmOr = connect({
+      hostname: _TpoJxCLvKygyfTQd,
+      port: _GSNstMlgCKAVNGXw
     });
-    await _cHhxsttOsUXTKZZv.opened;
-    传输数据 = _cHhxsttOsUXTKZZv.writable.getWriter();
-    读取数据 = _cHhxsttOsUXTKZZv.readable.getReader();
-    const 转换数组 = new TextEncoder(); //把文本内容转换为字节数组，如账号，密码，域名，方便与S5建立连接
-    const 构建S5认证 = new Uint8Array([5, 2, 0, 2]); //构建认证信息,支持无认证和用户名/密码认证
-    await 传输数据.write(构建S5认证); //发送认证信息，确认目标是否需要用户名密码认证
-    const 读取认证要求 = (await 读取数据.read()).value;
-    if (读取认证要求[1] === 0x02) {
+    await _vkgpkyPeSwGoGmOr.opened;
+    _vdLYIJWkRUMCdtYj = _vkgpkyPeSwGoGmOr.writable.getWriter();
+    _IGGmJXPhRjGtfrZq = _vkgpkyPeSwGoGmOr.readable.getReader();
+    const _DDVkUgJxhZyMMeTM = new TextEncoder(); //把文本内容转换为字节数组，如账号，密码，域名，方便与S5建立连接
+    const _ygxvRyDwAHzsYIyt = new Uint8Array([5, 2, 0, 2]); //构建认证信息,支持无认证和用户名/密码认证
+    await _vdLYIJWkRUMCdtYj.write(_ygxvRyDwAHzsYIyt); //发送认证信息，确认目标是否需要用户名密码认证
+    const _zlsaNfjQtoGtYzZT = (await _IGGmJXPhRjGtfrZq.read()).value;
+    if (_zlsaNfjQtoGtYzZT[1] === 0x02) {
       //检查是否需要用户名/密码认证
-      if (!账号 || !密码) {
+      if (!_wzmViDKohGdCYmBM || !_OdAbLapUqLCGlRkr) {
         throw new Error(`未配置账号密码`);
       }
-      const 构建账号密码包 = new Uint8Array([1, 账号.length, ...转换数组.encode(账号), 密码.length, ...转换数组.encode(密码)]); //构建账号密码数据包，把字符转换为字节数组
-      await 传输数据.write(构建账号密码包); //发送账号密码认证信息
-      const 读取账号密码认证结果 = (await 读取数据.read()).value;
-      if (读取账号密码认证结果[0] !== 0x01 || 读取账号密码认证结果[1] !== 0x00) {
+      const _JEaVhbseQmDAVNur = new Uint8Array([1, _wzmViDKohGdCYmBM.length, ..._DDVkUgJxhZyMMeTM.encode(_wzmViDKohGdCYmBM), _OdAbLapUqLCGlRkr.length, ..._DDVkUgJxhZyMMeTM.encode(_OdAbLapUqLCGlRkr)]); //构建账号密码数据包，把字符转换为字节数组
+      await _vdLYIJWkRUMCdtYj.write(_JEaVhbseQmDAVNur); //发送账号密码认证信息
+      const _LijCiNGZvxwVMGUD = (await _IGGmJXPhRjGtfrZq.read()).value;
+      if (_LijCiNGZvxwVMGUD[0] !== 0x01 || _LijCiNGZvxwVMGUD[1] !== 0x00) {
         //检查账号密码认证结果，认证失败则退出
         throw new Error(`账号密码错误`);
       }
     }
-    switch (了的面成点要后是) {
+    switch (_esoseAFiXrdndtyY) {
       case 1:
         // IPv4
-        _cMfMGYiRadaAQRHL = new Uint8Array([1, ..._JTgDVJEZXAuDDbhN.split('.').map(Number)]);
+        _iwuxmSyWYlNyyclg = new Uint8Array([1, ..._QxHvLTDEZfqfbtuV.split('.').map(Number)]);
         break;
       case 2:
         // 域名
-        _cMfMGYiRadaAQRHL = new Uint8Array([3, _JTgDVJEZXAuDDbhN.length, ...转换数组.encode(_JTgDVJEZXAuDDbhN)]);
+        _iwuxmSyWYlNyyclg = new Uint8Array([3, _QxHvLTDEZfqfbtuV.length, ..._DDVkUgJxhZyMMeTM.encode(_QxHvLTDEZfqfbtuV)]);
         break;
       case 3:
         // IPv6
-        _cMfMGYiRadaAQRHL = 个生生了种我年对(_JTgDVJEZXAuDDbhN);
-        function 个生生了种我年对(_FQzWsQFMENSCEKpG) {
-          const _xdxXxFibOhoeQluv = _FQzWsQFMENSCEKpG.startsWith('[') && _FQzWsQFMENSCEKpG.endsWith(']') ? _FQzWsQFMENSCEKpG.slice(1, -1) : _FQzWsQFMENSCEKpG;
-          const 分段 = _xdxXxFibOhoeQluv.split('::');
-          const 前缀 = 分段[0] ? 分段[0].split(':').filter(Boolean) : [];
-          const 后缀 = 分段[1] ? 分段[1].split(':').filter(Boolean) : [];
-          const 填充数量 = 8 - (前缀.length + 后缀.length);
-          if (填充数量 < 0) throw new Error('要到成点不年说作sp1nw4');
-          const 完整分段 = [...前缀, ...Array(填充数量).fill('0'), ...后缀];
-          const IPv6字节 = 完整分段.flatMap(字段 => {
-            const 数值 = parseInt(字段 || '0', 16);
-            return [数值 >> 8 & 0xff, 数值 & 0xff];
+        _iwuxmSyWYlNyyclg = _SQqZFDyzlGDeplbv(_QxHvLTDEZfqfbtuV);
+        function _SQqZFDyzlGDeplbv(_fBximRgSlWLtpJjj) {
+          const _JaBivvkFxAWPIzKx = _fBximRgSlWLtpJjj.startsWith('[') && _fBximRgSlWLtpJjj.endsWith(']') ? _fBximRgSlWLtpJjj.slice(1, -1) : _fBximRgSlWLtpJjj;
+          const _acURxTzMKZxtNsyl = _JaBivvkFxAWPIzKx.split('::');
+          const _iFSbsYEDAZboRadV = _acURxTzMKZxtNsyl[0] ? _acURxTzMKZxtNsyl[0].split(':').filter(Boolean) : [];
+          const _hESHxLOLcEBhnBdT = _acURxTzMKZxtNsyl[1] ? _acURxTzMKZxtNsyl[1].split(':').filter(Boolean) : [];
+          const _zOcpZnzuXuFZVzDT = 8 - (_iFSbsYEDAZboRadV.length + _hESHxLOLcEBhnBdT.length);
+          if (_zOcpZnzuXuFZVzDT < 0) throw new Error('IPv6地址格式错误');
+          const _BkDOtVkXMfuakobK = [..._iFSbsYEDAZboRadV, ...Array(_zOcpZnzuXuFZVzDT).fill('0'), ..._hESHxLOLcEBhnBdT];
+          const _VRlvkBDBfOKIMwkO = _BkDOtVkXMfuakobK.flatMap(_bwwwknJzLqYRkmIP => {
+            const _HOWzrhAPFxALQGnv = parseInt(_bwwwknJzLqYRkmIP || '0', 16);
+            return [_HOWzrhAPFxALQGnv >> 8 & 0xff, _HOWzrhAPFxALQGnv & 0xff];
           });
-          return new Uint8Array([0x04, ...IPv6字节]);
+          return new Uint8Array([0x04, ..._VRlvkBDBfOKIMwkO]);
         }
         break;
     }
-    const _WKZuYUjssWDKlUkh = new Uint8Array([5, 1, 0, ..._cMfMGYiRadaAQRHL, _wtEvzmIDTGFPtdyb >> 8, _wtEvzmIDTGFPtdyb & 0xff]); //构建转换好的地址消息
-    await 传输数据.write(_WKZuYUjssWDKlUkh); //发送转换后的地址
-    const 检查返回响应 = (await 读取数据.read()).value;
-    if (检查返回响应[0] !== 0x05 || 检查返回响应[1] !== 0x00) {
-      throw new Error(`成子说行动们工成imnxak${_JTgDVJEZXAuDDbhN}年我个们出他对能qt4e2q${了的面成点要后是}`);
+    const _hGWNKwwJbNWPPraQ = new Uint8Array([5, 1, 0, ..._iwuxmSyWYlNyyclg, _LhvqQHemHBNQLDyM >> 8, _LhvqQHemHBNQLDyM & 0xff]); //构建转换好的地址消息
+    await _vdLYIJWkRUMCdtYj.write(_hGWNKwwJbNWPPraQ); //发送转换后的地址
+    const _bxKiiCPBlEFjGNsB = (await _IGGmJXPhRjGtfrZq.read()).value;
+    if (_bxKiiCPBlEFjGNsB[0] !== 0x05 || _bxKiiCPBlEFjGNsB[1] !== 0x00) {
+      throw new Error(`目标地址连接失败，访问地址: ${_QxHvLTDEZfqfbtuV}，地址类型: ${_esoseAFiXrdndtyY}`);
     }
-    传输数据.releaseLock();
-    读取数据.releaseLock();
-    return _cHhxsttOsUXTKZZv;
+    _vdLYIJWkRUMCdtYj.releaseLock();
+    _IGGmJXPhRjGtfrZq.releaseLock();
+    return _vkgpkyPeSwGoGmOr;
   } catch {}
   ;
-  传输数据?.releaseLock();
-  读取数据?.releaseLock();
-  await _cHhxsttOsUXTKZZv?.close();
-  throw new Error(`_bEPuaSAGvxJwInCu3pqcvb`);
+  _vdLYIJWkRUMCdtYj?.releaseLock();
+  _IGGmJXPhRjGtfrZq?.releaseLock();
+  await _vkgpkyPeSwGoGmOr?.close();
+  throw new Error(`所有SOCKS5账号失效`);
 }
-async function _uaCWiiqfMGqmkERe(address) {
+async function _dCztXyDLXdsRKOzN(_ztRXINrXyjTDOVNo) {
   // 使用 "@" 分割地址，分为认证部分和服务器地址部分
-  const lastAtIndex = address.lastIndexOf("@");
-  let [latter, former] = lastAtIndex === -1 ? [address, undefined] : [address.substring(lastAtIndex + 1), address.substring(0, lastAtIndex)];
-  let username, password, hostname, port;
+  const _TwBOzhNxPAfQDcpN = _ztRXINrXyjTDOVNo.lastIndexOf("@");
+  let [_fLbSzWKxPySRXmHW, _vbaTGOwUwsldxTOw] = _TwBOzhNxPAfQDcpN === -1 ? [_ztRXINrXyjTDOVNo, undefined] : [_ztRXINrXyjTDOVNo.substring(_TwBOzhNxPAfQDcpN + 1), _ztRXINrXyjTDOVNo.substring(0, _TwBOzhNxPAfQDcpN)];
+  let _fGjJoKrLUuMhYRfn, _ABjQYBGrRuAKyMwA, _zFQkLlTiBlRHpLTG, _kDPdqmPAEViIMnZM;
 
   // 如果存在 former 部分，说明提供了认证信息
-  if (former) {
-    const formers = former.split(":");
-    if (formers.length !== 2) {
-      throw new Error('_kGawlOowcZmnlQUGqripcw');
+  if (_vbaTGOwUwsldxTOw) {
+    const _ETbvsNeEJurUhepy = _vbaTGOwUwsldxTOw.split(":");
+    if (_ETbvsNeEJurUhepy.length !== 2) {
+      throw new Error('无效的 SOCKS 地址格式：认证部分必须是 "username:password" 的形式');
     }
-    [username, password] = formers;
+    [_fGjJoKrLUuMhYRfn, _ABjQYBGrRuAKyMwA] = _ETbvsNeEJurUhepy;
   }
 
   // 解析服务器地址部分
-  const latters = latter.split(":");
+  const _QRoqwmhzWZVVhHro = _fLbSzWKxPySRXmHW.split(":");
   // 检查是否是IPv6地址带端口格式 [xxx]:port
-  if (latters.length > 2 && latter.includes("]:")) {
+  if (_QRoqwmhzWZVVhHro.length > 2 && _fLbSzWKxPySRXmHW.includes("]:")) {
     // IPv6地址带端口格式：[2001:db8::1]:8080
-    port = Number(latter.split("]:")[1].replace(/[^\d]/g, ''));
-    hostname = latter.split("]:")[0] + "]"; // 正确提取hostname部分
-  } else if (latters.length === 2) {
+    _kDPdqmPAEViIMnZM = Number(_fLbSzWKxPySRXmHW.split("]:")[1].replace(/[^\d]/g, ''));
+    _zFQkLlTiBlRHpLTG = _fLbSzWKxPySRXmHW.split("]:")[0] + "]"; // 正确提取hostname部分
+  } else if (_QRoqwmhzWZVVhHro.length === 2) {
     // IPv4地址带端口或域名带端口
-    port = Number(latters.pop().replace(/[^\d]/g, ''));
-    hostname = latters.join(":");
+    _kDPdqmPAEViIMnZM = Number(_QRoqwmhzWZVVhHro.pop().replace(/[^\d]/g, ''));
+    _zFQkLlTiBlRHpLTG = _QRoqwmhzWZVVhHro.join(":");
   } else {
-    port = 80;
-    hostname = latter;
+    _kDPdqmPAEViIMnZM = 80;
+    _zFQkLlTiBlRHpLTG = _fLbSzWKxPySRXmHW;
   }
-  if (isNaN(port)) {
-    throw new Error('_wmFhJiWqOkqQnADR1btmxf');
+  if (isNaN(_kDPdqmPAEViIMnZM)) {
+    throw new Error('无效的 SOCKS 地址格式：端口号必须是数字');
   }
 
   // 处理 IPv6 地址的特殊情况
   // IPv6 地址包含多个冒号，所以必须用方括号括起来，如 [2001:db8::1]
-  const regex = /^\[.*\]$/;
-  if (hostname.includes(":") && !regex.test(hostname)) {
-    throw new Error('_zXlfgYezIWlWWwKQw6euzl');
+  const _nDscXmrfRjmTegfE = /^\[.*\]$/;
+  if (_zFQkLlTiBlRHpLTG.includes(":") && !_nDscXmrfRjmTegfE.test(_zFQkLlTiBlRHpLTG)) {
+    throw new Error('无效的 SOCKS 地址格式：IPv6 地址必须用方括号括起来，如 [2001:db8::1]');
   }
 
   //if (/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(hostname)) hostname = `${atob('d3d3Lg==')}${hostname}${atob('LmlwLjA5MDIyNy54eXo=')}`;
   // 返回解析后的结果
   return {
-    username,
+    username: _fGjJoKrLUuMhYRfn,
     // 用户名，如果没有则为 undefined
-    password,
+    password: _ABjQYBGrRuAKyMwA,
     // 密码，如果没有则为 undefined
-    hostname,
+    hostname: _zFQkLlTiBlRHpLTG,
     // 主机名，可以是域名、IPv4 或 IPv6 地址
-    port // _wJvyKmabCnIKRmIv号，已转换为数字类型
+    port: _kDPdqmPAEViIMnZM // 端口号，已转换为数字类型
   };
 }
 //////////////////////////////////////////////////////////////////////////订阅页面////////////////////////////////////////////////////////////////////////
 
-function 生成随机字符串(最小长度 = 8, 最大长度 = 24) {
-  const 字符集 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const 长度 = 最小长度 + Math.floor(Math.random() * (最大长度 - 最小长度 + 1));
-  const 结果 = [];
-  const 随机字节 = new Uint8Array(长度);
-  crypto.getRandomValues(随机字节);
-  for (let i = 0; i < 长度; i++) {
-    const 随机索引 = 随机字节[i] % 字符集.length;
-    结果.push(字符集[随机索引]);
+function _IefwWjgzGIwooJXo(_NFQheumaONdnrmHM = 8, _IFdPBTXhQBUmKyFL = 24) {
+  const _dEFrDiumXsoFNaxY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const _jgFXZwbVgOQqotOh = _NFQheumaONdnrmHM + Math.floor(Math.random() * (_IFdPBTXhQBUmKyFL - _NFQheumaONdnrmHM + 1));
+  const _FGDrgkDdmISVtMwR = [];
+  const _XJkMoZejpOwRPFmF = new Uint8Array(_jgFXZwbVgOQqotOh);
+  crypto.getRandomValues(_XJkMoZejpOwRPFmF);
+  for (let _cIzprtGKSIQJgcMw = 0; _cIzprtGKSIQJgcMw < _jgFXZwbVgOQqotOh; _cIzprtGKSIQJgcMw++) {
+    const _prjMrlrvyOYeExFW = _XJkMoZejpOwRPFmF[_cIzprtGKSIQJgcMw] % _dEFrDiumXsoFNaxY.length;
+    _FGDrgkDdmISVtMwR.push(_dEFrDiumXsoFNaxY[_prjMrlrvyOYeExFW]);
   }
-  return 结果.join('');
+  return _FGDrgkDdmISVtMwR.join('');
 }
-async function _XaYasxIsMwJddxzC(_JKmHtNmLTVOOukus, portRemote) {
+async function _AVqTkQkBYLcBPmLV(_ngGGAZmtFPqKHFGl, _VHoBxBQAksYcKhVS) {
   const {
-    username,
-    password,
-    hostname,
-    port
-  } = 生们了是作下动一;
-  const sock = await connect({
-    hostname: hostname,
-    port: port
+    username: _fGjJoKrLUuMhYRfn,
+    password: _ABjQYBGrRuAKyMwA,
+    hostname: _zFQkLlTiBlRHpLTG,
+    port: _kDPdqmPAEViIMnZM
+  } = _MFtgrXlCtQmcaSZK;
+  const _QUXwuqKnQYZIwzyy = await connect({
+    hostname: _zFQkLlTiBlRHpLTG,
+    port: _kDPdqmPAEViIMnZM
   });
 
   // 构建HTTP CONNECT请求
-  let connectRequest = `CONNECT ${_JKmHtNmLTVOOukus}:${portRemote}那能就人看工点个zgupag`;
-  connectRequest += `Host: ${_JKmHtNmLTVOOukus}:${portRemote}\r\n`;
+  let _uywuayPLtHmSfKbb = `CONNECT ${_ngGGAZmtFPqKHFGl}:${_VHoBxBQAksYcKhVS} HTTP/1.1\r\n`;
+  _uywuayPLtHmSfKbb += `Host: ${_ngGGAZmtFPqKHFGl}:${_VHoBxBQAksYcKhVS}\r\n`;
 
   // 添加代理认证（如果需要）
-  if (username && password) {
-    const authString = `${username}:${password}`;
-    const base64Auth = btoa(authString);
-    connectRequest += `_AaCmBPCSDDWttjXs9sqm6x${base64Auth}\r\n`;
+  if (_fGjJoKrLUuMhYRfn && _ABjQYBGrRuAKyMwA) {
+    const _adcbPzodZfDyVnpk = `${_fGjJoKrLUuMhYRfn}:${_ABjQYBGrRuAKyMwA}`;
+    const _LEXaPmaKUgYydino = btoa(_adcbPzodZfDyVnpk);
+    _uywuayPLtHmSfKbb += `Proxy-Authorization: Basic ${_LEXaPmaKUgYydino}\r\n`;
   }
-  connectRequest += `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n`;
-  connectRequest += `_rkdkzXOPUXqOJcNrj7fn7a`;
-  connectRequest += `Connection: Keep-Alive\r\n`; // 添加标准 Connection 头
-  connectRequest += `\r\n`;
+  _uywuayPLtHmSfKbb += `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n`;
+  _uywuayPLtHmSfKbb += `Proxy-Connection: Keep-Alive\r\n`;
+  _uywuayPLtHmSfKbb += `Connection: Keep-Alive\r\n`; // 添加标准 Connection 头
+  _uywuayPLtHmSfKbb += `\r\n`;
   try {
     // 发送连接请求
-    const writer = sock.writable.getWriter();
-    await writer.write(new TextEncoder().encode(connectRequest));
-    writer.releaseLock();
-  } catch (err) {
-    console.error('_wMomDNHUdNzHJEHl1yzlol', err);
-    throw new Error(`_xzMLhVDVhnzcUCvIu73mnw${err.message}`);
+    const _IMEMZTvhbylZBOcE = _QUXwuqKnQYZIwzyy.writable.getWriter();
+    await _IMEMZTvhbylZBOcE.write(new TextEncoder().encode(_uywuayPLtHmSfKbb));
+    _IMEMZTvhbylZBOcE.releaseLock();
+  } catch (_jjwfCUFlmIXaOWnN) {
+    console.error('发送HTTP CONNECT请求失败:', _jjwfCUFlmIXaOWnN);
+    throw new Error(`发送HTTP CONNECT请求失败: ${_jjwfCUFlmIXaOWnN.message}`);
   }
 
   // 读取HTTP响应
-  const reader = sock.readable.getReader();
-  let respText = '';
-  let connected = false;
-  let responseBuffer = new Uint8Array(0);
+  const _JxQIZeNodhtihwsA = _QUXwuqKnQYZIwzyy.readable.getReader();
+  let _wMXJlYgOnyogtJZq = '';
+  let _XHXjbMLCGReawFCF = false;
+  let _ithSbBGnvmqSpxva = new Uint8Array(0);
   try {
     while (true) {
       const {
-        value,
-        done
-      } = await reader.read();
-      if (done) {
-        console.error('一可种个的就个进y2yfcc');
-        throw new Error('_ytMUDyUAjdvbkJNpc15kxb');
+        value: _cskRFMRjMeDTjxrl,
+        done: _kMBQcQamsqerzGgX
+      } = await _JxQIZeNodhtihwsA.read();
+      if (_kMBQcQamsqerzGgX) {
+        console.error('HTTP代理连接中断');
+        throw new Error('HTTP代理连接中断');
       }
 
       // 合并接收到的数据
-      const newBuffer = new Uint8Array(responseBuffer.length + value.length);
-      newBuffer.set(responseBuffer);
-      newBuffer.set(value, responseBuffer.length);
-      responseBuffer = newBuffer;
+      const _XkOISElvdktlUvFe = new Uint8Array(_ithSbBGnvmqSpxva.length + _cskRFMRjMeDTjxrl.length);
+      _XkOISElvdktlUvFe.set(_ithSbBGnvmqSpxva);
+      _XkOISElvdktlUvFe.set(_cskRFMRjMeDTjxrl, _ithSbBGnvmqSpxva.length);
+      _ithSbBGnvmqSpxva = _XkOISElvdktlUvFe;
 
       // 将收到的数据转换为文本
-      respText = new TextDecoder().decode(responseBuffer);
+      _wMXJlYgOnyogtJZq = new TextDecoder().decode(_ithSbBGnvmqSpxva);
 
       // 检查是否收到完整的HTTP响应头
-      if (respText.includes('\r\n\r\n')) {
+      if (_wMXJlYgOnyogtJZq.includes('\r\n\r\n')) {
         // 分离HTTP头和可能的数据部分
-        const headersEndPos = respText.indexOf('\r\n\r\n') + 4;
-        const headers = respText.substring(0, headersEndPos);
+        const _JeMwNtwnYZgccNNb = _wMXJlYgOnyogtJZq.indexOf('\r\n\r\n') + 4;
+        const _fPkhACmTnroPCoZM = _wMXJlYgOnyogtJZq.substring(0, _JeMwNtwnYZgccNNb);
 
         // 检查响应状态
-        if (headers.startsWith('_agRgcOsTlhXYjVsawvzlt3') || headers.startsWith('看行了他看后下要tfwqn3')) {
-          connected = true;
+        if (_fPkhACmTnroPCoZM.startsWith('HTTP/1.1 200') || _fPkhACmTnroPCoZM.startsWith('HTTP/1.0 200')) {
+          _XHXjbMLCGReawFCF = true;
 
           // 如果响应头之后还有数据，我们需要保存这些数据以便后续处理
-          if (headersEndPos < responseBuffer.length) {
-            const remainingData = responseBuffer.slice(headersEndPos);
+          if (_JeMwNtwnYZgccNNb < _ithSbBGnvmqSpxva.length) {
+            const _fyqdJRjxlDWSmYJv = _ithSbBGnvmqSpxva.slice(_JeMwNtwnYZgccNNb);
             // 创建一个缓冲区来存储这些数据，以便稍后使用
-            const dataStream = new ReadableStream({
-              start(controller) {
-                controller.enqueue(remainingData);
+            const _shaqyyvqoipegKud = new ReadableStream({
+              start(_iXgjagZiHwhTCKQp) {
+                _iXgjagZiHwhTCKQp.enqueue(_fyqdJRjxlDWSmYJv);
               }
             });
 
             // 创建一个新的TransformStream来处理额外数据
             const {
-              readable,
-              writable
+              readable: _RNUziLGHGldtAgvt,
+              writable: _UoGJSfGWvuZpLsMa
             } = new TransformStream();
-            dataStream.pipeTo(writable).catch(err => console.error('处理剩余数据错误:', err));
+            _shaqyyvqoipegKud.pipeTo(_UoGJSfGWvuZpLsMa).catch(_jjwfCUFlmIXaOWnN => console.error('处理剩余数据错误:', _jjwfCUFlmIXaOWnN));
 
             // 替换原始readable流
             // @ts-ignore
-            sock.readable = readable;
+            _QUXwuqKnQYZIwzyy.readable = _RNUziLGHGldtAgvt;
           }
         } else {
-          const errorMsg = `_xVsCoTZcVrQcNuZuvwy2cd${headers.split('\r\n')[0]}`;
-          console.error(errorMsg);
-          throw new Error(errorMsg);
+          const _oktMOIlYpGSaQvmU = `HTTP代理连接失败: ${_fPkhACmTnroPCoZM.split('\r\n')[0]}`;
+          console.error(_oktMOIlYpGSaQvmU);
+          throw new Error(_oktMOIlYpGSaQvmU);
         }
         break;
       }
     }
-  } catch (err) {
-    reader.releaseLock();
-    throw new Error(`_vubvMigeZpNvCzpKl9kh4q${err.message}`);
+  } catch (_jjwfCUFlmIXaOWnN) {
+    _JxQIZeNodhtihwsA.releaseLock();
+    throw new Error(`处理HTTP代理响应失败: ${_jjwfCUFlmIXaOWnN.message}`);
   }
-  reader.releaseLock();
-  if (!connected) {
-    throw new Error('_OkgAwVwLOjSuClsGbkvp2x');
+  _JxQIZeNodhtihwsA.releaseLock();
+  if (!_XHXjbMLCGReawFCF) {
+    throw new Error('HTTP代理连接失败: 未收到成功响应');
   }
-  return sock;
+  return _QUXwuqKnQYZIwzyy;
 }
-async function 反代参数获取(request) {
-  const url = new URL(request.url);
+async function _PJNElyxODtResHif(_tDrlAnqRibOUMqsd) {
+  const _sANmYqRWfpFkxoCv = new URL(_tDrlAnqRibOUMqsd.url);
   const {
-    pathname,
-    searchParams
-  } = url;
-  const pathLower = pathname.toLowerCase();
+    pathname: _PyZInAjWeJlsVhhI,
+    searchParams: _OHuDtKAmbzZPiZMn
+  } = _sANmYqRWfpFkxoCv;
+  const _sziDxHXTAzuVsqZE = _PyZInAjWeJlsVhhI.toLowerCase();
 
   // 初始化
-  不下了在点这工上 = searchParams.get('_TMybsHYBumONaXPY7qe24u') || searchParams.get('子在上面在种我是5ykrny') || null;
-  _rtvyvaedtyaxQpPN = searchParams.has('_PuoSHTvUEviUBnNof6w5mh') || false;
+  _bJOZqmzFzTMuZbSr = _OHuDtKAmbzZPiZMn.get('socks5') || _OHuDtKAmbzZPiZMn.get('http') || null;
+  _TWhytzZYgPaZSxgp = _OHuDtKAmbzZPiZMn.has('globalproxy') || false;
 
   // 统一处理反代IP参数 (优先级最高,使用正则一次匹配)
-  const 地动到作种对个年 = pathLower.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
-  if (searchParams.has('成们能对了是说生q2kly7')) {
-    const _RTaUjgwBNDQbmcDs = searchParams.get('_hiwzxvqtpJLDLirtoki481');
-    _ITxEzOTjEgSGcjwL = _RTaUjgwBNDQbmcDs.includes(',') ? _RTaUjgwBNDQbmcDs.split(',')[Math.floor(Math.random() * _RTaUjgwBNDQbmcDs.split(',').length)] : _RTaUjgwBNDQbmcDs;
+  const _LMCbYTzQbDFZagSc = _sziDxHXTAzuVsqZE.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
+  if (_OHuDtKAmbzZPiZMn.has('proxyip')) {
+    const _MXKUpdRDCNaXUOVq = _OHuDtKAmbzZPiZMn.get('proxyip');
+    _oWiEuTjIKvEjBfMv = _MXKUpdRDCNaXUOVq.includes(',') ? _MXKUpdRDCNaXUOVq.split(',')[Math.floor(Math.random() * _MXKUpdRDCNaXUOVq.split(',').length)] : _MXKUpdRDCNaXUOVq;
     return;
-  } else if (地动到作种对个年) {
-    const _RTaUjgwBNDQbmcDs = 地动到作种对个年[1] === '_yxBIcFkvaCHcOpcfzl27jn' ? `_EACEkAbkRltCnDnJo4we4b${地动到作种对个年[2]}` : 地动到作种对个年[2];
-    _ITxEzOTjEgSGcjwL = _RTaUjgwBNDQbmcDs.includes(',') ? _RTaUjgwBNDQbmcDs.split(',')[Math.floor(Math.random() * _RTaUjgwBNDQbmcDs.split(',').length)] : _RTaUjgwBNDQbmcDs;
+  } else if (_LMCbYTzQbDFZagSc) {
+    const _MXKUpdRDCNaXUOVq = _LMCbYTzQbDFZagSc[1] === 'proxyip.' ? `proxyip.${_LMCbYTzQbDFZagSc[2]}` : _LMCbYTzQbDFZagSc[2];
+    _oWiEuTjIKvEjBfMv = _MXKUpdRDCNaXUOVq.includes(',') ? _MXKUpdRDCNaXUOVq.split(',')[Math.floor(Math.random() * _MXKUpdRDCNaXUOVq.split(',').length)] : _MXKUpdRDCNaXUOVq;
     return;
   }
 
   // 处理SOCKS5/HTTP代理参数
-  let 成个的到地时到动;
-  if (成个的到地时到动 = pathname.match(/\/(socks5?|http):\/?\/?(.+)/i)) {
+  let _CEZtsvhoBqzyNimM;
+  if (_CEZtsvhoBqzyNimM = _PyZInAjWeJlsVhhI.match(/\/(socks5?|http):\/?\/?(.+)/i)) {
     // 格式: /socks5://... 或 /http://...
-    发发一子动到作了 = 成个的到地时到动[1].toLowerCase() === '能不说中我上出行xnue5e' ? '_PnWwmstDpWDxtgpD292d23' : '生出生了发地上是ed1206';
-    不下了在点这工上 = 成个的到地时到动[2].split('#')[0];
-    _rtvyvaedtyaxQpPN = true;
+    _WtgFapLgZSFIVVFe = _CEZtsvhoBqzyNimM[1].toLowerCase() === 'http' ? 'http' : 'socks5';
+    _bJOZqmzFzTMuZbSr = _CEZtsvhoBqzyNimM[2].split('#')[0];
+    _TWhytzZYgPaZSxgp = true;
 
     // 处理Base64编码的用户名密码
-    if (不下了在点这工上.includes('@')) {
-      const atIndex = 不下了在点这工上.lastIndexOf('@');
-      let userPassword = 不下了在点这工上.substring(0, atIndex).replaceAll('%3D', '=');
-      if (/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i.test(userPassword) && !userPassword.includes(':')) {
-        userPassword = atob(userPassword);
+    if (_bJOZqmzFzTMuZbSr.includes('@')) {
+      const _gbnoVaJKQAbhbABB = _bJOZqmzFzTMuZbSr.lastIndexOf('@');
+      let _ROAoodJdNmNNNLjY = _bJOZqmzFzTMuZbSr.substring(0, _gbnoVaJKQAbhbABB).replaceAll('%3D', '=');
+      if (/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i.test(_ROAoodJdNmNNNLjY) && !_ROAoodJdNmNNNLjY.includes(':')) {
+        _ROAoodJdNmNNNLjY = atob(_ROAoodJdNmNNNLjY);
       }
-      不下了在点这工上 = `${userPassword}@${不下了在点这工上.substring(atIndex + 1)}`;
+      _bJOZqmzFzTMuZbSr = `${_ROAoodJdNmNNNLjY}@${_bJOZqmzFzTMuZbSr.substring(_gbnoVaJKQAbhbABB + 1)}`;
     }
-  } else if (成个的到地时到动 = pathname.match(/\/(g?s5|socks5|g?http)=(.+)/i)) {
+  } else if (_CEZtsvhoBqzyNimM = _PyZInAjWeJlsVhhI.match(/\/(g?s5|socks5|g?http)=(.+)/i)) {
     // 格式: /socks5=... 或 /s5=... 或 /gs5=... 或 /http=... 或 /ghttp=...
-    const type = 成个的到地时到动[1].toLowerCase();
-    不下了在点这工上 = 成个的到地时到动[2];
-    发发一子动到作了 = type.includes('_YLSbTqlHNhrClsiMktmwd6') ? '_LYyElwjyDKZhczYZtyzcjv' : '_VAEhxRdhhiIojZhiz43od7';
-    _rtvyvaedtyaxQpPN = type.startsWith('g') || _rtvyvaedtyaxQpPN; // gs5 或 ghttp 开头启用全局
+    const _DKduSFYUMYqJYkki = _CEZtsvhoBqzyNimM[1].toLowerCase();
+    _bJOZqmzFzTMuZbSr = _CEZtsvhoBqzyNimM[2];
+    _WtgFapLgZSFIVVFe = _DKduSFYUMYqJYkki.includes('http') ? 'http' : 'socks5';
+    _TWhytzZYgPaZSxgp = _DKduSFYUMYqJYkki.startsWith('g') || _TWhytzZYgPaZSxgp; // gs5 或 ghttp 开头启用全局
   }
 
   // 解析SOCKS5地址
-  if (不下了在点这工上) {
+  if (_bJOZqmzFzTMuZbSr) {
     try {
-      生们了是作下动一 = await _uaCWiiqfMGqmkERe(不下了在点这工上);
-      发发一子动到作了 = searchParams.get('到那能作在行要他5rkdlq') ? '_sHROzuwGhydDvkojuvn3ut' : 发发一子动到作了;
-    } catch (err) {
-      console.error('_RnIuficdTKqOlVDDu0f1ud', err.message);
-      发发一子动到作了 = null;
+      _MFtgrXlCtQmcaSZK = await _dCztXyDLXdsRKOzN(_bJOZqmzFzTMuZbSr);
+      _WtgFapLgZSFIVVFe = _OHuDtKAmbzZPiZMn.get('http') ? 'http' : _WtgFapLgZSFIVVFe;
+    } catch (_jjwfCUFlmIXaOWnN) {
+      console.error('解析SOCKS5地址失败:', _jjwfCUFlmIXaOWnN.message);
+      _WtgFapLgZSFIVVFe = null;
     }
-  } else 发发一子动到作了 = null;
+  } else _WtgFapLgZSFIVVFe = null;
 }
