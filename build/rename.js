@@ -1,43 +1,61 @@
 import fs from "fs";
-import parser from "@babel/parser";
+import { parse } from "@babel/parser";
 import traverseModule from "@babel/traverse";
-import generate from "@babel/generator";
-import * as t from "@babel/types";
+import generatorModule from "@babel/generator";
 
 const traverse = traverseModule.default;
+const generate = generatorModule.default;
 
-const code = fs.readFileSync("./dist/_worker.js", "utf8");
+const INPUT = "src/worker.js";
+const TEMP = "dist/worker.renamed.js";
 
-const ast = parser.parse(code, {
+const code = fs.readFileSync(INPUT, "utf8");
+
+const ast = parse(code, {
   sourceType: "module",
   plugins: ["topLevelAwait"]
 });
 
-let id = 0;
-const map = new Map();
+const RESERVED = new Set([
+  "fetch",
+  "connect",
+  "Response",
+  "Request",
+  "WebSocketPair",
+  "ReadableStream",
+  "WritableStream",
+  "TransformStream",
+  "console"
+]);
 
-function newName() {
-  return "_" + (id++).toString(36);
+const renameMap = new Map();
+
+function randomName() {
+  const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let name = "_";
+  for (let i = 0; i < 16; i++) {
+    name += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return name;
 }
 
 traverse(ast, {
-  Identifier(path) {
-    if (!path.isBindingIdentifier()) return;
+  Scope(path) {
+    for (const name of Object.keys(path.scope.bindings)) {
+      if (RESERVED.has(name)) continue;
 
-    const name = path.node.name;
+      if (!renameMap.has(name)) {
+        renameMap.set(name, randomName());
+      }
 
-    if (name.length < 4) return;
-    if (name.startsWith("_")) return;
-
-    if (!map.has(name)) {
-      map.set(name, newName());
+      path.scope.rename(name, renameMap.get(name));
     }
-
-    path.scope.rename(name, map.get(name));
   }
 });
 
-const output = generate.default(ast, {}).code;
+if (!fs.existsSync("dist")) fs.mkdirSync("dist");
 
-fs.writeFileSync("./dist/_worker.js", output);
+fs.writeFileSync(TEMP, generate(ast).code);
+
 console.log("✅ rename done");
