@@ -56,7 +56,8 @@ const SENSITIVE_WORDS = new Set([
   "proxy",
   "端口",
   "地址",
-  "反代IP"
+  "反代IP",
+  "路参IP",
   "socks",
   "代理",
   "socks5",
