@@ -1,7 +1,10 @@
 import fs from "fs";
 import { parse } from "@babel/parser";
-import traverse from "@babel/traverse";
-import generate from "@babel/generator";
+import traverseModule from "@babel/traverse";
+import generatorModule from "@babel/generator";
+
+const traverse = traverseModule.default;
+const generate = generatorModule.default;
 
 const INPUT = "src/worker.js";
 const TEMP = "dist/worker.renamed.js";
