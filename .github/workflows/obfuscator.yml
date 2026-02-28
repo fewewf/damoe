@@ -1,40 +1,30 @@
-name: Advanced Worker Build
+name: build-safe
 
 on:
-  
-  workflow_dispatch:
-
-permissions:
-  contents: write
+  push:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: Install Dependencies
-        run: npm install
+      - run: npm ci
 
-      - name: Run Build Pipeline
-        run: npm run build
+      - name: Build pipeline
+        run: npm run build:all
 
-      - name: Commit build output
+      - name: Commit dist
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-
-          git add dist/*
-
-          git diff --cached --quiet || git commit -m "auto: build worker artifact"
-
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add dist
+          git commit -m "build(dist): auto build" || echo "no change"
           git push
