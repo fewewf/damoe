@@ -1,55 +1,40 @@
-name: Obfuscate and Commit
+name: Advanced Worker Build
 
 on:
-    #push:
-    #    paths:
-    #        - '明文源码.js'
-    workflow_dispatch:
+  
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  obfuscate:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: 20
 
-      - name: Install dependencies
-        run: npm install -g javascript-obfuscator
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Obfuscate code
+      - name: Run Build Pipeline
+        run: npm run build
+
+      - name: Commit build output
         run: |
-          javascript-obfuscator 明文源码.js --output _worker.js \
-          --compact true \
-          --control-flow-flattening true \
-          --control-flow-flattening-threshold 1 \
-          --dead-code-injection true \
-          --dead-code-injection-threshold 1 \
-          --identifier-names-generator hexadecimal \
-          --rename-globals true \
-          --string-array true \
-          --string-array-encoding 'base64' \
-          --string-array-threshold 1 \
-          --transform-object-keys true \
-          --unicode-escape-sequence true
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
 
-      - name: Commit changes
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add _worker.js
-          git commit -m "Obfuscate _worker.js" || echo "No changes to commit"
+          git add dist/*
 
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          git diff --cached --quiet || git commit -m "auto: build worker artifact"
+
+          git push
