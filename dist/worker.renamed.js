@@ -1,251 +1,251 @@
-const _ucSIfeylPmmwPywd = 'd14bd0e0-9ade-4824-aa96-03bbe680b4db';
-let _AnUEokBygnUUnhXA = '',
-  _XgNAWphIrQRRJREX = null,
-  _msciumxHPWkAzsip = false,
-  _NceZJpWIPkoyytKu = '',
-  _gRkxdjwXYCJqIfwd = {};
+const FIXED_UUID = 'd14bd0e0-9ade-4824-aa96-03bbe680b4db';
+let 反代IP = '',
+  _MZYCzUjQzGabxRXY = null,
+  _hxFxurJQmHgcnyBD = false,
+  _JvsTHmrrmEiZDcrg = '',
+  _tUrJTGNQOVRjSoqU = {};
 export default {
-  async fetch(_IqvuOzvuUgHiTsVs) {
+  async fetch(request) {
     try {
-      const _FOmTLgyyyjqRMjWN = new URL(_IqvuOzvuUgHiTsVs.url);
-      const _OQKgTPElgHmPbZjg = _IqvuOzvuUgHiTsVs.headers.get('Upgrade');
-      if (_OQKgTPElgHmPbZjg !== 'websocket') {
+      const url = new URL(request.url);
+      const upgradeHeader = request.headers.get('Upgrade');
+      if (upgradeHeader !== 'websocket') {
         return new Response('Hello World!', {
           status: 200
         });
       } else {
-        _AnUEokBygnUUnhXA = _AnUEokBygnUUnhXA ? _AnUEokBygnUUnhXA : _IqvuOzvuUgHiTsVs.cf.colo + '.proxyIP.cmliuSSSS.NET';
-        await _enTHzlMEBvbKFmuw(_IqvuOzvuUgHiTsVs);
-        const [_DHeVqFlwKHeULWzS, _RliumlmjnVgKQOGY] = await _tsrQCKvaViJGOWSC(_AnUEokBygnUUnhXA);
-        return await _GyAsfvLnVXPdVEvv(_IqvuOzvuUgHiTsVs, {
-          parsedSocks5Address: _gRkxdjwXYCJqIfwd,
-          enableSocks: _XgNAWphIrQRRJREX,
-          enableGlobalSocks: _msciumxHPWkAzsip,
-          ProxyIP: _DHeVqFlwKHeULWzS,
-          ProxyPort: _RliumlmjnVgKQOGY
+        反代IP = 反代IP ? 反代IP : request.cf.colo + '_JtvCrBCzETQdbjIsfoha1a';
+        await 反代参数获取(request);
+        const [反代IP地址, 反代IP端口] = await 解析地址端口(反代IP);
+        return await handleSPESSWebSocket(request, {
+          _tUrJTGNQOVRjSoqU,
+          _TUPWBlsQFhWMivJZ: _MZYCzUjQzGabxRXY,
+          不要我行生对能成: _hxFxurJQmHgcnyBD,
+          _szEGFtrYkreJTnwB: 反代IP地址,
+          _CyXeFnzibTtSXWpM: 反代IP端口
         });
       }
-    } catch (_ODtYqPDlCBsDyRuc) {
-      return new Response(_ODtYqPDlCBsDyRuc && _ODtYqPDlCBsDyRuc.stack ? _ODtYqPDlCBsDyRuc.stack : String(_ODtYqPDlCBsDyRuc), {
+    } catch (err) {
+      return new Response(err && err.stack ? err.stack : String(err), {
         status: 500
       });
     }
   }
 };
-async function _GyAsfvLnVXPdVEvv(_IqvuOzvuUgHiTsVs, _wplpyjnDPkjJPIlo) {
+async function handleSPESSWebSocket(request, config) {
   const {
-    parsedSocks5Address: _gRkxdjwXYCJqIfwd,
-    enableSocks: _dMirdpofTYworNGs,
-    enableGlobalSocks: _ZhcBARVFLJBsOkNQ,
-    ProxyIP: _zHbHXuPWHEwxhDrM,
-    ProxyPort: _hTfTaqzMIsDwandz
-  } = _wplpyjnDPkjJPIlo;
-  const _tZXSbtIvHbkESoiq = new WebSocketPair();
-  const [_IroBQBZdxvONdlBa, _JkRGSvklsUaSNqqJ] = Object.values(_tZXSbtIvHbkESoiq);
-  _JkRGSvklsUaSNqqJ.accept();
-  let _kdyevsyPmvipboUH = setInterval(() => {
-    if (_JkRGSvklsUaSNqqJ.readyState === _sIWkGyzFinGhzPWm) {
+    _tUrJTGNQOVRjSoqU,
+    _TUPWBlsQFhWMivJZ,
+    不要我行生对能成,
+    _szEGFtrYkreJTnwB,
+    _CyXeFnzibTtSXWpM
+  } = config;
+  const ws配对 = new WebSocketPair();
+  const [clientWS, serverWS] = Object.values(ws配对);
+  serverWS.accept();
+  let heartbeatInterval = setInterval(() => {
+    if (serverWS.readyState === WS_READY_STATE_OPEN) {
       try {
-        _JkRGSvklsUaSNqqJ.send(new Uint8Array(0));
-      } catch (_jbuLltaKZPJhYCrM) {}
+        serverWS.send(new Uint8Array(0));
+      } catch (e) {}
     }
   }, 30000);
-  function _vxnzveuRYOzfeMWK() {
-    if (_kdyevsyPmvipboUH) {
-      clearInterval(_kdyevsyPmvipboUH);
-      _kdyevsyPmvipboUH = null;
+  function clearHeartbeat() {
+    if (heartbeatInterval) {
+      clearInterval(heartbeatInterval);
+      heartbeatInterval = null;
     }
   }
-  _JkRGSvklsUaSNqqJ.addEventListener('close', _vxnzveuRYOzfeMWK);
-  _JkRGSvklsUaSNqqJ.addEventListener('error', _vxnzveuRYOzfeMWK);
-  const _brKTRKwgtuFZlLId = _IqvuOzvuUgHiTsVs.headers.get('sec-websocket-protocol') || '';
-  const _GGqZtjvyWfFGVfYp = _MUvpDnNsNiLeQgph(_JkRGSvklsUaSNqqJ, _brKTRKwgtuFZlLId);
-  let _cgecpcFizqKFnxkQ = null;
-  let _FRnmtjwJuZCjvPCe = null;
-  let _gdaLrXrlJYassswX = false;
-  _GGqZtjvyWfFGVfYp.pipeTo(new WritableStream({
-    async write(_IYXnGvKlTOpRXNsM) {
-      if (_gdaLrXrlJYassswX && _FRnmtjwJuZCjvPCe) {
-        return _FRnmtjwJuZCjvPCe(_IYXnGvKlTOpRXNsM);
+  serverWS.addEventListener('close', clearHeartbeat);
+  serverWS.addEventListener('error', clearHeartbeat);
+  const earlyDataHeader = request.headers.get('sec-websocket-protocol') || '';
+  const wsReadable = createWebSocketReadableStream(serverWS, earlyDataHeader);
+  let remoteSocket = null;
+  let udpStreamWrite = null;
+  let isDns = false;
+  wsReadable.pipeTo(new WritableStream({
+    async write(chunk) {
+      if (isDns && udpStreamWrite) {
+        return udpStreamWrite(chunk);
       }
-      if (_cgecpcFizqKFnxkQ) {
+      if (remoteSocket) {
         try {
-          const _dwKuczqwQYjuFWCg = _cgecpcFizqKFnxkQ.writable.getWriter();
-          await _dwKuczqwQYjuFWCg.write(_IYXnGvKlTOpRXNsM);
-          _dwKuczqwQYjuFWCg.releaseLock();
-        } catch (_ODtYqPDlCBsDyRuc) {
-          _lIJzFrylwVBsTRrC(_cgecpcFizqKFnxkQ);
-          throw _ODtYqPDlCBsDyRuc;
+          const writer = remoteSocket.writable.getWriter();
+          await writer.write(chunk);
+          writer.releaseLock();
+        } catch (err) {
+          closeSocket(remoteSocket);
+          throw err;
         }
         return;
       }
-      const _dbgPWdGomKSsLTAj = _vXnxDIZCbxlsKpCb(_IYXnGvKlTOpRXNsM);
-      if (_dbgPWdGomKSsLTAj.hasError) throw new Error(_dbgPWdGomKSsLTAj.message);
-      if (_dbgPWdGomKSsLTAj.addressRemote.includes(atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='))) throw new Error('Access');
-      const _uTGcrclYYmoEnBMQ = new Uint8Array([_dbgPWdGomKSsLTAj.vlessVersion[0], 0]);
-      const _VsoxcDDnrUVrYTUT = _IYXnGvKlTOpRXNsM.slice(_dbgPWdGomKSsLTAj.rawDataIndex);
-      if (_dbgPWdGomKSsLTAj.isUDP) {
-        if (_dbgPWdGomKSsLTAj.portRemote === 53) {
-          _gdaLrXrlJYassswX = true;
+      const result = _HDcLYZvSlYhmXuNX(chunk);
+      if (result.hasError) throw new Error(result.message);
+      if (result.addressRemote.includes(atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='))) throw new Error('Access');
+      const _sRaXJTEaVyiroaEY = new Uint8Array([result.vlessVersion[0], 0]);
+      const rawClientData = chunk.slice(result.rawDataIndex);
+      if (result.isUDP) {
+        if (result.portRemote === 53) {
+          isDns = true;
           const {
-            write: _dzYZsvoBUfnQdxAH
-          } = await _RYFBOEySwtFcfbeS(_JkRGSvklsUaSNqqJ, _uTGcrclYYmoEnBMQ);
-          _FRnmtjwJuZCjvPCe = _dzYZsvoBUfnQdxAH;
-          _FRnmtjwJuZCjvPCe(_VsoxcDDnrUVrYTUT);
+            write
+          } = await handleUDPOutBound(serverWS, _sRaXJTEaVyiroaEY);
+          udpStreamWrite = write;
+          udpStreamWrite(rawClientData);
           return;
         } else {
-          throw new Error('UDP代理仅支持DNS(端口53)');
+          throw new Error('_qCaWYOhNxhMdSgRsjzks8d');
         }
       }
-      async function _iPROMNLGPITnjJEP(_DrSPCwRiwhAOJdJX, _PINFlmrzJsBxjQgL) {
-        const _phSmcSdQFcmGbMsL = await connect({
-          hostname: _DrSPCwRiwhAOJdJX,
-          port: _PINFlmrzJsBxjQgL
+      async function connectAndWrite(address, port) {
+        const tcpSocket = await connect({
+          hostname: address,
+          port: port
         }, {
           allowHalfOpen: true
         });
-        _cgecpcFizqKFnxkQ = _phSmcSdQFcmGbMsL;
-        const _dwKuczqwQYjuFWCg = _phSmcSdQFcmGbMsL.writable.getWriter();
-        await _dwKuczqwQYjuFWCg.write(_VsoxcDDnrUVrYTUT);
-        _dwKuczqwQYjuFWCg.releaseLock();
-        return _phSmcSdQFcmGbMsL;
+        remoteSocket = tcpSocket;
+        const writer = tcpSocket.writable.getWriter();
+        await writer.write(rawClientData);
+        writer.releaseLock();
+        return tcpSocket;
       }
-      async function _HmwmQBRENseCBTPg(_DrSPCwRiwhAOJdJX, _PINFlmrzJsBxjQgL) {
-        const _phSmcSdQFcmGbMsL = _dMirdpofTYworNGs === 'socks5' ? await _VfuinkQdJcVqydma(_dbgPWdGomKSsLTAj.addressType, _DrSPCwRiwhAOJdJX, _PINFlmrzJsBxjQgL, _gRkxdjwXYCJqIfwd) : await _QCRzMBEQMbRTMUKN(_dbgPWdGomKSsLTAj.addressType, _DrSPCwRiwhAOJdJX, _PINFlmrzJsBxjQgL, _gRkxdjwXYCJqIfwd);
-        _cgecpcFizqKFnxkQ = _phSmcSdQFcmGbMsL;
-        const _dwKuczqwQYjuFWCg = _phSmcSdQFcmGbMsL.writable.getWriter();
-        await _dwKuczqwQYjuFWCg.write(_VsoxcDDnrUVrYTUT);
-        _dwKuczqwQYjuFWCg.releaseLock();
-        return _phSmcSdQFcmGbMsL;
+      async function 看工子出作就成看(address, port) {
+        const tcpSocket = _TUPWBlsQFhWMivJZ === '_TvIZBDRlaUSZqZlgahqm7r' ? await _uIvLAjccGFqxiARt(result.addressType, address, port, _tUrJTGNQOVRjSoqU) : await _HFXjZugZPSuUeirL(result.addressType, address, port, _tUrJTGNQOVRjSoqU);
+        remoteSocket = tcpSocket;
+        const writer = tcpSocket.writable.getWriter();
+        await writer.write(rawClientData);
+        writer.releaseLock();
+        return tcpSocket;
       }
-      async function _ISHhspnibgfaSIoS() {
+      async function retry() {
         try {
-          let _phSmcSdQFcmGbMsL;
-          if (_dMirdpofTYworNGs === 'socks5') {
-            _phSmcSdQFcmGbMsL = await _VfuinkQdJcVqydma(_dbgPWdGomKSsLTAj.addressType, _dbgPWdGomKSsLTAj.addressRemote, _dbgPWdGomKSsLTAj.portRemote, _gRkxdjwXYCJqIfwd);
-          } else if (_dMirdpofTYworNGs === 'http') {
-            _phSmcSdQFcmGbMsL = await _QCRzMBEQMbRTMUKN(_dbgPWdGomKSsLTAj.addressType, _dbgPWdGomKSsLTAj.addressRemote, _dbgPWdGomKSsLTAj.portRemote, _gRkxdjwXYCJqIfwd);
+          let tcpSocket;
+          if (_TUPWBlsQFhWMivJZ === '地发中出到人发这ep6s2s') {
+            tcpSocket = await _uIvLAjccGFqxiARt(result.addressType, result.addressRemote, result.portRemote, _tUrJTGNQOVRjSoqU);
+          } else if (_TUPWBlsQFhWMivJZ === '_MwCfOIuUIRvjBxplln3lez') {
+            tcpSocket = await _HFXjZugZPSuUeirL(result.addressType, result.addressRemote, result.portRemote, _tUrJTGNQOVRjSoqU);
           } else {
-            _phSmcSdQFcmGbMsL = await connect({
-              hostname: _zHbHXuPWHEwxhDrM,
-              port: _hTfTaqzMIsDwandz
+            tcpSocket = await connect({
+              hostname: _szEGFtrYkreJTnwB,
+              port: _CyXeFnzibTtSXWpM
             }, {
               allowHalfOpen: true
             });
           }
-          _cgecpcFizqKFnxkQ = _phSmcSdQFcmGbMsL;
-          const _dwKuczqwQYjuFWCg = _phSmcSdQFcmGbMsL.writable.getWriter();
-          await _dwKuczqwQYjuFWCg.write(_VsoxcDDnrUVrYTUT);
-          _dwKuczqwQYjuFWCg.releaseLock();
-          _phSmcSdQFcmGbMsL.closed.catch(() => {}).finally(() => {
-            if (_JkRGSvklsUaSNqqJ.readyState === _sIWkGyzFinGhzPWm) {
-              _JkRGSvklsUaSNqqJ.close(1000, '连接已关闭');
+          remoteSocket = tcpSocket;
+          const writer = tcpSocket.writable.getWriter();
+          await writer.write(rawClientData);
+          writer.releaseLock();
+          tcpSocket.closed.catch(() => {}).finally(() => {
+            if (serverWS.readyState === WS_READY_STATE_OPEN) {
+              serverWS.close(1000, '连接已关闭');
             }
           });
-          _gyKLiNBfYqCGhYdg(_phSmcSdQFcmGbMsL, _JkRGSvklsUaSNqqJ, _uTGcrclYYmoEnBMQ, null);
-        } catch (_ODtYqPDlCBsDyRuc) {
-          _lIJzFrylwVBsTRrC(_cgecpcFizqKFnxkQ);
-          _JkRGSvklsUaSNqqJ.close(1011, '代理连接失败: ' + (_ODtYqPDlCBsDyRuc && _ODtYqPDlCBsDyRuc.message ? _ODtYqPDlCBsDyRuc.message : _ODtYqPDlCBsDyRuc));
+          pipeRemoteToWebSocket(tcpSocket, serverWS, _sRaXJTEaVyiroaEY, null);
+        } catch (err) {
+          closeSocket(remoteSocket);
+          serverWS.close(1011, '工个们面中后们后nxyjs0' + (err && err.message ? err.message : err));
         }
       }
       try {
-        if (_ZhcBARVFLJBsOkNQ) {
-          const _phSmcSdQFcmGbMsL = await _HmwmQBRENseCBTPg(_dbgPWdGomKSsLTAj.addressRemote, _dbgPWdGomKSsLTAj.portRemote);
-          _gyKLiNBfYqCGhYdg(_phSmcSdQFcmGbMsL, _JkRGSvklsUaSNqqJ, _uTGcrclYYmoEnBMQ, _ISHhspnibgfaSIoS);
+        if (不要我行生对能成) {
+          const tcpSocket = await 看工子出作就成看(result.addressRemote, result.portRemote);
+          pipeRemoteToWebSocket(tcpSocket, serverWS, _sRaXJTEaVyiroaEY, retry);
         } else {
-          const _phSmcSdQFcmGbMsL = await _iPROMNLGPITnjJEP(_dbgPWdGomKSsLTAj.addressRemote, _dbgPWdGomKSsLTAj.portRemote);
-          _gyKLiNBfYqCGhYdg(_phSmcSdQFcmGbMsL, _JkRGSvklsUaSNqqJ, _uTGcrclYYmoEnBMQ, _ISHhspnibgfaSIoS);
+          const tcpSocket = await connectAndWrite(result.addressRemote, result.portRemote);
+          pipeRemoteToWebSocket(tcpSocket, serverWS, _sRaXJTEaVyiroaEY, retry);
         }
-      } catch (_ODtYqPDlCBsDyRuc) {
-        _lIJzFrylwVBsTRrC(_cgecpcFizqKFnxkQ);
-        _JkRGSvklsUaSNqqJ.close(1011, '连接失败: ' + (_ODtYqPDlCBsDyRuc && _ODtYqPDlCBsDyRuc.message ? _ODtYqPDlCBsDyRuc.message : _ODtYqPDlCBsDyRuc));
+      } catch (err) {
+        closeSocket(remoteSocket);
+        serverWS.close(1011, '连接失败: ' + (err && err.message ? err.message : err));
       }
     },
     close() {
-      if (_cgecpcFizqKFnxkQ) {
-        _lIJzFrylwVBsTRrC(_cgecpcFizqKFnxkQ);
+      if (remoteSocket) {
+        closeSocket(remoteSocket);
       }
     }
-  })).catch(_ODtYqPDlCBsDyRuc => {
-    _lIJzFrylwVBsTRrC(_cgecpcFizqKFnxkQ);
-    _JkRGSvklsUaSNqqJ.close(1011, '内部错误: ' + (_ODtYqPDlCBsDyRuc && _ODtYqPDlCBsDyRuc.message ? _ODtYqPDlCBsDyRuc.message : _ODtYqPDlCBsDyRuc));
+  })).catch(err => {
+    closeSocket(remoteSocket);
+    serverWS.close(1011, '内部错误: ' + (err && err.message ? err.message : err));
   });
   return new Response(null, {
     status: 101,
-    webSocket: _IroBQBZdxvONdlBa
+    webSocket: clientWS
   });
 }
-function _MUvpDnNsNiLeQgph(_xoRSmwKWiBLnWAcj, _brKTRKwgtuFZlLId) {
+function createWebSocketReadableStream(ws, earlyDataHeader) {
   return new ReadableStream({
-    start(_GCxkodEFMTiHYIcv) {
-      _xoRSmwKWiBLnWAcj.addEventListener('message', _EskEVrknscPAVbih => {
-        _GCxkodEFMTiHYIcv.enqueue(_EskEVrknscPAVbih.data);
+    start(controller) {
+      ws.addEventListener('message', event => {
+        controller.enqueue(event.data);
       });
-      _xoRSmwKWiBLnWAcj.addEventListener('close', () => {
-        _GCxkodEFMTiHYIcv.close();
+      ws.addEventListener('close', () => {
+        controller.close();
       });
-      _xoRSmwKWiBLnWAcj.addEventListener('error', _ODtYqPDlCBsDyRuc => {
-        _GCxkodEFMTiHYIcv.error(_ODtYqPDlCBsDyRuc);
+      ws.addEventListener('error', err => {
+        controller.error(err);
       });
-      if (_brKTRKwgtuFZlLId) {
+      if (earlyDataHeader) {
         try {
-          const _iALamEhTszkHXLwb = atob(_brKTRKwgtuFZlLId.replace(/-/g, '+').replace(/_/g, '/'));
-          const _NFryCmlNFdRbBzaM = Uint8Array.from(_iALamEhTszkHXLwb, _urplZyKnXZUQsNly => _urplZyKnXZUQsNly.charCodeAt(0));
-          _GCxkodEFMTiHYIcv.enqueue(_NFryCmlNFdRbBzaM.buffer);
-        } catch (_jbuLltaKZPJhYCrM) {}
+          const decoded = atob(earlyDataHeader.replace(/-/g, '+').replace(/_/g, '/'));
+          const data = Uint8Array.from(decoded, c => c.charCodeAt(0));
+          controller.enqueue(data.buffer);
+        } catch (e) {}
       }
     }
   });
 }
-function _vXnxDIZCbxlsKpCb(_oscykPXtsejwZrHu) {
-  if (_oscykPXtsejwZrHu.byteLength < 24) {
+function _HDcLYZvSlYhmXuNX(buffer) {
+  if (buffer.byteLength < 24) {
     return {
       hasError: true,
       message: '无效的头部长度'
     };
   }
-  const _zJjJdIKghHQBaHVZ = new DataView(_oscykPXtsejwZrHu);
-  const _ThjPOGnIswmuXnEa = new Uint8Array(_oscykPXtsejwZrHu.slice(0, 1));
-  const _uaSXOwpMZYppDSZq = _kvvREiZleJMqiJrx(new Uint8Array(_oscykPXtsejwZrHu.slice(1, 17)));
-  if (_ucSIfeylPmmwPywd && _uaSXOwpMZYppDSZq !== _ucSIfeylPmmwPywd) {
+  const view = new DataView(buffer);
+  const version = new Uint8Array(buffer.slice(0, 1));
+  const uuid = formatUUID(new Uint8Array(buffer.slice(1, 17)));
+  if (FIXED_UUID && uuid !== FIXED_UUID) {
     return {
       hasError: true,
       message: '无效的用户'
     };
   }
-  const _qFbAliuhBCaSgqAr = _zJjJdIKghHQBaHVZ.getUint8(17);
-  const _guwndPiMihMOHjUq = _zJjJdIKghHQBaHVZ.getUint8(18 + _qFbAliuhBCaSgqAr);
-  let _zKIHaRotjAlOQjIz = false;
-  if (_guwndPiMihMOHjUq === 1) {} else if (_guwndPiMihMOHjUq === 2) {
-    _zKIHaRotjAlOQjIz = true;
+  const optionsLength = view.getUint8(17);
+  const command = view.getUint8(18 + optionsLength);
+  let isUDP = false;
+  if (command === 1) {} else if (command === 2) {
+    isUDP = true;
   } else {
     return {
       hasError: true,
       message: '不支持的命令，仅支持TCP(01)和UDP(02)'
     };
   }
-  let _SsDrfZaSFWPyteBD = 19 + _qFbAliuhBCaSgqAr;
-  const _PINFlmrzJsBxjQgL = _zJjJdIKghHQBaHVZ.getUint16(_SsDrfZaSFWPyteBD);
-  _SsDrfZaSFWPyteBD += 2;
-  const _XPSusBMgILNviFZT = _zJjJdIKghHQBaHVZ.getUint8(_SsDrfZaSFWPyteBD++);
-  let _DrSPCwRiwhAOJdJX = '';
-  switch (_XPSusBMgILNviFZT) {
+  let offset = 19 + optionsLength;
+  const port = view.getUint16(offset);
+  offset += 2;
+  const addressType = view.getUint8(offset++);
+  let address = '';
+  switch (addressType) {
     case 1:
-      _DrSPCwRiwhAOJdJX = Array.from(new Uint8Array(_oscykPXtsejwZrHu.slice(_SsDrfZaSFWPyteBD, _SsDrfZaSFWPyteBD + 4))).join('.');
-      _SsDrfZaSFWPyteBD += 4;
+      address = Array.from(new Uint8Array(buffer.slice(offset, offset + 4))).join('.');
+      offset += 4;
       break;
     case 2:
-      const _ZyeZDBjJGWugdCHl = _zJjJdIKghHQBaHVZ.getUint8(_SsDrfZaSFWPyteBD++);
-      _DrSPCwRiwhAOJdJX = new TextDecoder().decode(_oscykPXtsejwZrHu.slice(_SsDrfZaSFWPyteBD, _SsDrfZaSFWPyteBD + _ZyeZDBjJGWugdCHl));
-      _SsDrfZaSFWPyteBD += _ZyeZDBjJGWugdCHl;
+      const domainLength = view.getUint8(offset++);
+      address = new TextDecoder().decode(buffer.slice(offset, offset + domainLength));
+      offset += domainLength;
       break;
     case 3:
-      const _pTURJgTfPEsZdAMj = [];
-      for (let _unqhariKMojDcNkG = 0; _unqhariKMojDcNkG < 8; _unqhariKMojDcNkG++) {
-        _pTURJgTfPEsZdAMj.push(_zJjJdIKghHQBaHVZ.getUint16(_SsDrfZaSFWPyteBD).toString(16).padStart(4, '0'));
-        _SsDrfZaSFWPyteBD += 2;
+      const ipv6 = [];
+      for (let i = 0; i < 8; i++) {
+        ipv6.push(view.getUint16(offset).toString(16).padStart(4, '0'));
+        offset += 2;
       }
-      _DrSPCwRiwhAOJdJX = _pTURJgTfPEsZdAMj.join(':').replace(/(^|:)0+(\w)/g, '$1$2');
+      address = ipv6.join(':').replace(/(^|:)0+(\w)/g, '$1$2');
       break;
     default:
       return {
@@ -255,406 +255,406 @@ function _vXnxDIZCbxlsKpCb(_oscykPXtsejwZrHu) {
   }
   return {
     hasError: false,
-    addressRemote: _DrSPCwRiwhAOJdJX,
-    portRemote: _PINFlmrzJsBxjQgL,
-    rawDataIndex: _SsDrfZaSFWPyteBD,
-    vlessVersion: _ThjPOGnIswmuXnEa,
-    isUDP: _zKIHaRotjAlOQjIz,
-    addressType: _XPSusBMgILNviFZT
+    _mhoDCtJFfbAjPDVO: address,
+    portRemote: port,
+    rawDataIndex: offset,
+    到能作作作时说看: version,
+    isUDP,
+    addressType
   };
 }
-async function _gyKLiNBfYqCGhYdg(_cgecpcFizqKFnxkQ, _xoRSmwKWiBLnWAcj, _XVAdUgPnqVobtKuv, _ISHhspnibgfaSIoS = null, _IbbSulfseTKNaJMS = 0) {
-  const _cMZnzhRgyagqLdWC = 8;
-  const _cpiqWQcFydbpobkh = 128 * 1024;
-  const _LymBfnmqkTjhpLft = 2 * 1024 * 1024;
-  const _BUzMGmrSXAIhzLQH = 10;
-  const _pCTjuuAgNPypZUkk = 200;
-  let _TlJtnsSzTrRBBWIV = false;
-  let _GiGzltigVRhXKJeP = false;
-  let _JLGLGVrDgQZofBQi = [];
-  let _dnJNFStzvOAqvYEp = 0;
-  const _JZrOMsRodtwDExqN = _OmrtlVgLqGQoVEIv => {
-    if (_OmrtlVgLqGQoVEIv.length === 1) return _OmrtlVgLqGQoVEIv[0];
-    const _aDbqdWdMUNkWLMDR = _OmrtlVgLqGQoVEIv.reduce((_UGiSciqHjXHnCGRg, _urplZyKnXZUQsNly) => _UGiSciqHjXHnCGRg + _urplZyKnXZUQsNly.byteLength, 0);
-    const _wOqDOckuLxKNPtEl = new Uint8Array(_aDbqdWdMUNkWLMDR);
-    let _SsDrfZaSFWPyteBD = 0;
-    for (const _urplZyKnXZUQsNly of _OmrtlVgLqGQoVEIv) {
-      _wOqDOckuLxKNPtEl.set(_urplZyKnXZUQsNly, _SsDrfZaSFWPyteBD);
-      _SsDrfZaSFWPyteBD += _urplZyKnXZUQsNly.byteLength;
+async function pipeRemoteToWebSocket(remoteSocket, ws, 发生就们说作我动, retry = null, retryCount = 0) {
+  const MAX_RETRIES = 8;
+  const MAX_CHUNK_SIZE = 128 * 1024;
+  const MAX_BUFFER_SIZE = 2 * 1024 * 1024;
+  const FLUSH_INTERVAL = 10;
+  const BASE_RETRY_DELAY = 200;
+  let headerSent = false;
+  let hasIncomingData = false;
+  let bufferQueue = [];
+  let bufferedBytes = 0;
+  const concatUint8Arrays = chunks => {
+    if (chunks.length === 1) return chunks[0];
+    const total = chunks.reduce((sum, c) => sum + c.byteLength, 0);
+    const merged = new Uint8Array(total);
+    let offset = 0;
+    for (const c of chunks) {
+      merged.set(c, offset);
+      offset += c.byteLength;
     }
-    return _wOqDOckuLxKNPtEl;
+    return merged;
   };
-  const _ViHxcdqhjiixhrWc = _NFryCmlNFdRbBzaM => {
-    let _SsDrfZaSFWPyteBD = 0;
-    while (_SsDrfZaSFWPyteBD < _NFryCmlNFdRbBzaM.byteLength) {
-      const _tYalNHIECwbAbfiQ = Math.min(_SsDrfZaSFWPyteBD + _cpiqWQcFydbpobkh, _NFryCmlNFdRbBzaM.byteLength);
-      _xoRSmwKWiBLnWAcj.send(_NFryCmlNFdRbBzaM.slice(_SsDrfZaSFWPyteBD, _tYalNHIECwbAbfiQ));
-      _SsDrfZaSFWPyteBD = _tYalNHIECwbAbfiQ;
+  const sendInChunks = data => {
+    let offset = 0;
+    while (offset < data.byteLength) {
+      const end = Math.min(offset + MAX_CHUNK_SIZE, data.byteLength);
+      ws.send(data.slice(offset, end));
+      offset = end;
     }
   };
-  const _lqwdfrDNsJTYKtkb = () => {
-    if (_xoRSmwKWiBLnWAcj.readyState !== _sIWkGyzFinGhzPWm || _JLGLGVrDgQZofBQi.length === 0) return;
-    const _wOqDOckuLxKNPtEl = _JZrOMsRodtwDExqN(_JLGLGVrDgQZofBQi);
-    _JLGLGVrDgQZofBQi = [];
-    _dnJNFStzvOAqvYEp = 0;
-    _ViHxcdqhjiixhrWc(_wOqDOckuLxKNPtEl);
+  const flushBufferQueue = () => {
+    if (ws.readyState !== WS_READY_STATE_OPEN || bufferQueue.length === 0) return;
+    const merged = concatUint8Arrays(bufferQueue);
+    bufferQueue = [];
+    bufferedBytes = 0;
+    sendInChunks(merged);
   };
-  const _YkxxVTFNybgarpNx = setInterval(_lqwdfrDNsJTYKtkb, _BUzMGmrSXAIhzLQH);
-  const _JmnptvMKOgRwCqjH = _cgecpcFizqKFnxkQ.readable.getReader();
+  const flushTimer = setInterval(flushBufferQueue, FLUSH_INTERVAL);
+  const reader = remoteSocket.readable.getReader();
   try {
     while (true) {
       const {
-        done: _gxCEQIEjcoGIivTj,
-        value: _BIBgEenrEyGONlxV
-      } = await _JmnptvMKOgRwCqjH.read();
-      if (_gxCEQIEjcoGIivTj) break;
-      _GiGzltigVRhXKJeP = true;
-      if (_xoRSmwKWiBLnWAcj.readyState !== _sIWkGyzFinGhzPWm) break;
-      if (!_TlJtnsSzTrRBBWIV) {
-        const _xyKUsyuHuSdQNACk = new Uint8Array(_XVAdUgPnqVobtKuv.byteLength + _BIBgEenrEyGONlxV.byteLength);
-        _xyKUsyuHuSdQNACk.set(new Uint8Array(_XVAdUgPnqVobtKuv), 0);
-        _xyKUsyuHuSdQNACk.set(_BIBgEenrEyGONlxV, _XVAdUgPnqVobtKuv.byteLength);
-        _JLGLGVrDgQZofBQi.push(_xyKUsyuHuSdQNACk);
-        _dnJNFStzvOAqvYEp += _xyKUsyuHuSdQNACk.byteLength;
-        _TlJtnsSzTrRBBWIV = true;
+        done,
+        value
+      } = await reader.read();
+      if (done) break;
+      hasIncomingData = true;
+      if (ws.readyState !== WS_READY_STATE_OPEN) break;
+      if (!headerSent) {
+        const combined = new Uint8Array(发生就们说作我动.byteLength + value.byteLength);
+        combined.set(new Uint8Array(发生就们说作我动), 0);
+        combined.set(value, 发生就们说作我动.byteLength);
+        bufferQueue.push(combined);
+        bufferedBytes += combined.byteLength;
+        headerSent = true;
       } else {
-        _JLGLGVrDgQZofBQi.push(_BIBgEenrEyGONlxV);
-        _dnJNFStzvOAqvYEp += _BIBgEenrEyGONlxV.byteLength;
+        bufferQueue.push(value);
+        bufferedBytes += value.byteLength;
       }
-      if (_dnJNFStzvOAqvYEp >= _LymBfnmqkTjhpLft) {
-        _lqwdfrDNsJTYKtkb();
+      if (bufferedBytes >= MAX_BUFFER_SIZE) {
+        flushBufferQueue();
       }
     }
-    _JmnptvMKOgRwCqjH.releaseLock();
-    _lqwdfrDNsJTYKtkb();
-    clearInterval(_YkxxVTFNybgarpNx);
-    if (!_GiGzltigVRhXKJeP && _ISHhspnibgfaSIoS && _IbbSulfseTKNaJMS < _cMZnzhRgyagqLdWC) {
-      const _NYeqTLxdOPUakvCs = _pCTjuuAgNPypZUkk * Math.pow(2, _IbbSulfseTKNaJMS);
-      console.warn(`未收到数据，${_NYeqTLxdOPUakvCs} ms 后重试 (${_IbbSulfseTKNaJMS + 1}/${_cMZnzhRgyagqLdWC})`);
-      await new Promise(_ZviOdTsWJtnPXpfw => setTimeout(_ZviOdTsWJtnPXpfw, _NYeqTLxdOPUakvCs));
-      await _ISHhspnibgfaSIoS();
+    reader.releaseLock();
+    flushBufferQueue();
+    clearInterval(flushTimer);
+    if (!hasIncomingData && retry && retryCount < MAX_RETRIES) {
+      const delay = BASE_RETRY_DELAY * Math.pow(2, retryCount);
+      console.warn(`未收到数据，${delay} ms 后重试 (${retryCount + 1}/${MAX_RETRIES})`);
+      await new Promise(r => setTimeout(r, delay));
+      await retry();
       return;
     }
-    if (_xoRSmwKWiBLnWAcj.readyState === _sIWkGyzFinGhzPWm) _xoRSmwKWiBLnWAcj.close(1000, '正常关闭');
-  } catch (_ODtYqPDlCBsDyRuc) {
-    _JmnptvMKOgRwCqjH.releaseLock();
-    clearInterval(_YkxxVTFNybgarpNx);
-    console.error('数据传输错误:', _ODtYqPDlCBsDyRuc);
-    _lIJzFrylwVBsTRrC(_cgecpcFizqKFnxkQ);
-    if (_ISHhspnibgfaSIoS && _IbbSulfseTKNaJMS < _cMZnzhRgyagqLdWC) {
-      const _NYeqTLxdOPUakvCs = _pCTjuuAgNPypZUkk * Math.pow(2, _IbbSulfseTKNaJMS);
-      console.warn(`错误重试 (${_IbbSulfseTKNaJMS + 1}/${_cMZnzhRgyagqLdWC})，将在 ${_NYeqTLxdOPUakvCs} ms 后重试`);
-      await new Promise(_ZviOdTsWJtnPXpfw => setTimeout(_ZviOdTsWJtnPXpfw, _NYeqTLxdOPUakvCs));
-      await _ISHhspnibgfaSIoS();
+    if (ws.readyState === WS_READY_STATE_OPEN) ws.close(1000, '正常关闭');
+  } catch (err) {
+    reader.releaseLock();
+    clearInterval(flushTimer);
+    console.error('数据传输错误:', err);
+    closeSocket(remoteSocket);
+    if (retry && retryCount < MAX_RETRIES) {
+      const delay = BASE_RETRY_DELAY * Math.pow(2, retryCount);
+      console.warn(`错误重试 (${retryCount + 1}/${MAX_RETRIES})，将在 ${delay} ms 后重试`);
+      await new Promise(r => setTimeout(r, delay));
+      await retry();
       return;
     }
-    if (_xoRSmwKWiBLnWAcj.readyState === _sIWkGyzFinGhzPWm) {
-      _xoRSmwKWiBLnWAcj.close(1011, '数据传输错误');
+    if (ws.readyState === WS_READY_STATE_OPEN) {
+      ws.close(1011, '数据传输错误');
     }
   }
 }
-function _lIJzFrylwVBsTRrC(_GOAChfrzbyFRCTOO) {
-  if (_GOAChfrzbyFRCTOO) {
+function closeSocket(socket) {
+  if (socket) {
     try {
-      _GOAChfrzbyFRCTOO.close();
-    } catch (_jbuLltaKZPJhYCrM) {}
+      socket.close();
+    } catch (e) {}
   }
 }
-function _kvvREiZleJMqiJrx(_OhWGfUWEBvksjIPf) {
-  const _EYVGJdRwXeRzZxMm = Array.from(_OhWGfUWEBvksjIPf, _zOwhCtONrNxAyaGU => _zOwhCtONrNxAyaGU.toString(16).padStart(2, '0')).join('');
-  return `${_EYVGJdRwXeRzZxMm.slice(0, 8)}-${_EYVGJdRwXeRzZxMm.slice(8, 12)}-${_EYVGJdRwXeRzZxMm.slice(12, 16)}-${_EYVGJdRwXeRzZxMm.slice(16, 20)}-${_EYVGJdRwXeRzZxMm.slice(20)}`;
+function formatUUID(bytes) {
+  const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
 }
-async function _VfuinkQdJcVqydma(_XPSusBMgILNviFZT, _rrPINtMzUGUEXtLJ, _woGcXuJjLNSAUnMF, _gRkxdjwXYCJqIfwd) {
+async function _uIvLAjccGFqxiARt(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tUrJTGNQOVRjSoqU) {
   const {
-    username: _LDJZrpjWzMpRenkr,
-    password: _PbNLysaAxkrZJjAg,
-    hostname: _XNvSqPuiAKlmThKD,
-    port: _PINFlmrzJsBxjQgL
-  } = _gRkxdjwXYCJqIfwd;
-  const _GOAChfrzbyFRCTOO = connect({
-    hostname: _XNvSqPuiAKlmThKD,
-    port: _PINFlmrzJsBxjQgL
+    username,
+    password,
+    hostname,
+    port
+  } = _tUrJTGNQOVRjSoqU;
+  const socket = connect({
+    hostname,
+    port
   });
-  const _xYDArhDcBVdqdCRr = new Uint8Array([5, 2, 0, 2]);
-  const _dwKuczqwQYjuFWCg = _GOAChfrzbyFRCTOO.writable.getWriter();
-  await _dwKuczqwQYjuFWCg.write(_xYDArhDcBVdqdCRr);
-  const _JmnptvMKOgRwCqjH = _GOAChfrzbyFRCTOO.readable.getReader();
-  const _bERNYEhArbvMcmPS = new TextEncoder();
-  let _zHNOyQShQhnYsYla = (await _JmnptvMKOgRwCqjH.read()).value;
-  if (_zHNOyQShQhnYsYla[0] !== 0x05) {
-    throw new Error(`socks server version error: ${_zHNOyQShQhnYsYla[0]} expected: 5`);
+  const _XcPXeruWgkUtLEQa = new Uint8Array([5, 2, 0, 2]);
+  const writer = socket.writable.getWriter();
+  await writer.write(_XcPXeruWgkUtLEQa);
+  const reader = socket.readable.getReader();
+  const encoder = new TextEncoder();
+  let res = (await reader.read()).value;
+  if (res[0] !== 0x05) {
+    throw new Error(`_CifYLNuPVcCmoBsN110x8s${res[0]} expected: 5`);
   }
-  if (_zHNOyQShQhnYsYla[1] === 0xff) {
+  if (res[1] === 0xff) {
     throw new Error("no acceptable methods");
   }
-  if (_zHNOyQShQhnYsYla[1] === 0x02) {
-    if (!_LDJZrpjWzMpRenkr || !_PbNLysaAxkrZJjAg) {
+  if (res[1] === 0x02) {
+    if (!username || !password) {
       throw new Error("please provide username/password");
     }
-    const _tIkEhenJQwloXwMy = new Uint8Array([1, _LDJZrpjWzMpRenkr.length, ..._bERNYEhArbvMcmPS.encode(_LDJZrpjWzMpRenkr), _PbNLysaAxkrZJjAg.length, ..._bERNYEhArbvMcmPS.encode(_PbNLysaAxkrZJjAg)]);
-    await _dwKuczqwQYjuFWCg.write(_tIkEhenJQwloXwMy);
-    _zHNOyQShQhnYsYla = (await _JmnptvMKOgRwCqjH.read()).value;
-    if (_zHNOyQShQhnYsYla[0] !== 0x01 || _zHNOyQShQhnYsYla[1] !== 0x00) {
-      throw new Error("fail to auth socks server");
+    const authRequest = new Uint8Array([1, username.length, ...encoder.encode(username), password.length, ...encoder.encode(password)]);
+    await writer.write(authRequest);
+    res = (await reader.read()).value;
+    if (res[0] !== 0x01 || res[1] !== 0x00) {
+      throw new Error('_zSoISdNthOYRMFlvvo7rmu');
     }
   }
-  let _XcyrgsBvAzUyDpwq;
-  switch (_XPSusBMgILNviFZT) {
+  let DSTADDR;
+  switch (addressType) {
     case 1:
-      _XcyrgsBvAzUyDpwq = new Uint8Array([1, ..._rrPINtMzUGUEXtLJ.split('.').map(Number)]);
+      DSTADDR = new Uint8Array([1, ..._mhoDCtJFfbAjPDVO.split('.').map(Number)]);
       break;
     case 2:
-      _XcyrgsBvAzUyDpwq = new Uint8Array([3, _rrPINtMzUGUEXtLJ.length, ..._bERNYEhArbvMcmPS.encode(_rrPINtMzUGUEXtLJ)]);
+      DSTADDR = new Uint8Array([3, _mhoDCtJFfbAjPDVO.length, ...encoder.encode(_mhoDCtJFfbAjPDVO)]);
       break;
     case 3:
-      _XcyrgsBvAzUyDpwq = new Uint8Array([4, ..._rrPINtMzUGUEXtLJ.split(':').flatMap(_WjLaYHQUSmTUOJQu => [parseInt(_WjLaYHQUSmTUOJQu.slice(0, 2), 16), parseInt(_WjLaYHQUSmTUOJQu.slice(2), 16)])]);
+      DSTADDR = new Uint8Array([4, ..._mhoDCtJFfbAjPDVO.split(':').flatMap(x => [parseInt(x.slice(0, 2), 16), parseInt(x.slice(2), 16)])]);
       break;
     default:
-      throw new Error(`invalid addressType is ${_XPSusBMgILNviFZT}`);
+      throw new Error(`invalid addressType is ${addressType}`);
   }
-  const _hFlYetTOWtNUTJNf = new Uint8Array([5, 1, 0, ..._XcyrgsBvAzUyDpwq, _woGcXuJjLNSAUnMF >> 8, _woGcXuJjLNSAUnMF & 0xff]);
-  await _dwKuczqwQYjuFWCg.write(_hFlYetTOWtNUTJNf);
-  _zHNOyQShQhnYsYla = (await _JmnptvMKOgRwCqjH.read()).value;
-  if (_zHNOyQShQhnYsYla[1] === 0x00) {} else {
-    throw new Error("fail to open socks connection");
+  const _BiXtEIFQguDfoqDd = new Uint8Array([5, 1, 0, ...DSTADDR, portRemote >> 8, portRemote & 0xff]);
+  await writer.write(_BiXtEIFQguDfoqDd);
+  res = (await reader.read()).value;
+  if (res[1] === 0x00) {} else {
+    throw new Error('_bOJdDgOinRJbvBxTj2mwhr');
   }
-  _dwKuczqwQYjuFWCg.releaseLock();
-  _JmnptvMKOgRwCqjH.releaseLock();
-  return _GOAChfrzbyFRCTOO;
+  writer.releaseLock();
+  reader.releaseLock();
+  return socket;
 }
-async function _QCRzMBEQMbRTMUKN(_XPSusBMgILNviFZT, _rrPINtMzUGUEXtLJ, _woGcXuJjLNSAUnMF, _gRkxdjwXYCJqIfwd) {
+async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tUrJTGNQOVRjSoqU) {
   const {
-    username: _LDJZrpjWzMpRenkr,
-    password: _PbNLysaAxkrZJjAg,
-    hostname: _XNvSqPuiAKlmThKD,
-    port: _PINFlmrzJsBxjQgL
-  } = _gRkxdjwXYCJqIfwd;
-  const _BRmQGmndgnwgeFiW = await connect({
-    hostname: _XNvSqPuiAKlmThKD,
-    port: _PINFlmrzJsBxjQgL
+    username,
+    password,
+    hostname,
+    port
+  } = _tUrJTGNQOVRjSoqU;
+  const sock = await connect({
+    hostname: hostname,
+    port: port
   });
-  let _WbBfrOkBwbyCQMwG = `CONNECT ${_rrPINtMzUGUEXtLJ}:${_woGcXuJjLNSAUnMF} HTTP/1.1\r\n`;
-  _WbBfrOkBwbyCQMwG += `Host: ${_rrPINtMzUGUEXtLJ}:${_woGcXuJjLNSAUnMF}\r\n`;
-  if (_LDJZrpjWzMpRenkr && _PbNLysaAxkrZJjAg) {
-    const _xxsnNjCVdmwiKoJv = `${_LDJZrpjWzMpRenkr}:${_PbNLysaAxkrZJjAg}`;
-    const _aDhuMawLXjsFYlvC = btoa(_xxsnNjCVdmwiKoJv);
-    _WbBfrOkBwbyCQMwG += `Proxy-Authorization: Basic ${_aDhuMawLXjsFYlvC}\r\n`;
+  let connectRequest = `CONNECT ${_mhoDCtJFfbAjPDVO}:${portRemote}_dOuvYFaJzBCckWpCblvcxg`;
+  connectRequest += `Host: ${_mhoDCtJFfbAjPDVO}:${portRemote}\r\n`;
+  if (username && password) {
+    const authString = `${username}:${password}`;
+    const base64Auth = btoa(authString);
+    connectRequest += `_aIFyyFUcBlGbQtwah1rcrb${base64Auth}\r\n`;
   }
-  _WbBfrOkBwbyCQMwG += `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n`;
-  _WbBfrOkBwbyCQMwG += `Proxy-Connection: Keep-Alive\r\n`;
-  _WbBfrOkBwbyCQMwG += `Connection: Keep-Alive\r\n`;
-  _WbBfrOkBwbyCQMwG += `\r\n`;
+  connectRequest += `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n`;
+  connectRequest += `_yTAOuZQjQhUoZfhwnu44ws`;
+  connectRequest += `Connection: Keep-Alive\r\n`;
+  connectRequest += `\r\n`;
   try {
-    const _dwKuczqwQYjuFWCg = _BRmQGmndgnwgeFiW.writable.getWriter();
-    await _dwKuczqwQYjuFWCg.write(new TextEncoder().encode(_WbBfrOkBwbyCQMwG));
-    _dwKuczqwQYjuFWCg.releaseLock();
-  } catch (_ODtYqPDlCBsDyRuc) {
-    console.error('发送HTTP CONNECT请求失败:', _ODtYqPDlCBsDyRuc);
-    throw new Error(`发送HTTP CONNECT请求失败: ${_ODtYqPDlCBsDyRuc.message}`);
+    const writer = sock.writable.getWriter();
+    await writer.write(new TextEncoder().encode(connectRequest));
+    writer.releaseLock();
+  } catch (err) {
+    console.error('_LcYiwmalrAwMRqjIe6f3o5', err);
+    throw new Error(`_yOpSAuVbALOnreTD3rdkxw${err.message}`);
   }
-  const _JmnptvMKOgRwCqjH = _BRmQGmndgnwgeFiW.readable.getReader();
-  let _vuVpEWEFEcxLsIhJ = '';
-  let _EvbdaBXKEesJOvsb = false;
-  let _mCQHPVQcTYzdSvAN = new Uint8Array(0);
+  const reader = sock.readable.getReader();
+  let respText = '';
+  let connected = false;
+  let responseBuffer = new Uint8Array(0);
   try {
     while (true) {
       const {
-        value: _BIBgEenrEyGONlxV,
-        done: _gxCEQIEjcoGIivTj
-      } = await _JmnptvMKOgRwCqjH.read();
-      if (_gxCEQIEjcoGIivTj) {
-        console.error('HTTP代理连接中断');
-        throw new Error('HTTP代理连接中断');
+        value,
+        done
+      } = await reader.read();
+      if (done) {
+        console.error('_biGzgxIchfFHsDcUjvzq2d');
+        throw new Error('_TsxCvaypbENNIASYvn8o0q');
       }
-      const _tFeTtqdwTPHmKqbl = new Uint8Array(_mCQHPVQcTYzdSvAN.length + _BIBgEenrEyGONlxV.length);
-      _tFeTtqdwTPHmKqbl.set(_mCQHPVQcTYzdSvAN);
-      _tFeTtqdwTPHmKqbl.set(_BIBgEenrEyGONlxV, _mCQHPVQcTYzdSvAN.length);
-      _mCQHPVQcTYzdSvAN = _tFeTtqdwTPHmKqbl;
-      _vuVpEWEFEcxLsIhJ = new TextDecoder().decode(_mCQHPVQcTYzdSvAN);
-      if (_vuVpEWEFEcxLsIhJ.includes('\r\n\r\n')) {
-        const _VKCuhSakBPPMXugh = _vuVpEWEFEcxLsIhJ.indexOf('\r\n\r\n') + 4;
-        const _VObJiuLtZhpjMMyx = _vuVpEWEFEcxLsIhJ.substring(0, _VKCuhSakBPPMXugh);
-        if (_VObJiuLtZhpjMMyx.startsWith('HTTP/1.1 200') || _VObJiuLtZhpjMMyx.startsWith('HTTP/1.0 200')) {
-          _EvbdaBXKEesJOvsb = true;
-          if (_VKCuhSakBPPMXugh < _mCQHPVQcTYzdSvAN.length) {
-            const _MVjGhBzSBOMvSLTh = _mCQHPVQcTYzdSvAN.slice(_VKCuhSakBPPMXugh);
-            const _zGyVEowQaIXCxZLA = new ReadableStream({
-              start(_GCxkodEFMTiHYIcv) {
-                _GCxkodEFMTiHYIcv.enqueue(_MVjGhBzSBOMvSLTh);
+      const newBuffer = new Uint8Array(responseBuffer.length + value.length);
+      newBuffer.set(responseBuffer);
+      newBuffer.set(value, responseBuffer.length);
+      responseBuffer = newBuffer;
+      respText = new TextDecoder().decode(responseBuffer);
+      if (respText.includes('\r\n\r\n')) {
+        const headersEndPos = respText.indexOf('\r\n\r\n') + 4;
+        const headers = respText.substring(0, headersEndPos);
+        if (headers.startsWith('_ElDeCCUxgXOjqzxw0eczez') || headers.startsWith('到时动们种出成作odunci')) {
+          connected = true;
+          if (headersEndPos < responseBuffer.length) {
+            const remainingData = responseBuffer.slice(headersEndPos);
+            const dataStream = new ReadableStream({
+              start(controller) {
+                controller.enqueue(remainingData);
               }
             });
             const {
-              readable: _lQTOGQDrIbucuFSZ,
-              writable: _kwlRFEnFWKqDFIfc
+              readable,
+              writable
             } = new TransformStream();
-            _zGyVEowQaIXCxZLA.pipeTo(_kwlRFEnFWKqDFIfc).catch(_ODtYqPDlCBsDyRuc => console.error('处理剩余数据错误:', _ODtYqPDlCBsDyRuc));
-            _BRmQGmndgnwgeFiW.readable = _lQTOGQDrIbucuFSZ;
+            dataStream.pipeTo(writable).catch(err => console.error('处理剩余数据错误:', err));
+            sock.readable = readable;
           }
         } else {
-          const _vXLNowEQjaFyaWVQ = `HTTP代理连接失败: ${_VObJiuLtZhpjMMyx.split('\r\n')[0]}`;
-          console.error(_vXLNowEQjaFyaWVQ);
-          throw new Error(_vXLNowEQjaFyaWVQ);
+          const errorMsg = `_ThdiXughnUaCBFmLduppkb${headers.split('\r\n')[0]}`;
+          console.error(errorMsg);
+          throw new Error(errorMsg);
         }
         break;
       }
     }
-  } catch (_ODtYqPDlCBsDyRuc) {
-    _JmnptvMKOgRwCqjH.releaseLock();
-    throw new Error(`处理HTTP代理响应失败: ${_ODtYqPDlCBsDyRuc.message}`);
+  } catch (err) {
+    reader.releaseLock();
+    throw new Error(`地发成动作对这时s2vo0z${err.message}`);
   }
-  _JmnptvMKOgRwCqjH.releaseLock();
-  if (!_EvbdaBXKEesJOvsb) {
-    throw new Error('HTTP代理连接失败: 未收到成功响应');
+  reader.releaseLock();
+  if (!connected) {
+    throw new Error('后行这能们我面的uljvsj');
   }
-  return _BRmQGmndgnwgeFiW;
+  return sock;
 }
-async function _RYFBOEySwtFcfbeS(_hKqvdyNGyJpMAiKy, _saxSSgrExKZzLwQM) {
-  let _GNNPQMVASMyEatml = false;
-  const _bhvVotkcRFHjymRg = new TransformStream({
-    start(_GCxkodEFMTiHYIcv) {},
-    transform(_IYXnGvKlTOpRXNsM, _GCxkodEFMTiHYIcv) {
-      for (let _fFdyUjxJcARUPimd = 0; _fFdyUjxJcARUPimd < _IYXnGvKlTOpRXNsM.byteLength;) {
-        const _DVErlVENxTiQaxxV = _IYXnGvKlTOpRXNsM.slice(_fFdyUjxJcARUPimd, _fFdyUjxJcARUPimd + 2);
-        const _TwmNbsvBxCGshXdH = new DataView(_DVErlVENxTiQaxxV).getUint16(0);
-        const _njWxpKAbkKbuoEeh = new Uint8Array(_IYXnGvKlTOpRXNsM.slice(_fFdyUjxJcARUPimd + 2, _fFdyUjxJcARUPimd + 2 + _TwmNbsvBxCGshXdH));
-        _fFdyUjxJcARUPimd = _fFdyUjxJcARUPimd + 2 + _TwmNbsvBxCGshXdH;
-        _GCxkodEFMTiHYIcv.enqueue(_njWxpKAbkKbuoEeh);
+async function handleUDPOutBound(webSocket, 协议响应头) {
+  let _dwytzuEMpdVBKpAT = false;
+  const transformStream = new TransformStream({
+    start(controller) {},
+    transform(chunk, controller) {
+      for (let index = 0; index < chunk.byteLength;) {
+        const lengthBuffer = chunk.slice(index, index + 2);
+        const udpPacketLength = new DataView(lengthBuffer).getUint16(0);
+        const udpData = new Uint8Array(chunk.slice(index + 2, index + 2 + udpPacketLength));
+        index = index + 2 + udpPacketLength;
+        controller.enqueue(udpData);
       }
     },
-    flush(_GCxkodEFMTiHYIcv) {}
+    flush(controller) {}
   });
-  _bhvVotkcRFHjymRg.readable.pipeTo(new WritableStream({
-    async write(_IYXnGvKlTOpRXNsM) {
-      const _aspuinYFxCNrcktg = await fetch('https://dns.google/dns-query', {
+  transformStream.readable.pipeTo(new WritableStream({
+    async write(chunk) {
+      const resp = await fetch('_XhVGGUawtvDhvrhdg4705o', {
         method: 'POST',
         headers: {
           'content-type': 'application/dns-message'
         },
-        body: _IYXnGvKlTOpRXNsM
+        body: chunk
       });
-      const _NktqphkKIAAkYhwV = await _aspuinYFxCNrcktg.arrayBuffer();
-      const _nRVfyyeaBOOSwdWZ = _NktqphkKIAAkYhwV.byteLength;
-      const _nswiLOdQyyCWAIvS = new Uint8Array([_nRVfyyeaBOOSwdWZ >> 8 & 0xff, _nRVfyyeaBOOSwdWZ & 0xff]);
-      if (_hKqvdyNGyJpMAiKy.readyState === _sIWkGyzFinGhzPWm) {
-        if (_GNNPQMVASMyEatml) {
-          _hKqvdyNGyJpMAiKy.send(await new Blob([_nswiLOdQyyCWAIvS, _NktqphkKIAAkYhwV]).arrayBuffer());
+      const dnsQueryResult = await resp.arrayBuffer();
+      const udpSize = dnsQueryResult.byteLength;
+      const udpSizeBuffer = new Uint8Array([udpSize >> 8 & 0xff, udpSize & 0xff]);
+      if (webSocket.readyState === WS_READY_STATE_OPEN) {
+        if (_dwytzuEMpdVBKpAT) {
+          webSocket.send(await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer());
         } else {
-          _hKqvdyNGyJpMAiKy.send(await new Blob([_saxSSgrExKZzLwQM, _nswiLOdQyyCWAIvS, _NktqphkKIAAkYhwV]).arrayBuffer());
-          _GNNPQMVASMyEatml = true;
+          webSocket.send(await new Blob([协议响应头, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
+          _dwytzuEMpdVBKpAT = true;
         }
       }
     }
-  })).catch(_FpDvWAzpBkcyYNQn => {});
-  const _dwKuczqwQYjuFWCg = _bhvVotkcRFHjymRg.writable.getWriter();
+  })).catch(error => {});
+  const writer = transformStream.writable.getWriter();
   return {
-    write(_IYXnGvKlTOpRXNsM) {
-      _dwKuczqwQYjuFWCg.write(_IYXnGvKlTOpRXNsM);
+    write(chunk) {
+      writer.write(chunk);
     }
   };
 }
-const _sIWkGyzFinGhzPWm = 1;
+const WS_READY_STATE_OPEN = 1;
 import { connect } from 'cloudflare:sockets';
-async function _tsrQCKvaViJGOWSC(_EpznJMPnnThObtYr) {
-  _EpznJMPnnThObtYr = _EpznJMPnnThObtYr.toLowerCase();
-  let _SMsznsrGbLZLvmmi = _EpznJMPnnThObtYr,
-    _GLReMyasiUAGdlqJ = 443;
-  if (_EpznJMPnnThObtYr.includes('.tp')) {
-    const _PCEYFjgPqwEhMUyD = _EpznJMPnnThObtYr.match(/\.tp(\d+)/);
-    if (_PCEYFjgPqwEhMUyD) _GLReMyasiUAGdlqJ = parseInt(_PCEYFjgPqwEhMUyD[1], 10);
-    return [_SMsznsrGbLZLvmmi, _GLReMyasiUAGdlqJ];
+async function 解析地址端口(进点可地要点有人) {
+  进点可地要点有人 = 进点可地要点有人.toLowerCase();
+  let 地址 = 进点可地要点有人,
+    端口 = 443;
+  if (进点可地要点有人.includes('.tp')) {
+    const tpMatch = 进点可地要点有人.match(/\.tp(\d+)/);
+    if (tpMatch) 端口 = parseInt(tpMatch[1], 10);
+    return [地址, 端口];
   }
-  if (_EpznJMPnnThObtYr.includes(']:')) {
-    const _QuuRvhnIDqYtGDmW = _EpznJMPnnThObtYr.split(']:');
-    _SMsznsrGbLZLvmmi = _QuuRvhnIDqYtGDmW[0] + ']';
-    _GLReMyasiUAGdlqJ = parseInt(_QuuRvhnIDqYtGDmW[1], 10) || _GLReMyasiUAGdlqJ;
-  } else if (_EpznJMPnnThObtYr.includes(':') && !_EpznJMPnnThObtYr.startsWith('[')) {
-    const _enkKvBQAdlKgmDFT = _EpznJMPnnThObtYr.lastIndexOf(':');
-    _SMsznsrGbLZLvmmi = _EpznJMPnnThObtYr.slice(0, _enkKvBQAdlKgmDFT);
-    _GLReMyasiUAGdlqJ = parseInt(_EpznJMPnnThObtYr.slice(_enkKvBQAdlKgmDFT + 1), 10) || _GLReMyasiUAGdlqJ;
+  if (进点可地要点有人.includes(']:')) {
+    const parts = 进点可地要点有人.split(']:');
+    地址 = parts[0] + ']';
+    端口 = parseInt(parts[1], 10) || 端口;
+  } else if (进点可地要点有人.includes(':') && !进点可地要点有人.startsWith('[')) {
+    const colonIndex = 进点可地要点有人.lastIndexOf(':');
+    地址 = 进点可地要点有人.slice(0, colonIndex);
+    端口 = parseInt(进点可地要点有人.slice(colonIndex + 1), 10) || 端口;
   }
-  return [_SMsznsrGbLZLvmmi, _GLReMyasiUAGdlqJ];
+  return [地址, 端口];
 }
-async function _enTHzlMEBvbKFmuw(_IqvuOzvuUgHiTsVs) {
-  const _FOmTLgyyyjqRMjWN = new URL(_IqvuOzvuUgHiTsVs.url);
+async function 反代参数获取(request) {
+  const url = new URL(request.url);
   const {
-    pathname: _ZbuCxpiNMOTCVShZ,
-    searchParams: _TySmbysFsOwXTQQI
-  } = _FOmTLgyyyjqRMjWN;
-  const _gfNXeJFMVhKGcqav = _ZbuCxpiNMOTCVShZ.toLowerCase();
-  _NceZJpWIPkoyytKu = _TySmbysFsOwXTQQI.get('socks5') || _TySmbysFsOwXTQQI.get('http') || null;
-  _msciumxHPWkAzsip = _TySmbysFsOwXTQQI.has('globalproxy') || false;
-  const _NLdKLoCrqqAZCyZR = _gfNXeJFMVhKGcqav.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
-  if (_TySmbysFsOwXTQQI.has('proxyip')) {
-    const _epZVyYuRvrDrHUPk = _TySmbysFsOwXTQQI.get('proxyip');
-    _AnUEokBygnUUnhXA = _epZVyYuRvrDrHUPk.includes(',') ? _epZVyYuRvrDrHUPk.split(',')[Math.floor(Math.random() * _epZVyYuRvrDrHUPk.split(',').length)] : _epZVyYuRvrDrHUPk;
+    pathname,
+    searchParams
+  } = url;
+  const pathLower = pathname.toLowerCase();
+  _JvsTHmrrmEiZDcrg = searchParams.get('_GwSKUkXkMRLoyHoQ3b94m9') || searchParams.get('这中一不一他到动gfvyd6') || null;
+  _hxFxurJQmHgcnyBD = searchParams.has('_FxuVdQfXETvdEibfcjaeik') || false;
+  const 在一上要一成这这 = pathLower.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
+  if (searchParams.has('_DocCXXrYnhDPWkMMyvc8r5')) {
+    const 路参IP = searchParams.get('_uBWusYXMpXogGIxnx6nbf6');
+    反代IP = 路参IP.includes(',') ? 路参IP.split(',')[Math.floor(Math.random() * 路参IP.split(',').length)] : 路参IP;
     return;
-  } else if (_NLdKLoCrqqAZCyZR) {
-    const _epZVyYuRvrDrHUPk = _NLdKLoCrqqAZCyZR[1] === 'proxyip.' ? `proxyip.${_NLdKLoCrqqAZCyZR[2]}` : _NLdKLoCrqqAZCyZR[2];
-    _AnUEokBygnUUnhXA = _epZVyYuRvrDrHUPk.includes(',') ? _epZVyYuRvrDrHUPk.split(',')[Math.floor(Math.random() * _epZVyYuRvrDrHUPk.split(',').length)] : _epZVyYuRvrDrHUPk;
+  } else if (在一上要一成这这) {
+    const 路参IP = 在一上要一成这这[1] === '_ITBBhzEFBABTpNmJnehyjp' ? `到能了们学有一对3hxa7n${在一上要一成这这[2]}` : 在一上要一成这这[2];
+    反代IP = 路参IP.includes(',') ? 路参IP.split(',')[Math.floor(Math.random() * 路参IP.split(',').length)] : 路参IP;
     return;
   }
-  let _lvpVOWHJXfSXbIfd;
-  if (_lvpVOWHJXfSXbIfd = _ZbuCxpiNMOTCVShZ.match(/\/(socks5?|http):\/?\/?(.+)/i)) {
-    _XgNAWphIrQRRJREX = _lvpVOWHJXfSXbIfd[1].toLowerCase() === 'http' ? 'http' : 'socks5';
-    _NceZJpWIPkoyytKu = _lvpVOWHJXfSXbIfd[2].split('#')[0];
-    _msciumxHPWkAzsip = true;
-    if (_NceZJpWIPkoyytKu.includes('@')) {
-      const _DLSeFuwhvmRJCUbQ = _NceZJpWIPkoyytKu.lastIndexOf('@');
-      let _hfjyNswfyGovrYft = _NceZJpWIPkoyytKu.substring(0, _DLSeFuwhvmRJCUbQ).replaceAll('%3D', '=');
-      if (/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i.test(_hfjyNswfyGovrYft) && !_hfjyNswfyGovrYft.includes(':')) {
-        _hfjyNswfyGovrYft = atob(_hfjyNswfyGovrYft);
+  let 进点看们工上发是;
+  if (进点看们工上发是 = pathname.match(/\/(socks5?|http):\/?\/?(.+)/i)) {
+    _MZYCzUjQzGabxRXY = 进点看们工上发是[1].toLowerCase() === '_NjTxBbNKVAWacwWfm6ds3m' ? '_ZmLkpKizrhTcvEKzboydn9' : '_QyVwsotxSSUFPMwRn35cqg';
+    _JvsTHmrrmEiZDcrg = 进点看们工上发是[2].split('#')[0];
+    _hxFxurJQmHgcnyBD = true;
+    if (_JvsTHmrrmEiZDcrg.includes('@')) {
+      const atIndex = _JvsTHmrrmEiZDcrg.lastIndexOf('@');
+      let userPassword = _JvsTHmrrmEiZDcrg.substring(0, atIndex).replaceAll('%3D', '=');
+      if (/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i.test(userPassword) && !userPassword.includes(':')) {
+        userPassword = atob(userPassword);
       }
-      _NceZJpWIPkoyytKu = `${_hfjyNswfyGovrYft}@${_NceZJpWIPkoyytKu.substring(_DLSeFuwhvmRJCUbQ + 1)}`;
+      _JvsTHmrrmEiZDcrg = `${userPassword}@${_JvsTHmrrmEiZDcrg.substring(atIndex + 1)}`;
     }
-  } else if (_lvpVOWHJXfSXbIfd = _ZbuCxpiNMOTCVShZ.match(/\/(g?s5|socks5|g?http)=(.+)/i)) {
-    const _NTXqKZfvPjqZyjvO = _lvpVOWHJXfSXbIfd[1].toLowerCase();
-    _NceZJpWIPkoyytKu = _lvpVOWHJXfSXbIfd[2];
-    _XgNAWphIrQRRJREX = _NTXqKZfvPjqZyjvO.includes('http') ? 'http' : 'socks5';
-    _msciumxHPWkAzsip = _NTXqKZfvPjqZyjvO.startsWith('g') || _msciumxHPWkAzsip;
+  } else if (进点看们工上发是 = pathname.match(/\/(g?s5|socks5|g?http)=(.+)/i)) {
+    const type = 进点看们工上发是[1].toLowerCase();
+    _JvsTHmrrmEiZDcrg = 进点看们工上发是[2];
+    _MZYCzUjQzGabxRXY = type.includes('_AGwWLudDqBjyekWLiq5weo') ? '_KodTPiZrveuhHJNQncazfo' : '_JWCdloEXeTiXxRGVh2e4po';
+    _hxFxurJQmHgcnyBD = type.startsWith('g') || _hxFxurJQmHgcnyBD;
   }
-  if (_NceZJpWIPkoyytKu) {
+  if (_JvsTHmrrmEiZDcrg) {
     try {
-      _gRkxdjwXYCJqIfwd = await _ydZjRpxuNwItYYmU(_NceZJpWIPkoyytKu);
-      _XgNAWphIrQRRJREX = _TySmbysFsOwXTQQI.get('http') ? 'http' : _XgNAWphIrQRRJREX;
-    } catch (_ODtYqPDlCBsDyRuc) {
-      console.error('解析SOCKS5地址失败:', _ODtYqPDlCBsDyRuc.message);
-      _XgNAWphIrQRRJREX = null;
+      _tUrJTGNQOVRjSoqU = await _KFvDcukJulhhdZGA(_JvsTHmrrmEiZDcrg);
+      _MZYCzUjQzGabxRXY = searchParams.get('一成上人了中时能7jmjmy') ? '们下后那这年人在2n3qgl' : _MZYCzUjQzGabxRXY;
+    } catch (err) {
+      console.error('地点在工成生点成mj6gwu', err.message);
+      _MZYCzUjQzGabxRXY = null;
     }
-  } else _XgNAWphIrQRRJREX = null;
+  } else _MZYCzUjQzGabxRXY = null;
 }
-async function _ydZjRpxuNwItYYmU(_DrSPCwRiwhAOJdJX) {
-  const _tVQNkvrxaFFpVdSs = _DrSPCwRiwhAOJdJX.lastIndexOf("@");
-  let [_nzrmyKNKImNXaNrK, _iqDtOuexpgmjQxkd] = _tVQNkvrxaFFpVdSs === -1 ? [_DrSPCwRiwhAOJdJX, undefined] : [_DrSPCwRiwhAOJdJX.substring(_tVQNkvrxaFFpVdSs + 1), _DrSPCwRiwhAOJdJX.substring(0, _tVQNkvrxaFFpVdSs)];
-  let _LDJZrpjWzMpRenkr, _PbNLysaAxkrZJjAg, _XNvSqPuiAKlmThKD, _PINFlmrzJsBxjQgL;
-  if (_iqDtOuexpgmjQxkd) {
-    const _ZbFjlUKcnfrJOgIK = _iqDtOuexpgmjQxkd.split(":");
-    if (_ZbFjlUKcnfrJOgIK.length !== 2) {
-      throw new Error('无效的 SOCKS 地址格式：认证部分必须是 "username:password" 的形式');
+async function _KFvDcukJulhhdZGA(address) {
+  const lastAtIndex = address.lastIndexOf("@");
+  let [latter, former] = lastAtIndex === -1 ? [address, undefined] : [address.substring(lastAtIndex + 1), address.substring(0, lastAtIndex)];
+  let username, password, hostname, port;
+  if (former) {
+    const formers = former.split(":");
+    if (formers.length !== 2) {
+      throw new Error('行了子要在进点这wg5v7w');
     }
-    [_LDJZrpjWzMpRenkr, _PbNLysaAxkrZJjAg] = _ZbFjlUKcnfrJOgIK;
+    [username, password] = formers;
   }
-  const _nIetDybfLPpMbikT = _nzrmyKNKImNXaNrK.split(":");
-  if (_nIetDybfLPpMbikT.length > 2 && _nzrmyKNKImNXaNrK.includes("]:")) {
-    _PINFlmrzJsBxjQgL = Number(_nzrmyKNKImNXaNrK.split("]:")[1].replace(/[^\d]/g, ''));
-    _XNvSqPuiAKlmThKD = _nzrmyKNKImNXaNrK.split("]:")[0] + "]";
-  } else if (_nIetDybfLPpMbikT.length === 2) {
-    _PINFlmrzJsBxjQgL = Number(_nIetDybfLPpMbikT.pop().replace(/[^\d]/g, ''));
-    _XNvSqPuiAKlmThKD = _nIetDybfLPpMbikT.join(":");
+  const latters = latter.split(":");
+  if (latters.length > 2 && latter.includes("]:")) {
+    port = Number(latter.split("]:")[1].replace(/[^\d]/g, ''));
+    hostname = latter.split("]:")[0] + "]";
+  } else if (latters.length === 2) {
+    port = Number(latters.pop().replace(/[^\d]/g, ''));
+    hostname = latters.join(":");
   } else {
-    _PINFlmrzJsBxjQgL = 80;
-    _XNvSqPuiAKlmThKD = _nzrmyKNKImNXaNrK;
+    port = 80;
+    hostname = latter;
   }
-  if (isNaN(_PINFlmrzJsBxjQgL)) {
-    throw new Error('无效的 SOCKS 地址格式：端口号必须是数字');
+  if (isNaN(port)) {
+    throw new Error('_NpqVOZFUUQFjtSOI6easad');
   }
-  const _CuHjHwbSpzULhDSx = /^\[.*\]$/;
-  if (_XNvSqPuiAKlmThKD.includes(":") && !_CuHjHwbSpzULhDSx.test(_XNvSqPuiAKlmThKD)) {
-    throw new Error('无效的 SOCKS 地址格式：IPv6 地址必须用方括号括起来，如 [2001:db8::1]');
+  const regex = /^\[.*\]$/;
+  if (hostname.includes(":") && !regex.test(hostname)) {
+    throw new Error('时了我了说他下工ov22h8');
   }
   return {
-    username: _LDJZrpjWzMpRenkr,
-    password: _PbNLysaAxkrZJjAg,
-    hostname: _XNvSqPuiAKlmThKD,
-    port: _PINFlmrzJsBxjQgL
+    username,
+    password,
+    hostname,
+    port
   };
 }
