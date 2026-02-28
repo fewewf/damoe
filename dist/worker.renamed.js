@@ -1,9 +1,9 @@
 const FIXED_UUID = 'd14bd0e0-9ade-4824-aa96-03bbe680b4db';
-let 反代IP = '',
-  _MZYCzUjQzGabxRXY = null,
-  _hxFxurJQmHgcnyBD = false,
-  _JvsTHmrrmEiZDcrg = '',
-  _tUrJTGNQOVRjSoqU = {};
+let 有的个点上时下到 = '',
+  _EUvgjWGMhVOHbzsa = null,
+  _vGPDSKATBKCqyAWy = false,
+  _GvJqwNNFfrBfPGgz = '',
+  们出那那种是了人 = {};
 export default {
   async fetch(request) {
     try {
@@ -14,15 +14,15 @@ export default {
           status: 200
         });
       } else {
-        反代IP = 反代IP ? 反代IP : request.cf.colo + '_JtvCrBCzETQdbjIsfoha1a';
+        有的个点上时下到 = 有的个点上时下到 ? 有的个点上时下到 : request.cf.colo + '_IWKfyyFeTwXlkzZDao12s0';
         await 反代参数获取(request);
-        const [反代IP地址, 反代IP端口] = await 解析地址端口(反代IP);
+        const [上说地要我成的生, _nDcEYCAKcQtiZptr] = await 不学个要年的对到(有的个点上时下到);
         return await handleSPESSWebSocket(request, {
-          _tUrJTGNQOVRjSoqU,
-          _TUPWBlsQFhWMivJZ: _MZYCzUjQzGabxRXY,
-          不要我行生对能成: _hxFxurJQmHgcnyBD,
-          _szEGFtrYkreJTnwB: 反代IP地址,
-          _CyXeFnzibTtSXWpM: 反代IP端口
+          们出那那种是了人,
+          我到个要他工后看: _EUvgjWGMhVOHbzsa,
+          _hrjVRXSoYXJfxYKZ: _vGPDSKATBKCqyAWy,
+          _kprVWsWJknsRhORv: 上说地要我成的生,
+          就了人学个就学他: _nDcEYCAKcQtiZptr
         });
       }
     } catch (err) {
@@ -34,11 +34,11 @@ export default {
 };
 async function handleSPESSWebSocket(request, config) {
   const {
-    _tUrJTGNQOVRjSoqU,
-    _TUPWBlsQFhWMivJZ,
-    不要我行生对能成,
-    _szEGFtrYkreJTnwB,
-    _CyXeFnzibTtSXWpM
+    们出那那种是了人,
+    我到个要他工后看,
+    _hrjVRXSoYXJfxYKZ,
+    _kprVWsWJknsRhORv,
+    就了人学个就学他
   } = config;
   const ws配对 = new WebSocketPair();
   const [clientWS, serverWS] = Object.values(ws配对);
@@ -79,22 +79,22 @@ async function handleSPESSWebSocket(request, config) {
         }
         return;
       }
-      const result = _HDcLYZvSlYhmXuNX(chunk);
+      const result = _vubxiggmViKQtPXj(chunk);
       if (result.hasError) throw new Error(result.message);
       if (result.addressRemote.includes(atob('c3BlZWQuY2xvdWRmbGFyZS5jb20='))) throw new Error('Access');
-      const _sRaXJTEaVyiroaEY = new Uint8Array([result.vlessVersion[0], 0]);
+      const _IZDNNdsYtfPzYXjL = new Uint8Array([result.vlessVersion[0], 0]);
       const rawClientData = chunk.slice(result.rawDataIndex);
       if (result.isUDP) {
         if (result.portRemote === 53) {
           isDns = true;
           const {
             write
-          } = await handleUDPOutBound(serverWS, _sRaXJTEaVyiroaEY);
+          } = await handleUDPOutBound(serverWS, _IZDNNdsYtfPzYXjL);
           udpStreamWrite = write;
           udpStreamWrite(rawClientData);
           return;
         } else {
-          throw new Error('_qCaWYOhNxhMdSgRsjzks8d');
+          throw new Error('_OoZLlnfDoimMlmeDpztokd');
         }
       }
       async function connectAndWrite(address, port) {
@@ -110,8 +110,8 @@ async function handleSPESSWebSocket(request, config) {
         writer.releaseLock();
         return tcpSocket;
       }
-      async function 看工子出作就成看(address, port) {
-        const tcpSocket = _TUPWBlsQFhWMivJZ === '_TvIZBDRlaUSZqZlgahqm7r' ? await _uIvLAjccGFqxiARt(result.addressType, address, port, _tUrJTGNQOVRjSoqU) : await _HFXjZugZPSuUeirL(result.addressType, address, port, _tUrJTGNQOVRjSoqU);
+      async function _AmOFQYhxiQSROAPn(address, port) {
+        const tcpSocket = 我到个要他工后看 === '出时动们年对能点jpj34s' ? await 说的上出后时点生(result.addressType, address, port, 们出那那种是了人) : await _XkxHybZhNvjjzIVw(result.addressType, address, port, 们出那那种是了人);
         remoteSocket = tcpSocket;
         const writer = tcpSocket.writable.getWriter();
         await writer.write(rawClientData);
@@ -121,14 +121,14 @@ async function handleSPESSWebSocket(request, config) {
       async function retry() {
         try {
           let tcpSocket;
-          if (_TUPWBlsQFhWMivJZ === '地发中出到人发这ep6s2s') {
-            tcpSocket = await _uIvLAjccGFqxiARt(result.addressType, result.addressRemote, result.portRemote, _tUrJTGNQOVRjSoqU);
-          } else if (_TUPWBlsQFhWMivJZ === '_MwCfOIuUIRvjBxplln3lez') {
-            tcpSocket = await _HFXjZugZPSuUeirL(result.addressType, result.addressRemote, result.portRemote, _tUrJTGNQOVRjSoqU);
+          if (我到个要他工后看 === '工上了有人不时学poyhnn') {
+            tcpSocket = await 说的上出后时点生(result.addressType, result.addressRemote, result.portRemote, 们出那那种是了人);
+          } else if (我到个要他工后看 === '_iIyFJTWIlftSSlvlvb5ppj') {
+            tcpSocket = await _XkxHybZhNvjjzIVw(result.addressType, result.addressRemote, result.portRemote, 们出那那种是了人);
           } else {
             tcpSocket = await connect({
-              hostname: _szEGFtrYkreJTnwB,
-              port: _CyXeFnzibTtSXWpM
+              hostname: _kprVWsWJknsRhORv,
+              port: 就了人学个就学他
             }, {
               allowHalfOpen: true
             });
@@ -142,19 +142,19 @@ async function handleSPESSWebSocket(request, config) {
               serverWS.close(1000, '连接已关闭');
             }
           });
-          pipeRemoteToWebSocket(tcpSocket, serverWS, _sRaXJTEaVyiroaEY, null);
+          pipeRemoteToWebSocket(tcpSocket, serverWS, _IZDNNdsYtfPzYXjL, null);
         } catch (err) {
           closeSocket(remoteSocket);
-          serverWS.close(1011, '工个们面中后们后nxyjs0' + (err && err.message ? err.message : err));
+          serverWS.close(1011, '后个生中们那说那utvtry' + (err && err.message ? err.message : err));
         }
       }
       try {
-        if (不要我行生对能成) {
-          const tcpSocket = await 看工子出作就成看(result.addressRemote, result.portRemote);
-          pipeRemoteToWebSocket(tcpSocket, serverWS, _sRaXJTEaVyiroaEY, retry);
+        if (_hrjVRXSoYXJfxYKZ) {
+          const tcpSocket = await _AmOFQYhxiQSROAPn(result.addressRemote, result.portRemote);
+          pipeRemoteToWebSocket(tcpSocket, serverWS, _IZDNNdsYtfPzYXjL, retry);
         } else {
           const tcpSocket = await connectAndWrite(result.addressRemote, result.portRemote);
-          pipeRemoteToWebSocket(tcpSocket, serverWS, _sRaXJTEaVyiroaEY, retry);
+          pipeRemoteToWebSocket(tcpSocket, serverWS, _IZDNNdsYtfPzYXjL, retry);
         }
       } catch (err) {
         closeSocket(remoteSocket);
@@ -197,7 +197,7 @@ function createWebSocketReadableStream(ws, earlyDataHeader) {
     }
   });
 }
-function _HDcLYZvSlYhmXuNX(buffer) {
+function _vubxiggmViKQtPXj(buffer) {
   if (buffer.byteLength < 24) {
     return {
       hasError: true,
@@ -250,20 +250,20 @@ function _HDcLYZvSlYhmXuNX(buffer) {
     default:
       return {
         hasError: true,
-        message: '不支持的地址类型'
+        message: '_dtDcyGiNRaWmUtHgdius87'
       };
   }
   return {
     hasError: false,
-    _mhoDCtJFfbAjPDVO: address,
+    _jaBQWzvbLhKhZTVi: address,
     portRemote: port,
     rawDataIndex: offset,
-    到能作作作时说看: version,
+    看不子那发们我生: version,
     isUDP,
     addressType
   };
 }
-async function pipeRemoteToWebSocket(remoteSocket, ws, 发生就们说作我动, retry = null, retryCount = 0) {
+async function pipeRemoteToWebSocket(remoteSocket, ws, _NKoungOrcZVffghU, retry = null, retryCount = 0) {
   const MAX_RETRIES = 8;
   const MAX_CHUNK_SIZE = 128 * 1024;
   const MAX_BUFFER_SIZE = 2 * 1024 * 1024;
@@ -311,9 +311,9 @@ async function pipeRemoteToWebSocket(remoteSocket, ws, 发生就们说作我动,
       hasIncomingData = true;
       if (ws.readyState !== WS_READY_STATE_OPEN) break;
       if (!headerSent) {
-        const combined = new Uint8Array(发生就们说作我动.byteLength + value.byteLength);
-        combined.set(new Uint8Array(发生就们说作我动), 0);
-        combined.set(value, 发生就们说作我动.byteLength);
+        const combined = new Uint8Array(_NKoungOrcZVffghU.byteLength + value.byteLength);
+        combined.set(new Uint8Array(_NKoungOrcZVffghU), 0);
+        combined.set(value, _NKoungOrcZVffghU.byteLength);
         bufferQueue.push(combined);
         bufferedBytes += combined.byteLength;
         headerSent = true;
@@ -364,25 +364,25 @@ function formatUUID(bytes) {
   const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
 }
-async function _uIvLAjccGFqxiARt(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tUrJTGNQOVRjSoqU) {
+async function 说的上出后时点生(addressType, _jaBQWzvbLhKhZTVi, portRemote, 们出那那种是了人) {
   const {
     username,
     password,
     hostname,
     port
-  } = _tUrJTGNQOVRjSoqU;
+  } = 们出那那种是了人;
   const socket = connect({
     hostname,
     port
   });
-  const _XcPXeruWgkUtLEQa = new Uint8Array([5, 2, 0, 2]);
+  const _lBtFEvWQNWXYGpLo = new Uint8Array([5, 2, 0, 2]);
   const writer = socket.writable.getWriter();
-  await writer.write(_XcPXeruWgkUtLEQa);
+  await writer.write(_lBtFEvWQNWXYGpLo);
   const reader = socket.readable.getReader();
   const encoder = new TextEncoder();
   let res = (await reader.read()).value;
   if (res[0] !== 0x05) {
-    throw new Error(`_CifYLNuPVcCmoBsN110x8s${res[0]} expected: 5`);
+    throw new Error(`_pyZFZDWwoLNbQmqjibunp8${res[0]} expected: 5`);
   }
   if (res[1] === 0xff) {
     throw new Error("no acceptable methods");
@@ -395,53 +395,53 @@ async function _uIvLAjccGFqxiARt(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tU
     await writer.write(authRequest);
     res = (await reader.read()).value;
     if (res[0] !== 0x01 || res[1] !== 0x00) {
-      throw new Error('_zSoISdNthOYRMFlvvo7rmu');
+      throw new Error('_aiXhulxzsETYAWQRvm79bi');
     }
   }
   let DSTADDR;
   switch (addressType) {
     case 1:
-      DSTADDR = new Uint8Array([1, ..._mhoDCtJFfbAjPDVO.split('.').map(Number)]);
+      DSTADDR = new Uint8Array([1, ..._jaBQWzvbLhKhZTVi.split('.').map(Number)]);
       break;
     case 2:
-      DSTADDR = new Uint8Array([3, _mhoDCtJFfbAjPDVO.length, ...encoder.encode(_mhoDCtJFfbAjPDVO)]);
+      DSTADDR = new Uint8Array([3, _jaBQWzvbLhKhZTVi.length, ...encoder.encode(_jaBQWzvbLhKhZTVi)]);
       break;
     case 3:
-      DSTADDR = new Uint8Array([4, ..._mhoDCtJFfbAjPDVO.split(':').flatMap(x => [parseInt(x.slice(0, 2), 16), parseInt(x.slice(2), 16)])]);
+      DSTADDR = new Uint8Array([4, ..._jaBQWzvbLhKhZTVi.split(':').flatMap(x => [parseInt(x.slice(0, 2), 16), parseInt(x.slice(2), 16)])]);
       break;
     default:
       throw new Error(`invalid addressType is ${addressType}`);
   }
-  const _BiXtEIFQguDfoqDd = new Uint8Array([5, 1, 0, ...DSTADDR, portRemote >> 8, portRemote & 0xff]);
-  await writer.write(_BiXtEIFQguDfoqDd);
+  const 是点说下这工时人 = new Uint8Array([5, 1, 0, ...DSTADDR, portRemote >> 8, portRemote & 0xff]);
+  await writer.write(是点说下这工时人);
   res = (await reader.read()).value;
   if (res[1] === 0x00) {} else {
-    throw new Error('_bOJdDgOinRJbvBxTj2mwhr');
+    throw new Error('我不有他要能子子9u1iyt');
   }
   writer.releaseLock();
   reader.releaseLock();
   return socket;
 }
-async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tUrJTGNQOVRjSoqU) {
+async function _XkxHybZhNvjjzIVw(addressType, _jaBQWzvbLhKhZTVi, portRemote, 们出那那种是了人) {
   const {
     username,
     password,
     hostname,
     port
-  } = _tUrJTGNQOVRjSoqU;
+  } = 们出那那种是了人;
   const sock = await connect({
     hostname: hostname,
     port: port
   });
-  let connectRequest = `CONNECT ${_mhoDCtJFfbAjPDVO}:${portRemote}_dOuvYFaJzBCckWpCblvcxg`;
-  connectRequest += `Host: ${_mhoDCtJFfbAjPDVO}:${portRemote}\r\n`;
+  let connectRequest = `CONNECT ${_jaBQWzvbLhKhZTVi}:${portRemote}一不就看有有是时azn6yr`;
+  connectRequest += `Host: ${_jaBQWzvbLhKhZTVi}:${portRemote}\r\n`;
   if (username && password) {
     const authString = `${username}:${password}`;
     const base64Auth = btoa(authString);
-    connectRequest += `_aIFyyFUcBlGbQtwah1rcrb${base64Auth}\r\n`;
+    connectRequest += `_bqvggwhsOOjMTYeQv5nfyw${base64Auth}\r\n`;
   }
   connectRequest += `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\r\n`;
-  connectRequest += `_yTAOuZQjQhUoZfhwnu44ws`;
+  connectRequest += `_LrYgAMZEWOxszWpMs8fgl4`;
   connectRequest += `Connection: Keep-Alive\r\n`;
   connectRequest += `\r\n`;
   try {
@@ -449,8 +449,8 @@ async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tU
     await writer.write(new TextEncoder().encode(connectRequest));
     writer.releaseLock();
   } catch (err) {
-    console.error('_LcYiwmalrAwMRqjIe6f3o5', err);
-    throw new Error(`_yOpSAuVbALOnreTD3rdkxw${err.message}`);
+    console.error('地可学们到这中地zvpia9', err);
+    throw new Error(`_QhlKTrIClVkXvUOxcioicw${err.message}`);
   }
   const reader = sock.readable.getReader();
   let respText = '';
@@ -463,8 +463,8 @@ async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tU
         done
       } = await reader.read();
       if (done) {
-        console.error('_biGzgxIchfFHsDcUjvzq2d');
-        throw new Error('_TsxCvaypbENNIASYvn8o0q');
+        console.error('对面我对在中就子zmi8uh');
+        throw new Error('_mXyPhTcwMsgvmlWe1zsnqk');
       }
       const newBuffer = new Uint8Array(responseBuffer.length + value.length);
       newBuffer.set(responseBuffer);
@@ -474,7 +474,7 @@ async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tU
       if (respText.includes('\r\n\r\n')) {
         const headersEndPos = respText.indexOf('\r\n\r\n') + 4;
         const headers = respText.substring(0, headersEndPos);
-        if (headers.startsWith('_ElDeCCUxgXOjqzxw0eczez') || headers.startsWith('到时动们种出成作odunci')) {
+        if (headers.startsWith('_xRWiDEoBcgswTDFW96hyqp') || headers.startsWith('_xxczqGjfSrINSHicz6ynxf')) {
           connected = true;
           if (headersEndPos < responseBuffer.length) {
             const remainingData = responseBuffer.slice(headersEndPos);
@@ -491,7 +491,7 @@ async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tU
             sock.readable = readable;
           }
         } else {
-          const errorMsg = `_ThdiXughnUaCBFmLduppkb${headers.split('\r\n')[0]}`;
+          const errorMsg = `_njTzYRGyUlnErIOj10e1ku${headers.split('\r\n')[0]}`;
           console.error(errorMsg);
           throw new Error(errorMsg);
         }
@@ -500,16 +500,16 @@ async function _HFXjZugZPSuUeirL(addressType, _mhoDCtJFfbAjPDVO, portRemote, _tU
     }
   } catch (err) {
     reader.releaseLock();
-    throw new Error(`地发成动作对这时s2vo0z${err.message}`);
+    throw new Error(`_cUEdVzRyYsYYBAoUs81ot5${err.message}`);
   }
   reader.releaseLock();
   if (!connected) {
-    throw new Error('后行这能们我面的uljvsj');
+    throw new Error('我要了发面种看我qdfwwa');
   }
   return sock;
 }
 async function handleUDPOutBound(webSocket, 协议响应头) {
-  let _dwytzuEMpdVBKpAT = false;
+  let _HmyXlORKcgqBgIZc = false;
   const transformStream = new TransformStream({
     start(controller) {},
     transform(chunk, controller) {
@@ -525,7 +525,7 @@ async function handleUDPOutBound(webSocket, 协议响应头) {
   });
   transformStream.readable.pipeTo(new WritableStream({
     async write(chunk) {
-      const resp = await fetch('_XhVGGUawtvDhvrhdg4705o', {
+      const resp = await fetch('_JBOdBeoGkCmujAxEhk41wc', {
         method: 'POST',
         headers: {
           'content-type': 'application/dns-message'
@@ -536,11 +536,11 @@ async function handleUDPOutBound(webSocket, 协议响应头) {
       const udpSize = dnsQueryResult.byteLength;
       const udpSizeBuffer = new Uint8Array([udpSize >> 8 & 0xff, udpSize & 0xff]);
       if (webSocket.readyState === WS_READY_STATE_OPEN) {
-        if (_dwytzuEMpdVBKpAT) {
+        if (_HmyXlORKcgqBgIZc) {
           webSocket.send(await new Blob([udpSizeBuffer, dnsQueryResult]).arrayBuffer());
         } else {
           webSocket.send(await new Blob([协议响应头, udpSizeBuffer, dnsQueryResult]).arrayBuffer());
-          _dwytzuEMpdVBKpAT = true;
+          _HmyXlORKcgqBgIZc = true;
         }
       }
     }
@@ -554,25 +554,25 @@ async function handleUDPOutBound(webSocket, 协议响应头) {
 }
 const WS_READY_STATE_OPEN = 1;
 import { connect } from 'cloudflare:sockets';
-async function 解析地址端口(进点可地要点有人) {
-  进点可地要点有人 = 进点可地要点有人.toLowerCase();
-  let 地址 = 进点可地要点有人,
-    端口 = 443;
-  if (进点可地要点有人.includes('.tp')) {
-    const tpMatch = 进点可地要点有人.match(/\.tp(\d+)/);
-    if (tpMatch) 端口 = parseInt(tpMatch[1], 10);
-    return [地址, 端口];
+async function 不学个要年的对到(个上了可看作子进) {
+  个上了可看作子进 = 个上了可看作子进.toLowerCase();
+  let _tpJNjBFtKADnoQMe = 个上了可看作子进,
+    _cHGKSPCwQvbbAfxU = 443;
+  if (个上了可看作子进.includes('.tp')) {
+    const tpMatch = 个上了可看作子进.match(/\.tp(\d+)/);
+    if (tpMatch) _cHGKSPCwQvbbAfxU = parseInt(tpMatch[1], 10);
+    return [_tpJNjBFtKADnoQMe, _cHGKSPCwQvbbAfxU];
   }
-  if (进点可地要点有人.includes(']:')) {
-    const parts = 进点可地要点有人.split(']:');
-    地址 = parts[0] + ']';
-    端口 = parseInt(parts[1], 10) || 端口;
-  } else if (进点可地要点有人.includes(':') && !进点可地要点有人.startsWith('[')) {
-    const colonIndex = 进点可地要点有人.lastIndexOf(':');
-    地址 = 进点可地要点有人.slice(0, colonIndex);
-    端口 = parseInt(进点可地要点有人.slice(colonIndex + 1), 10) || 端口;
+  if (个上了可看作子进.includes(']:')) {
+    const parts = 个上了可看作子进.split(']:');
+    _tpJNjBFtKADnoQMe = parts[0] + ']';
+    _cHGKSPCwQvbbAfxU = parseInt(parts[1], 10) || _cHGKSPCwQvbbAfxU;
+  } else if (个上了可看作子进.includes(':') && !个上了可看作子进.startsWith('[')) {
+    const colonIndex = 个上了可看作子进.lastIndexOf(':');
+    _tpJNjBFtKADnoQMe = 个上了可看作子进.slice(0, colonIndex);
+    _cHGKSPCwQvbbAfxU = parseInt(个上了可看作子进.slice(colonIndex + 1), 10) || _cHGKSPCwQvbbAfxU;
   }
-  return [地址, 端口];
+  return [_tpJNjBFtKADnoQMe, _cHGKSPCwQvbbAfxU];
 }
 async function 反代参数获取(request) {
   const url = new URL(request.url);
@@ -581,55 +581,55 @@ async function 反代参数获取(request) {
     searchParams
   } = url;
   const pathLower = pathname.toLowerCase();
-  _JvsTHmrrmEiZDcrg = searchParams.get('_GwSKUkXkMRLoyHoQ3b94m9') || searchParams.get('这中一不一他到动gfvyd6') || null;
-  _hxFxurJQmHgcnyBD = searchParams.has('_FxuVdQfXETvdEibfcjaeik') || false;
-  const 在一上要一成这这 = pathLower.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
-  if (searchParams.has('_DocCXXrYnhDPWkMMyvc8r5')) {
-    const 路参IP = searchParams.get('_uBWusYXMpXogGIxnx6nbf6');
-    反代IP = 路参IP.includes(',') ? 路参IP.split(',')[Math.floor(Math.random() * 路参IP.split(',').length)] : 路参IP;
+  _GvJqwNNFfrBfPGgz = searchParams.get('这后了有下能人在wlszz4') || searchParams.get('_FNeGhHjfetfvHDHJ8tnsyt') || null;
+  _vGPDSKATBKCqyAWy = searchParams.has('_XwLUbhGBJiHoEMyAayz4al') || false;
+  const _DKpadFTKLudlJGKL = pathLower.match(/\/(proxyip[.=]|pyip=|ip=)(.+)/);
+  if (searchParams.has('进上个中们我不说xjn2ke')) {
+    const _tXfPzfaQsiRqWVTh = searchParams.get('_SkRzrOlhtCSzQsKPhvhfek');
+    有的个点上时下到 = _tXfPzfaQsiRqWVTh.includes(',') ? _tXfPzfaQsiRqWVTh.split(',')[Math.floor(Math.random() * _tXfPzfaQsiRqWVTh.split(',').length)] : _tXfPzfaQsiRqWVTh;
     return;
-  } else if (在一上要一成这这) {
-    const 路参IP = 在一上要一成这这[1] === '_ITBBhzEFBABTpNmJnehyjp' ? `到能了们学有一对3hxa7n${在一上要一成这这[2]}` : 在一上要一成这这[2];
-    反代IP = 路参IP.includes(',') ? 路参IP.split(',')[Math.floor(Math.random() * 路参IP.split(',').length)] : 路参IP;
+  } else if (_DKpadFTKLudlJGKL) {
+    const _tXfPzfaQsiRqWVTh = _DKpadFTKLudlJGKL[1] === '_lYvSRCxNRPPvXJDcs3ocgs' ? `_JDdRdeNKuttKUnkH4sq5m9${_DKpadFTKLudlJGKL[2]}` : _DKpadFTKLudlJGKL[2];
+    有的个点上时下到 = _tXfPzfaQsiRqWVTh.includes(',') ? _tXfPzfaQsiRqWVTh.split(',')[Math.floor(Math.random() * _tXfPzfaQsiRqWVTh.split(',').length)] : _tXfPzfaQsiRqWVTh;
     return;
   }
-  let 进点看们工上发是;
-  if (进点看们工上发是 = pathname.match(/\/(socks5?|http):\/?\/?(.+)/i)) {
-    _MZYCzUjQzGabxRXY = 进点看们工上发是[1].toLowerCase() === '_NjTxBbNKVAWacwWfm6ds3m' ? '_ZmLkpKizrhTcvEKzboydn9' : '_QyVwsotxSSUFPMwRn35cqg';
-    _JvsTHmrrmEiZDcrg = 进点看们工上发是[2].split('#')[0];
-    _hxFxurJQmHgcnyBD = true;
-    if (_JvsTHmrrmEiZDcrg.includes('@')) {
-      const atIndex = _JvsTHmrrmEiZDcrg.lastIndexOf('@');
-      let userPassword = _JvsTHmrrmEiZDcrg.substring(0, atIndex).replaceAll('%3D', '=');
+  let _RdaaAHnYtVjjLrky;
+  if (_RdaaAHnYtVjjLrky = pathname.match(/\/(socks5?|http):\/?\/?(.+)/i)) {
+    _EUvgjWGMhVOHbzsa = _RdaaAHnYtVjjLrky[1].toLowerCase() === '是们点上行种地看efg2oa' ? '_aIovHdMFXceAwkUfafbwkl' : '发成面地是要对时udh3yy';
+    _GvJqwNNFfrBfPGgz = _RdaaAHnYtVjjLrky[2].split('#')[0];
+    _vGPDSKATBKCqyAWy = true;
+    if (_GvJqwNNFfrBfPGgz.includes('@')) {
+      const atIndex = _GvJqwNNFfrBfPGgz.lastIndexOf('@');
+      let userPassword = _GvJqwNNFfrBfPGgz.substring(0, atIndex).replaceAll('%3D', '=');
       if (/^(?:[A-Z0-9+/]{4})*(?:[A-Z0-9+/]{2}==|[A-Z0-9+/]{3}=)?$/i.test(userPassword) && !userPassword.includes(':')) {
         userPassword = atob(userPassword);
       }
-      _JvsTHmrrmEiZDcrg = `${userPassword}@${_JvsTHmrrmEiZDcrg.substring(atIndex + 1)}`;
+      _GvJqwNNFfrBfPGgz = `${userPassword}@${_GvJqwNNFfrBfPGgz.substring(atIndex + 1)}`;
     }
-  } else if (进点看们工上发是 = pathname.match(/\/(g?s5|socks5|g?http)=(.+)/i)) {
-    const type = 进点看们工上发是[1].toLowerCase();
-    _JvsTHmrrmEiZDcrg = 进点看们工上发是[2];
-    _MZYCzUjQzGabxRXY = type.includes('_AGwWLudDqBjyekWLiq5weo') ? '_KodTPiZrveuhHJNQncazfo' : '_JWCdloEXeTiXxRGVh2e4po';
-    _hxFxurJQmHgcnyBD = type.startsWith('g') || _hxFxurJQmHgcnyBD;
+  } else if (_RdaaAHnYtVjjLrky = pathname.match(/\/(g?s5|socks5|g?http)=(.+)/i)) {
+    const type = _RdaaAHnYtVjjLrky[1].toLowerCase();
+    _GvJqwNNFfrBfPGgz = _RdaaAHnYtVjjLrky[2];
+    _EUvgjWGMhVOHbzsa = type.includes('_EXGIlgOPulYzdYLU7amye2') ? '_VEFmjcrKQXybqBUsqak3ta' : '_gqRFGSDnPhFnpkJJ3w29xs';
+    _vGPDSKATBKCqyAWy = type.startsWith('g') || _vGPDSKATBKCqyAWy;
   }
-  if (_JvsTHmrrmEiZDcrg) {
+  if (_GvJqwNNFfrBfPGgz) {
     try {
-      _tUrJTGNQOVRjSoqU = await _KFvDcukJulhhdZGA(_JvsTHmrrmEiZDcrg);
-      _MZYCzUjQzGabxRXY = searchParams.get('一成上人了中时能7jmjmy') ? '们下后那这年人在2n3qgl' : _MZYCzUjQzGabxRXY;
+      们出那那种是了人 = await 不个有学成后个时(_GvJqwNNFfrBfPGgz);
+      _EUvgjWGMhVOHbzsa = searchParams.get('_PMZtpfqGutWSoxel1ie0xo') ? '作中地上发这时不qlal2i' : _EUvgjWGMhVOHbzsa;
     } catch (err) {
-      console.error('地点在工成生点成mj6gwu', err.message);
-      _MZYCzUjQzGabxRXY = null;
+      console.error('_fEKbHMmHmbQKjkrz5ae4i5', err.message);
+      _EUvgjWGMhVOHbzsa = null;
     }
-  } else _MZYCzUjQzGabxRXY = null;
+  } else _EUvgjWGMhVOHbzsa = null;
 }
-async function _KFvDcukJulhhdZGA(address) {
+async function 不个有学成后个时(address) {
   const lastAtIndex = address.lastIndexOf("@");
   let [latter, former] = lastAtIndex === -1 ? [address, undefined] : [address.substring(lastAtIndex + 1), address.substring(0, lastAtIndex)];
   let username, password, hostname, port;
   if (former) {
     const formers = former.split(":");
     if (formers.length !== 2) {
-      throw new Error('行了子要在进点这wg5v7w');
+      throw new Error('_FxJRUKXWMpahUQSans3g9m');
     }
     [username, password] = formers;
   }
@@ -645,11 +645,11 @@ async function _KFvDcukJulhhdZGA(address) {
     hostname = latter;
   }
   if (isNaN(port)) {
-    throw new Error('_NpqVOZFUUQFjtSOI6easad');
+    throw new Error('_dXVFNYDrKAUMsnrT9r1iw0');
   }
   const regex = /^\[.*\]$/;
   if (hostname.includes(":") && !regex.test(hostname)) {
-    throw new Error('时了我了说他下工ov22h8');
+    throw new Error('要有子人说子时年cs32la');
   }
   return {
     username,
