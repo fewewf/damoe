@@ -1,10 +1,15 @@
 {
+  "name": "worker-ci-build",
+  "type": "module",
   "scripts": {
-    "build": "javascript-obfuscator worker.js --config obf.json --output dist/worker.js",
-    "deploy": "wrangler deploy dist/worker.js"
+    "build:rename": "node build/rename.js",
+    "build:obfuscate": "node build/obfuscate.js",
+    "build": "npm run build:rename && npm run build:obfuscate"
   },
-  "devDependencies": {
-    "javascript-obfuscator": "^4.1.0",
-    "wrangler": "^3.0.0"
+  "dependencies": {
+    "@babel/parser": "^7.24.0",
+    "@babel/traverse": "^7.24.0",
+    "@babel/generator": "^7.24.0",
+    "javascript-obfuscator": "^4.1.0"
   }
 }
