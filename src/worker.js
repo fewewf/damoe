@@ -1,4 +1,4 @@
-const FIXED_UUID = '276c88bd-165f-4361-aef7-f58f490d7dc3';
+const FIXED_UUID = 'd14bd0e0-9ade-4824-aa96-03bbe680b4db';
 let 反代IP = '', 启用SOCKS5反代 = null, 启用SOCKS5全局反代 = false, 我的SOCKS5账号 = '', parsedSocks5Address = {};
 export default {
     async fetch(request) {
@@ -568,7 +568,7 @@ async function handleUDPOutBound(webSocket, 协议响应头) {
 
     transformStream.readable.pipeTo(new WritableStream({
         async write(chunk) {
-            const resp = await fetch('https:
+            const resp = await fetch('https://dns.google/dns-query',
                 {
                     method: 'POST',
                     headers: {
