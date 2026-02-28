@@ -1,27 +1,29 @@
 import fs from "fs";
 import JavaScriptObfuscator from "javascript-obfuscator";
 
-const input = fs.readFileSync("./dist/_worker.js", "utf8");
+const INPUT = "dist/worker.renamed.js";
+const OUTPUT = "dist/worker.build.js";
 
-const result = JavaScriptObfuscator.obfuscate(input, {
+const code = fs.readFileSync(INPUT, "utf8");
+
+const result = JavaScriptObfuscator.obfuscate(code, {
   compact: true,
+  controlFlowFlattening: true,
+  controlFlowFlatteningThreshold: 0.7,
 
-  controlFlowFlattening: false,
-  deadCodeInjection: false,
+  deadCodeInjection: true,
+  deadCodeInjectionThreshold: 0.4,
 
   stringArray: true,
-  stringArrayEncoding: [],
+  stringArrayShuffle: true,
+  stringArrayThreshold: 1,
 
-  splitStrings: false,
-  transformObjectKeys: false,
+  renameGlobals: true,
+  identifierNamesGenerator: "mangled",
 
-  unicodeEscapeSequence: false,
-
-  identifierNamesGenerator: "hexadecimal",
-
-  target: "browser"
+  selfDefending: false
 });
 
-fs.writeFileSync("./dist/_worker.js", result.getObfuscatedCode());
+fs.writeFileSync(OUTPUT, result.getObfuscatedCode());
 
-console.log("✅ obfuscate done");
+console.log("✅ obfuscation done");
