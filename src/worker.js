@@ -1,4 +1,4 @@
-const FIXED_UUID = '04ab5537-a9c5-49aa-9fca-c4601ecf6753';// 建议修改为自己的规范化UUID，如不需要可留空 @GoodLiux优化版
+const FIXED_UUID = '';// 建议修改为自己的规范化UUID，如不需要可留空
 let 反代IP = '', 启用SOCKS5反代 = null, 启用SOCKS5全局反代 = false, 我的SOCKS5账号 = '', parsedSocks5Address = {};
 export default {
     async fetch(request) {
@@ -39,11 +39,11 @@ async function handleSPESSWebSocket(request, config) {
 
     serverWS.accept();
 
-    // WebSocket心跳机制，每30秒发送一次
+    // WebSocket心跳机制，每30秒发送一次ping
     let heartbeatInterval = setInterval(() => {
         if (serverWS.readyState === WS_READY_STATE_OPEN) {
             try {
-                serverWS.send(new Uint8Array(0));
+                serverWS.send('ping');
             } catch (e) { }
         }
     }, 30000);
@@ -251,113 +251,43 @@ function parseVLESSHeader(buffer) {
     };
 }
 
-async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null, retryCount = 0) {
-    const MAX_RETRIES = 8;                      // 最大重试8次
-    const MAX_CHUNK_SIZE = 128 * 1024;              // 单帧最大 128 KB
-    const MAX_BUFFER_SIZE = 2 * 1024 * 1024;           // 最大缓存 2 MB
-    const FLUSH_INTERVAL = 10;                  // ms，定期 flush
-    const BASE_RETRY_DELAY = 200;             // ms，初始重试延迟
-
+function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader, retry = null) {
     let headerSent = false;
     let hasIncomingData = false;
-    let bufferQueue = [];
-    let bufferedBytes = 0;
 
-    // --- 工具函数 ---
-
-    const concatUint8Arrays = (chunks) => {
-        if (chunks.length === 1) return chunks[0];
-        const total = chunks.reduce((sum, c) => sum + c.byteLength, 0);
-        const merged = new Uint8Array(total);
-        let offset = 0;
-        for (const c of chunks) {
-            merged.set(c, offset);
-            offset += c.byteLength;
-        }
-        return merged;
-    };
-
-    // 分包发送（每帧 ≤ 128 KB）
-    const sendInChunks = (data) => {
-        let offset = 0;
-        while (offset < data.byteLength) {
-            const end = Math.min(offset + MAX_CHUNK_SIZE, data.byteLength);
-            ws.send(data.slice(offset, end));
-            offset = end;
-        }
-    };
-
-    const flushBufferQueue = () => {
-        if (ws.readyState !== WS_READY_STATE_OPEN || bufferQueue.length === 0) return;
-        const merged = concatUint8Arrays(bufferQueue);
-        bufferQueue = [];
-        bufferedBytes = 0;
-        sendInChunks(merged);
-    };
-
-    const flushTimer = setInterval(flushBufferQueue, FLUSH_INTERVAL);
-
-    // --- 主读循环 ---
-    const reader = remoteSocket.readable.getReader();
-    try {
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
+    remoteSocket.readable.pipeTo(new WritableStream({
+        write(chunk) {
             hasIncomingData = true;
-            if (ws.readyState !== WS_READY_STATE_OPEN) break;
-
-            // 首包带 vlessHeader
-            if (!headerSent) {
-                const combined = new Uint8Array(vlessHeader.byteLength + value.byteLength);
-                combined.set(new Uint8Array(vlessHeader), 0);
-                combined.set(value, vlessHeader.byteLength);
-                bufferQueue.push(combined);
-                bufferedBytes += combined.byteLength;
-                headerSent = true;
-            } else {
-                bufferQueue.push(value);
-                bufferedBytes += value.byteLength;
+            if (ws.readyState === WS_READY_STATE_OPEN) {
+                if (!headerSent) {
+                    const combined = new Uint8Array(vlessHeader.byteLength + chunk.byteLength);
+                    combined.set(new Uint8Array(vlessHeader), 0);
+                    combined.set(new Uint8Array(chunk), vlessHeader.byteLength);
+                    ws.send(combined.buffer);
+                    headerSent = true;
+                } else {
+                    ws.send(chunk);
+                }
             }
-
-            // 缓存超过 2 MB 立即 flush
-            if (bufferedBytes >= MAX_BUFFER_SIZE) {
-                flushBufferQueue();
+        },
+        close() {
+            if (!hasIncomingData && retry) {
+                retry();
+                return;
             }
+            if (ws.readyState === WS_READY_STATE_OPEN) {
+                ws.close(1000, '正常关闭');
+            }
+        },
+        abort() {
+            closeSocket(remoteSocket);
         }
-
-        reader.releaseLock();
-        flushBufferQueue();
-        clearInterval(flushTimer);
-
-        // --- 关闭逻辑 ---
-        if (!hasIncomingData && retry && retryCount < MAX_RETRIES) {
-            const delay = BASE_RETRY_DELAY * Math.pow(2, retryCount);
-            console.warn(`未收到数据，${delay} ms 后重试 (${retryCount + 1}/${MAX_RETRIES})`);
-            await new Promise(r => setTimeout(r, delay));
-            await retry();
-            return;
-        }
-
-        if (ws.readyState === WS_READY_STATE_OPEN) ws.close(1000, '正常关闭');
-    } catch (err) {
-        reader.releaseLock();
-        clearInterval(flushTimer);
-        console.error('数据传输错误:', err);
+    })).catch(err => {
         closeSocket(remoteSocket);
-
-        if (retry && retryCount < MAX_RETRIES) {
-            const delay = BASE_RETRY_DELAY * Math.pow(2, retryCount);
-            console.warn(`错误重试 (${retryCount + 1}/${MAX_RETRIES})，将在 ${delay} ms 后重试`);
-            await new Promise(r => setTimeout(r, delay));
-            await retry();
-            return;
-        }
-
         if (ws.readyState === WS_READY_STATE_OPEN) {
             ws.close(1011, '数据传输错误');
         }
-    }
+    });
 }
 
 function closeSocket(socket) {
