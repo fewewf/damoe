@@ -1,160 +1,179 @@
 import { connect } from 'cloudflare:sockets';
 
-
-const SECRET_PATH = '/tunnel-vip-2026/auth-888999';
-const FIXED_UUID = '56892533-7dad-475a-b0e8-51040d0d04ad';
-const PROXY_IP = 'ProxyIP.FR.CMLiussss.net';
-const PROXY_PORT = 443;
-const IDLE_TIMEOUT = 15000; 
-
-const API_ERROR_RESPONSE = (url, status = 404) => {
-    return new Response(JSON.stringify({
-        timestamp: new Date().toISOString(),
-        status: status,
-        error: "Resource Error",
-        requestId: Math.random().toString(36).substring(2, 10).toUpperCase()
-    }), {
-        status: status,
-        headers: { 'Content-Type': 'application/json', 'Server': 'nginx' }
-    });
-};
+const _cQndIdPFBwdwdfPS = '/t-vip-9026/auth-888999';
+const _rcHzgeggsXmfUWrW = '56892533-7dad-324a-b0e8-51040d0d04ad';
+const _JeHxQnQHudDPWbyN = 'ProxyIP.FR.CMLiussss.net';
+const _JsGTkSTJgBtAOVZl = 443;
 
 export default {
     async fetch(request) {
         const url = new URL(request.url);
         
         
-        if (url.pathname !== SECRET_PATH) return API_ERROR_RESPONSE(url, 404);
-
-        
-        const ua = (request.headers.get('User-Agent') || '').toLowerCase();
-        if (ua.includes('python-requests')) return API_ERROR_RESPONSE(url, 403);
-
-        
+        if (url.pathname !== _cQndIdPFBwdwdfPS) {
+            return new Response('Not Found', { status: 404 });
+        }
         if (request.headers.get('Upgrade') !== 'websocket') {
-            return new Response(JSON.stringify({ status: "UP", heartbeat: Date.now() }), {
-                status: 200, headers: { 'Content-Type': 'application/json' }
-            });
+            return new Response(JSON.stringify({ status: "UP", version: "2.4.2" }), { status: 200 });
         }
 
-        const wsPair = new WebSocketPair();
-        const [clientWS, serverWS] = Object.values(wsPair);
-        serverWS.accept();
+        const [client, server] = Object.values(new WebSocketPair());
+        server.accept();
 
         
-        handleWebSocket(serverWS).catch(e => console.log(`WS_SAFE_EXIT: ${e.message}`));
+        handleVLESS(server).catch(err => console.error("VLESS Fatal:", err.message));
 
-        return new Response(null, { 
-            status: 101, 
-            webSocket: clientWS,
-            headers: { 'Upgrade': 'websocket' }
+        return new Response(null, {
+            status: 101,
+            webSocket: client,
         });
     }
 };
 
-async function handleWebSocket(serverWS) {
-    const wsReadable = createWebSocketReadableStream(serverWS);
+async function handleVLESS(ws) {
     let remoteSocket = null;
-    let reader = wsReadable.getReader();
+    let vlessResponseHeader = null;
+
+    
+    const wsStream = new ReadableStream({
+        start(controller) {
+            ws.addEventListener('message', (event) => {
+                controller.enqueue(event.data);
+            });
+            ws.addEventListener('close', () => controller.close());
+            ws.addEventListener('error', () => controller.error(new Error('WS Error')));
+        }
+    });
+
+    const reader = wsStream.getReader();
 
     try {
-        const { done, value } = await reader.read();
+        
+        const { value: firstChunk, done } = await reader.read();
         if (done) return;
 
-        const result = parseVLESSHeader(value);
-        if (result.hasError) throw new Error('VLESS_AUTH_FAIL');
+        const parsed = parseVLESSHeader(firstChunk);
+        if (parsed.hasError) throw new Error(parsed.message);
 
-        const vlessHeader = new Uint8Array([result.vlessVersion[0], 0]);
-        const firstPayload = value.slice(result.rawDataIndex);
+        vlessResponseHeader = new Uint8Array([parsed.vlessVersion[0], 0]);
+        const initialData = firstChunk.slice(parsed.rawDataIndex);
 
         
+        
         try {
-            remoteSocket = await connect({ hostname: result.addressRemote, port: result.portRemote }, { allowHalfOpen: true });
-        } catch {
-            remoteSocket = await connect({ hostname: PROXY_IP, port: PROXY_PORT }, { allowHalfOpen: true });
+            remoteSocket = await connect({ hostname: parsed.addressRemote, port: parsed.portRemote });
+        } catch (e) {
+            console.log(`Direct connect failed, trying proxy: ${_JeHxQnQHudDPWbyN}`);
+            remoteSocket = await connect({ hostname: _JeHxQnQHudDPWbyN, port: _JsGTkSTJgBtAOVZl });
         }
 
         const writer = remoteSocket.writable.getWriter();
-        await writer.write(firstPayload);
+        await writer.write(initialData);
         writer.releaseLock();
 
         
-        const remoteToWs = pipeRemoteToWebSocket(remoteSocket, serverWS, vlessHeader);
-        const wsToRemote = pipeWsToRemote(reader, remoteSocket);
+        
+        
+        const remoteToWs = async () => {
+            const remoteReader = remoteSocket.readable.getReader();
+            let isFirst = true;
+            try {
+                while (true) {
+                    const { value, done } = await remoteReader.read();
+                    if (done) break;
+                    if (isFirst) {
+                        
+                        const combined = new Uint8Array(vlessResponseHeader.length + value.byteLength);
+                        combined.set(vlessResponseHeader, 0);
+                        combined.set(new Uint8Array(value), vlessResponseHeader.length);
+                        ws.send(combined);
+                        isFirst = false;
+                    } else {
+                        ws.send(value);
+                    }
+                }
+            } finally {
+                remoteReader.releaseLock();
+                ws.close();
+            }
+        };
 
         
-        await Promise.race([remoteToWs, wsToRemote]);
+        const wsToRemote = async () => {
+            try {
+                
+                while (true) {
+                    const { value, done } = await reader.read();
+                    if (done) break;
+                    const writer = remoteSocket.writable.getWriter();
+                    await writer.write(value);
+                    writer.releaseLock();
+                }
+            } finally {
+                if (remoteSocket) remoteSocket.close();
+            }
+        };
+
+        
+        await Promise.all([remoteToWs(), wsToRemote()]);
 
     } catch (err) {
-        
+        console.error("Handler Error:", err.message);
+        ws.close();
     } finally {
-        
-        try { reader.releaseLock(); } catch {}
-        if (remoteSocket) try { remoteSocket.close(); } catch {}
-        if (serverWS.readyState === 1) try { serverWS.close(); } catch {}
+        if (remoteSocket) remoteSocket.close();
     }
 }
 
-async function pipeRemoteToWebSocket(remoteSocket, ws, vlessHeader) {
-    const reader = remoteSocket.readable.getReader();
-    let headerSent = false;
-    try {
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done || ws.readyState !== 1) break;
-            if (!headerSent) {
-                const combined = new Uint8Array(vlessHeader.byteLength + value.byteLength);
-                combined.set(vlessHeader, 0);
-                combined.set(value, vlessHeader.byteLength);
-                ws.send(combined);
-                headerSent = true;
-            } else {
-                ws.send(value);
-            }
-        }
-    } finally {
-        reader.releaseLock();
-    }
-}
-
-async function pipeWsToRemote(reader, remoteSocket) {
-    const writer = remoteSocket.writable.getWriter();
-    try {
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            await writer.write(value);
-        }
-    } finally {
-        try { writer.releaseLock(); } catch {}
-    }
-}
-
-
-function createWebSocketReadableStream(ws) {
-    return new ReadableStream({
-        start(controller) {
-            ws.addEventListener('message', e => controller.enqueue(new Uint8Array(e.data)));
-            ws.addEventListener('close', () => controller.close());
-            ws.addEventListener('error', () => controller.close());
-        }
-    });
-}
 
 function parseVLESSHeader(buffer) {
-    if (buffer.byteLength < 24) return { hasError: true };
-    const view = new DataView(buffer.buffer);
-    const uuid = Array.from(new Uint8Array(buffer.slice(1, 17))).map(b => b.toString(16).padStart(2, '0')).join('');
-    if (uuid !== FIXED_UUID.replace(/-/g, '')) return { hasError: true };
-    let offset = 18 + view.getUint8(17);
-    const port = view.getUint16(offset + 1);
-    const addrType = view.getUint8(offset + 3);
-    let address = '';
-    offset += 4;
-    if (addrType === 1) address = Array.from(new Uint8Array(buffer.slice(offset, offset + 4))).join('.');
-    else if (addrType === 2) {
-        const len = view.getUint8(offset);
-        address = new TextDecoder().decode(buffer.slice(offset + 1, offset + 1 + len));
+    const view = new DataView(buffer instanceof ArrayBuffer ? buffer : buffer.buffer);
+    if (buffer.byteLength < 24) return { hasError: true, message: 'Header too short' };
+
+    const version = new Uint8Array(buffer.slice(0, 1));
+    
+    
+    const uuidBytes = new Uint8Array(buffer.slice(1, 17));
+    const uuidHex = Array.from(uuidBytes).map(b => b.toString(16).padStart(2, '0')).join('');
+    if (uuidHex !== _rcHzgeggsXmfUWrW.replace(/-/g, '')) {
+        return { hasError: true, message: 'Unauthorized UUID' };
     }
-    return { hasError: false, addressRemote: address, portRemote: port, rawDataIndex: buffer.byteLength, vlessVersion: new Uint8Array(buffer.slice(0, 1)) };
+
+    const addonsLen = view.getUint8(17);
+    let offset = 18 + addonsLen;
+    
+    const command = view.getUint8(offset); 
+    offset++;
+    
+    const port = view.getUint16(offset);
+    offset += 2;
+
+    const addressType = view.getUint8(offset);
+    offset++;
+
+    let address = '';
+    if (addressType === 1) { 
+        address = Array.from(new Uint8Array(buffer.slice(offset, offset + 4))).join('.');
+        offset += 4;
+    } else if (addressType === 2) { 
+        const len = view.getUint8(offset);
+        offset++;
+        address = new TextDecoder().decode(buffer.slice(offset, offset + len));
+        offset += len;
+    } else if (addressType === 3) { 
+        const ipv6 = [];
+        for (let i = 0; i < 8; i++) {
+            ipv6.push(view.getUint16(offset).toString(16));
+            offset += 2;
+        }
+        address = ipv6.join(':');
+    }
+
+    return {
+        hasError: false,
+        addressRemote: address,
+        portRemote: port,
+        vlessVersion: version,
+        rawDataIndex: offset
+    };
 }
