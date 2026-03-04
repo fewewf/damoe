@@ -1,12 +1,12 @@
 import { connect } from 'cloudflare:sockets';
 
 // ===== 核心配置 =====
-const SECRET_PATH = '/tunnel-vip-2026/auth-888999';
-const FIXED_UUID = '56892533-7dad-475a-b0e8-51040d0d04ad';
-const PROXY_IP = 'ProxyIP.FR.CMLiussss.net';
-const PROXY_PORT = 443;
+const SECRET_PATH = '/t-vip-9026/auth-888999';
+const UUID = '56892533-7dad-324a-b0e8-51040d0d04ad';
+const PROXY_HOST = 'yx1.9898981.xyz';
+const PROXY_PORT = 8443;
 
-// ===== 高度仿真的 API 错误模板 =====
+
 const API_ERROR_RESPONSE = (url, status = 404) => {
     const errorBody = {
         timestamp: new Date().toISOString(),
@@ -14,7 +14,7 @@ const API_ERROR_RESPONSE = (url, status = 404) => {
         error: status === 404 ? "Not Found" : "Unauthorized",
         message: `No static resource or API endpoint found for: ${url.pathname}`,
         path: url.pathname,
-        requestId: Math.random().toString(36).substring(2, 15).toUpperCase(), // 模拟系统追踪ID
+        requestId: Math.random().toString(36).substring(2, 15).toUpperCase(), 
         service: "api-gateway-v2"
     };
 
@@ -26,7 +26,7 @@ const API_ERROR_RESPONSE = (url, status = 404) => {
             'X-Content-Type-Options': 'nosniff',
             'X-XSS-Protection': '1; mode=block',
             'X-Frame-Options': 'DENY',
-            'Server': 'nginx' // 进一步伪装服务器类型
+            'Server': 'nginx' 
         }
     });
 };
@@ -35,12 +35,12 @@ export default {
     async fetch(request) {
         const url = new URL(request.url);
 
-        // 1. 路径验证：非指定路径一律返回仿真 API 错误
+
         if (url.pathname !== SECRET_PATH) {
             return API_ERROR_RESPONSE(url, 404);
         }
 
-        // 2. 握手协议验证：如果不是 WebSocket 升级请求，返回一个仿真的健康检查接口
+        
         if (request.headers.get('Upgrade') !== 'websocket') {
             return new Response(JSON.stringify({ 
                 status: "UP", 
@@ -52,7 +52,7 @@ export default {
             });
         }
 
-        // 3. 处理 WebSocket
+        
         const wsPair = new WebSocketPair();
         const [clientWS, serverWS] = Object.values(wsPair);
         
@@ -63,7 +63,7 @@ export default {
             serverWS.close();
         });
 
-        // 返回 101 状态码，并附带混淆用的 Header
+        
         return new Response(null, { 
             status: 101, 
             webSocket: clientWS,
@@ -76,9 +76,7 @@ export default {
     }
 };
 
-/**
- * 核心逻辑：VLESS 解析与双向数据交换
- */
+
 async function handleWebSocket(serverWS) {
     const wsReadable = createWebSocketReadableStream(serverWS);
     let remoteSocket = null;
@@ -97,7 +95,7 @@ async function handleWebSocket(serverWS) {
         vlessHeaderData = new Uint8Array([result.vlessVersion[0], 0]);
         clientRawData = value.slice(result.rawDataIndex);
 
-        // 尝试连接
+        
         try {
             remoteSocket = await connect({
                 hostname: result.addressRemote,
@@ -119,7 +117,7 @@ async function handleWebSocket(serverWS) {
             writer.releaseLock();
         }
 
-        // 建立双向管道
+        
         const remoteToWsPromise = pipeRemoteToWebSocket(remoteSocket, serverWS, vlessHeaderData);
         
         const wsToRemotePromise = (async () => {
