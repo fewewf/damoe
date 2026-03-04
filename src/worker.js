@@ -1,11 +1,10 @@
 import { connect } from 'cloudflare:sockets';
 
-// ===== 核心配置 =====
+
 const SECRET_PATH = '/t-vip-9026/auth-888999';
 const UUID = '56892533-7dad-324a-b0e8-51040d0d04ad';
 const PROXY_HOST = 'yx1.9898981.xyz';
 const PROXY_PORT = 8443;
-
 
 const API_ERROR_RESPONSE = (url, status = 404) => {
     const errorBody = {
@@ -35,7 +34,7 @@ export default {
     async fetch(request) {
         const url = new URL(request.url);
 
-
+        
         if (url.pathname !== SECRET_PATH) {
             return API_ERROR_RESPONSE(url, 404);
         }
@@ -106,7 +105,7 @@ async function handleWebSocket(serverWS) {
             await writer.write(clientRawData);
             writer.releaseLock();
         } catch (connErr) {
-            // Fallback 到 ProxyIP
+            
             remoteSocket = await connect({
                 hostname: PROXY_IP,
                 port: PROXY_PORT
